@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<script>
+	</script>
+	<footer id="footer-container-wrapper" class="test">
+    <div id="footer-actions-container-wrapper" class="section-wrapper section-bg-dark sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-5">
+                    <div class="newsletter">
+                        <form class="form subscribe" novalidate  id="newsletter-validate-detail">
+                            <div class="newsletter-form-wrap">
+                                <div class="row row-none">
+                                    <div class="col-xs-8 col-sm-8 col-md-8">
+                                        <i class="envelope-icon icon ion-email"></i>
+                                        <input name="email" type="email" id="newsletter" placeholder="Enter your email address" data-validate="{required:true, 'validate-email':true}">
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4">
+                                        <button class="btn btn-base" title="Subscribe Now" type="submit">
+                                            <span>Submit</span>
+                                            <span class="hidden-sm hidden-md hidden-lg">Go</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-0 col-md-2 hidden-xs hidden-sm"></div>
+                <div class="col-sm-6 col-md-5">
+                    <ul class="social-icons">
+                        <li>
+                            <a class="twitter" href="https://twitter.com/" target="_blank">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="facebook" href="https://www.facebook.com" target="_blank">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="instagram" href="https://www.instagram.com" target="_blank">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="youtube" href="https://www.youtube.com" target="_blank">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer-links-container-wrapper" class="section-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <div class="footer-logo-icon">
+                        <h3 style="color: white">30 day return Policy</h3>
+                    </div>
+                    
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div id="link-blocks" class="row">
+                        <div class="col-sm-2 col-md-2" id="footlist">
+                            <h4>Gaming Consoles</h4>
+                            <ul>
+                                <li><a href="" class="multilingual_link">PlayStation Gaming</a></li>
+                                <li><a href="" class="multilingual_link">Pc Gaming</a></li>
+                                <li><a href="" class="multilingual_link">Nintendo Gaming</a></li>
+                                <li><a href="" class="multilingual_link">Xbox Gaming</a></li>
+                                <li><a href="" class="multilingual_link">Accessories</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-2 col-md-2" id="footlist1">
+                            <h4>Get Help</h4>
+                            <ul>
+                                <li><a href="" class="multilingual_link">Customer Support</a></li>
+                                <li><a href="" class="multilingual_link">Return Policy</a></li>
+                                <li><a href="" class="multilingual_link">Terms and Service</a></li>
+                                <li><a href="" class="multilingual_link">About Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-2 col-md-2" id="footlist2">
+                            <h4>Menu</h4>
+                            <ul>
+                                <li><a href="" class="multilingual_link">Home</a></li>
+                                <li><a href="" class="multilingual_link">Shop</a></li>
+                                <li><a href="" class="multilingual_link">Blogs</a></li>
+                                <li><a href="" class="multilingual_link">Contact Us</a></li>
+                                <li><a href="" class="multilingual_link">Deals & Specials</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-2 col-md-2" id="footlist3">
+                            <h4>ACCOUNT</h4>
+                            <ul>
+                                <li><a href="" class="multilingual_link">CheckOut</a></li>
+                                <li><a href="" class="multilingual_link">Wishlist</a></li>
+                                <li><a href="" class="multilingual_link">Login</a></li>
+                                <li><a href="" class="multilingual_link">My Cart</a></li>
+                                <li><a href="" class="multilingual_link">My Account</a></li>
+                            </ul>
+                        </div>
+            </div>
+                </div>
+                <div class="col-sm-3 col-md-3 free-ship">
+                    <div class="footer-logo-icon">
+                        <h3 style="color: white">Free Shipping on all goods</h3>
+					</div>
+                    </div>
+                </div>
+            
+            <div>
+               <p class="copyright"><br>Copyright @ Dopegamer2017<br>Dopegamer Gaming All rights reserved. All prices in USD</p>
+               
+            </div>
+            <div class="absolute-footer"><a class="multilingual_link" href="">Limited Warranty</a> <a class="multilingual_link" href="">Terms of Use</a> <a class="multilingual_link" href="">Privacy Policy</a></div>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript">
+	
+	function toggleClass(element, className){
+    if (!element || !className){
+        return;
+    }
+    
+    var classString = element.className, nameIndex = classString.indexOf(className);
+    if (nameIndex == -1) {
+        classString += ' ' + className;
+    }
+    else {
+        classString = classString.substr(0, nameIndex) + classString.substr(nameIndex+className.length);
+    }
+    element.className = classString;
+}
+
+document.getElementById('footlist').addEventListener('click', function() {
+    toggleClass(document.getElementById('footlist'), 'active');
+});
+document.getElementById('footlist1').addEventListener('click', function() {
+    toggleClass(document.getElementById('footlist1'), 'active');
+});
+document.getElementById('footlist2').addEventListener('click', function() {
+    toggleClass(document.getElementById('footlist2'), 'active');
+});
+	document.getElementById('footlist3').addEventListener('click', function() {
+    toggleClass(document.getElementById('footlist3'), 'active');
+});
+	</script>
+</body>
+</html>

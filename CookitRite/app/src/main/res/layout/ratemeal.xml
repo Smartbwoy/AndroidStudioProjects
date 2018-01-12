@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:text="Meal Name"
+        android:id="@+id/rateHeader"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        tools:ignore="HardcodedText" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:id="@+id/separator"
+        android:layout_below="@+id/rateHeader"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/side_nav_bar" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingsBar"
+        android:theme="@style/RatingBar"
+        android:isIndicator="false"
+        android:clickable="false"
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/separator"
+        android:layout_centerHorizontal="true"
+        android:numStars="5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rateTV"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="20sp"
+        android:layout_below="@+id/ratingsBar"
+        android:layout_centerHorizontal="true"
+        tools:ignore="HardcodedText"
+        android:text="5.0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/errorTV"
+        android:text="Something Went Wrong. Please Try Again"
+        android:layout_below="@+id/rateTV"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:background="@color/red"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:layout_below="@+id/errorTV"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Write Your Review(200 Characters)"
+        android:lines="5"
+        android:id="@+id/reviewED"
+        tools:ignore="Deprecated,HardcodedText,UnusedAttribute"
+        android:editable="true"
+        android:maxLines="1" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reviewED"
+        android:layout_gravity="center"
+        android:weightSum="2">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Cancel"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            tools:ignore="HardcodedText,UnusedAttribute"
+            android:background="@color/transparent"
+            style="@style/Widget.AppCompat.Button"
+            android:elevation="24dp"
+            android:onClick="closedialogy"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Submit"
+            android:textColor="@color/black"
+            android:background="@color/transparent"
+            android:layout_weight="1"
+            tools:ignore="HardcodedText,UnusedAttribute"
+            style="@style/Widget.AppCompat.Button"
+            android:elevation="24dp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

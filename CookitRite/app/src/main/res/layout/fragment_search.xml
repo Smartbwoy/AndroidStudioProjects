@@ -1,0 +1,288 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="layout.search"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:showIn="@layout/content_search">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/recent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/darkgreen"
+            android:elevation="6dp"
+            android:text="Recently Viewed"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/background"
+            android:textStyle="bold"
+            android:typeface="normal"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="@string/categories"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="@string/vegetarian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="24dp"
+                android:textColor="@android:color/holo_green_light"
+                android:textStyle="normal|bold|italic"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                style="@style/Widget.AppCompat.Button"
+                android:backgroundTint="@color/background"
+                tools:ignore="UnusedAttribute" />
+
+            <Button
+            android:text="Breakfast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="24dp"
+            tools:ignore="ButtonStyle,HardcodedText,UnusedAttribute"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textStyle="normal|bold"
+                android:backgroundTint="@color/background"
+                android:textSize="14sp" />
+            <Button
+                android:text="Lunch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="24dp"
+                tools:ignore="ButtonStyle,HardcodedText,UnusedAttribute"
+                android:textAlignment="center"
+                android:textColor="@color/orange"
+                android:textStyle="normal|bold"
+                android:backgroundTint="@color/background"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UselessLeaf">
+            <Button
+                android:text="Dinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="24dp"
+                android:textColor="?attr/actionModeSplitBackground"
+                android:textStyle="normal|bold|italic"
+                tools:ignore="ButtonStyle,HardcodedText,UnusedAttribute"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:backgroundTint="@color/background" />
+
+            <Button
+                android:text="Beverages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="24dp"
+                tools:ignore="ButtonStyle,HardcodedText,UnusedAttribute"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_purple"
+                android:textStyle="normal|bold"
+                android:backgroundTint="@color/background"
+                android:textSize="14sp" />
+
+            <Button
+                android:text="Appetizers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="24dp"
+                tools:ignore="ButtonStyle,HardcodedText,UnusedAttribute"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_red_light"
+                android:textStyle="normal|bold"
+                android:backgroundTint="@color/background"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UselessLeaf">
+            <Button
+                android:text="Soup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="24dp"
+                android:textStyle="normal|bold|italic"
+                tools:ignore="ButtonStyle,HardcodedText,UnusedAttribute"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:backgroundTint="@color/background"
+                android:textColor="@color/yellow" />
+
+            <Button
+                android:text="Salad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="24dp"
+                tools:ignore="ButtonStyle,HardcodedText,UnusedAttribute"
+                android:textAlignment="center"
+                android:textColor="@color/darkgreen"
+                android:textStyle="normal|bold"
+                android:backgroundTint="@color/background"
+                android:textSize="14sp" />
+
+            <Button
+                android:text="Desserts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="24dp"
+                tools:ignore="ButtonStyle,HardcodedText,UnusedAttribute"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textStyle="normal|bold"
+                android:backgroundTint="@color/background"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UselessLeaf">
+
+            <Button
+                android:text="Canning/Freezing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="24dp"
+                android:textStyle="normal|bold|italic"
+                tools:ignore="ButtonStyle,HardcodedText,UnusedAttribute"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:backgroundTint="@color/background"
+                android:textColor="@color/dark_gray" />
+
+            <Button
+                android:text="Breads"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="24dp"
+                tools:ignore="ButtonStyle,HardcodedText,UnusedAttribute"
+                android:textAlignment="center"
+                android:textColor="@color/brown"
+                android:textStyle="normal|bold"
+                android:backgroundTint="@color/background"
+                android:textSize="14sp" />
+
+            <Button
+                android:text="Poultry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="24dp"
+                tools:ignore="ButtonStyle,HardcodedText,UnusedAttribute"
+                android:textAlignment="center"
+                android:textStyle="normal|bold"
+                android:backgroundTint="@color/background"
+                android:textSize="14sp"
+                android:textColor="@color/red" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UselessLeaf">
+
+            <Button
+                android:text="Beef"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="24dp"
+                android:textStyle="normal|bold|italic"
+                tools:ignore="ButtonStyle,HardcodedText,UnusedAttribute"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:backgroundTint="@color/background"
+                android:textColor="@color/black" />
+
+            <Button
+                android:text="Seafood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="24dp"
+                tools:ignore="ButtonStyle,HardcodedText,UnusedAttribute"
+                android:textAlignment="center"
+                android:textColor="@color/blue"
+                android:textStyle="normal|bold"
+                android:backgroundTint="@color/background"
+                android:textSize="14sp" />
+
+            <Button
+                android:text="Pork"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="24dp"
+                tools:ignore="ButtonStyle,HardcodedText,UnusedAttribute"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="normal|bold"
+                android:backgroundTint="@color/background"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"></LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+</LinearLayout>

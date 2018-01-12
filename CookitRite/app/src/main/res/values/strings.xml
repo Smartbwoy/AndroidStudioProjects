@@ -1,0 +1,299 @@
+<resources>
+    <string name="app_name">CookitRite</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_help" translatable="false">Help</string>
+    <string name="action_logout" translatable="false">Logout</string>
+    <string name="title_activity_profile">CookItRite</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Rrcemove or change this placeholder text -->
+    <string name="title_activity_sign_up">Create Account</string>
+    <string name="app_label">Search</string>
+    <string name="search_hint">Search for Meals</string>
+    <string name="search">Search</string>
+    <string name="title_activity_search">Search Recipes</string>
+    <string-array name="Cateogory_type">
+        <item>Choose category.....</item>
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>Beverages</item>
+        <item>Appetizers</item>
+        <item>Soups</item>
+        <item>Salad</item>
+        <item>Desserts</item>
+        <item>Canning/Freezing</item>
+        <item>Breads</item>
+        <item>Vegetarian</item>
+        <item>Poultry</item>
+        <item>Beef</item>
+        <item>Seafood</item>
+        <item>Pork</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="Measure_type">
+        <item>cup</item>
+        <item>lb</item>
+        <item>gram</item>
+        <item>kg</item>
+        <item>liter</item>
+        <item>ml</item>
+        <item>oz</item>
+        <item>pint</item>
+        <item>tsp</item>
+        <item>tbsp</item>
+    </string-array>
+    <string-array name="countries">
+        <item value="afghan">Afghan</item>
+        <item value="albanian">Albanian</item>
+        <item value="algerian">Algerian</item>
+        <item value="american">American</item>
+        <item value="andorran">Andorran</item>
+        <item value="angolan">Angolan</item>
+        <item value="antiguans">Antiguans</item>
+        <item value="argentinean">Argentinean</item>
+        <item value="armenian">Armenian</item>
+        <item value="australian">Australian</item>
+        <item value="austrian">Austrian</item>
+        <item value="azerbaijani">Azerbaijani</item>
+        <item value="bahamian">Bahamian</item>
+        <item value="bahraini">Bahraini</item>
+        <item value="bangladeshi">Bangladeshi</item>
+        <item value="barbadian">Barbadian</item>
+        <item value="barbudans">Barbudans</item>
+        <item value="batswana">Batswana</item>
+        <item value="belarusian">Belarusian</item>
+        <item value="belgian">Belgian</item>
+        <item value="belizean">Belizean</item>
+        <item value="beninese">Beninese</item>
+        <item value="bhutanese">Bhutanese</item>
+        <item value="bolivian">Bolivian</item>
+        <item value="bosnian">Bosnian</item>
+        <item value="brazilian">Brazilian</item>
+        <item value="british">British</item>
+        <item value="bruneian">Bruneian</item>
+        <item value="bulgarian">Bulgarian</item>
+        <item value="burkinabe">Burkinabe</item>
+        <item value="burmese">Burmese</item>
+        <item value="burundian">Burundian</item>
+        <item value="cambodian">Cambodian</item>
+        <item value="cameroonian">Cameroonian</item>
+        <item value="canadian">Canadian</item>
+        <item value="cape verdean">Cape Verdean</item>
+        <item value="central african">Central African</item>
+        <item value="chadian">Chadian</item>
+        <item value="chilean">Chilean</item>
+        <item value="chinese">Chinese</item>
+        <item value="colombian">Colombian</item>
+        <item value="comoran">Comoran</item>
+        <item value="congolese">Congolese</item>
+        <item value="costa rican">Costa Rican</item>
+        <item value="croatian">Croatian</item>
+        <item value="cuban">Cuban</item>
+        <item value="cypriot">Cypriot</item>
+        <item value="czech">Czech</item>
+        <item value="danish">Danish</item>
+        <item value="djibouti">Djibouti</item>
+        <item value="dominican">Dominican</item>
+        <item value="dutch">Dutch</item>
+        <item value="east timorese">East Timorese</item>
+        <item value="ecuadorean">Ecuadorean</item>
+        <item value="egyptian">Egyptian</item>
+        <item value="emirian">Emirian</item>
+        <item value="equatorial guinean">Equatorial Guinean</item>
+        <item value="eritrean">Eritrean</item>
+        <item value="estonian">Estonian</item>
+        <item value="ethiopian">Ethiopian</item>
+        <item value="fijian">Fijian</item>
+        <item value="filipino">Filipino</item>
+        <item value="finnish">Finnish</item>
+        <item value="french">French</item>
+        <item value="gabonese">Gabonese</item>
+        <item value="gambian">Gambian</item>
+        <item value="georgian">Georgian</item>
+        <item value="german">German</item>
+        <item value="ghanaian">Ghanaian</item>
+        <item value="greek">Greek</item>
+        <item value="grenadian">Grenadian</item>
+        <item value="guatemalan">Guatemalan</item>
+        <item value="guinea-bissauan">Guinea-Bissauan</item>
+        <item value="guinean">Guinean</item>
+        <item value="guyanese">Guyanese</item>
+        <item value="haitian">Haitian</item>
+        <item value="herzegovinian">Herzegovinian</item>
+        <item value="honduran">Honduran</item>
+        <item value="hungarian">Hungarian</item>
+        <item value="icelander">Icelander</item>
+        <item value="indian">Indian</item>
+        <item value="indonesian">Indonesian</item>
+        <item value="iranian">Iranian</item>
+        <item value="iraqi">Iraqi</item>
+        <item value="irish">Irish</item>
+        <item value="israeli">Israeli</item>
+        <item value="italian">Italian</item>
+        <item value="ivorian">Ivorian</item>
+        <item value="jamaican">Jamaican</item>
+        <item value="japanese">Japanese</item>
+        <item value="jordanian">Jordanian</item>
+        <item value="kazakhstani">Kazakhstani</item>
+        <item value="kenyan">Kenyan</item>
+        <item value="kittian and nevisian">Kittian and Nevisian</item>
+        <item value="kuwaiti">Kuwaiti</item>
+        <item value="kyrgyz">Kyrgyz</item>
+        <item value="laotian">Laotian</item>
+        <item value="latvian">Latvian</item>
+        <item value="lebanese">Lebanese</item>
+        <item value="liberian">Liberian</item>
+        <item value="libyan">Libyan</item>
+        <item value="liechtensteiner">Liechtensteiner</item>
+        <item value="lithuanian">Lithuanian</item>
+        <item value="luxembourger">Luxembourger</item>
+        <item value="macedonian">Macedonian</item>
+        <item value="malagasy">Malagasy</item>
+        <item value="malawian">Malawian</item>
+        <item value="malaysian">Malaysian</item>
+        <item value="maldivan">Maldivan</item>
+        <item value="malian">Malian</item>
+        <item value="maltese">Maltese</item>
+        <item value="marshallese">Marshallese</item>
+        <item value="mauritanian">Mauritanian</item>
+        <item value="mauritian">Mauritian</item>
+        <item value="mexican">Mexican</item>
+        <item value="micronesian">Micronesian</item>
+        <item value="moldovan">Moldovan</item>
+        <item value="monacan">Monacan</item>
+        <item value="mongolian">Mongolian</item>
+        <item value="moroccan">Moroccan</item>
+        <item value="mosotho">Mosotho</item>
+        <item value="motswana">Motswana</item>
+        <item value="mozambican">Mozambican</item>
+        <item value="namibian">Namibian</item>
+        <item value="nauruan">Nauruan</item>
+        <item value="nepalese">Nepalese</item>
+        <item value="new zealander">New Zealander</item>
+        <item value="ni-vanuatu">Ni-Vanuatu</item>
+        <item value="nicaraguan">Nicaraguan</item>
+        <item value="nigerien">Nigerien</item>
+        <item value="north korean">North Korean</item>
+        <item value="northern irish">Northern Irish</item>
+        <item value="norwegian">Norwegian</item>
+        <item value="omani">Omani</item>
+        <item value="pakistani">Pakistani</item>
+        <item value="palauan">Palauan</item>
+        <item value="panamanian">Panamanian</item>
+        <item value="papua new guinean">Papua New Guinean</item>
+        <item value="paraguayan">Paraguayan</item>
+        <item value="peruvian">Peruvian</item>
+        <item value="polish">Polish</item>
+        <item value="portuguese">Portuguese</item>
+        <item value="qatari">Qatari</item>
+        <item value="romanian">Romanian</item>
+        <item value="russian">Russian</item>
+        <item value="rwandan">Rwandan</item>
+        <item value="saint lucian">Saint Lucian</item>
+        <item value="salvadoran">Salvadoran</item>
+        <item value="samoan">Samoan</item>
+        <item value="san marinese">San Marinese</item>
+        <item value="sao tomean">Sao Tomean</item>
+        <item value="saudi">Saudi</item>
+        <item value="scottish">Scottish</item>
+        <item value="senegalese">Senegalese</item>
+        <item value="serbian">Serbian</item>
+        <item value="seychellois">Seychellois</item>
+        <item value="sierra leonean">Sierra Leonean</item>
+        <item value="singaporean">Singaporean</item>
+        <item value="slovakian">Slovakian</item>
+        <item value="slovenian">Slovenian</item>
+        <item value="solomon islander">Solomon Islander</item>
+        <item value="somali">Somali</item>
+        <item value="south african">South African</item>
+        <item value="south korean">South Korean</item>
+        <item value="spanish">Spanish</item>
+        <item value="sri lankan">Sri Lankan</item>
+        <item value="sudanese">Sudanese</item>
+        <item value="surinamer">Surinamer</item>
+        <item value="swazi">Swazi</item>
+        <item value="swedish">Swedish</item>
+        <item value="swiss">Swiss</item>
+        <item value="syrian">Syrian</item>
+        <item value="taiwanese">Taiwanese</item>
+        <item value="tajik">Tajik</item>
+        <item value="tanzanian">Tanzanian</item>
+        <item value="thai">Thai</item>
+        <item value="togolese">Togolese</item>
+        <item value="tongan">Tongan</item>
+        <item value="trinidadian or tobagonian">Trinidadian or Tobagonian</item>
+        <item value="tunisian">Tunisian</item>
+        <item value="turkish">Turkish</item>
+        <item value="tuvaluan">Tuvaluan</item>
+        <item value="ugandan">Ugandan</item>
+        <item value="ukrainian">Ukrainian</item>
+        <item value="uruguayan">Uruguayan</item>
+        <item value="uzbekistani">Uzbekistani</item>
+        <item value="venezuelan">Venezuelan</item>
+        <item value="vietnamese">Vietnamese</item>
+        <item value="welsh">Welsh</item>
+        <item value="yemenite">Yemenite</item>
+        <item value="zambian">Zambian</item>
+        <item value="zimbabwean">Zimbabwean</item>
+    </string-array>
+    <string-array name="ques1">
+        <item>Security Question 1</item>
+        <item>What is your favorite children’s book?</item>
+        <item>What is your dream job?</item>
+        <item>What was your childhood nickname?</item>
+        <item>What was the model of your first car?</item>
+        <item>Who was your favorite singer or band in high school?</item>
+        <item>Who was your favorite film star or character in school?</item>
+    </string-array>
+    <string-array name="ques2">
+        <item>Security Question 2</item>
+        <item>What was the first name of your first boss?</item>
+        <item>In what city did your parents meet?</item>
+        <item>What was the name of your first pet?</item>
+        <item>What is the first name of your best friend in high school?</item>
+        <item>What was the first film you saw in the theater?</item>
+        <item>What was the first thing you learned to cook?</item>
+    </string-array>
+    <string-array name="ques3">
+        <item>Security Question 3</item>
+        <item>What is the last name of your favorite elementary school teacher?</item>
+        <item>Where did you go the first time you flew on a plane?</item>
+        <item>What is the name of the street where you grew up?</item>
+        <item>What is the name of the first beach you visited?</item>
+        <item>What was the first album that you purchased?</item>
+        <item>What is the name of your favorite sports team?</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="vegetarian">Vegetarian</string>
+    <string name="title_activity_view_recipe">Ackee and Salt Fish</string>
+    <string name="share">Share</string>
+    <string name="listed_recipes_for_user">Listed Recipes for User</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edit_kitchen_item">edit_kitchen_item</string>
+    <string name="edit_grocery_item">android:title=\"@string/edit_grocery_item\"</string>
+    <string name="edit">Edit</string>
+    <string name="login">Login</string>
+    <string name="create_account">Create Account</string>
+    <string name="add_item">Add Item</string>
+    <string name="item_quanity">Quanity</string>
+    <string name="addgroceryitem">ADD</string>
+    <string name="notes">Notes</string>
+    <string name="title_activity_searching">Search for Meal</string>
+    <string name="search_help">Help</string>
+    <string name="website">WebSite</string>
+    <string name="categories">Categories</string>
+    <string name="clear_marked">Clear Marked</string>
+    <string name="clear_all">Clear All</string>
+    <string name="finish">Finish</string>
+
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>

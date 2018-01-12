@@ -1,0 +1,140 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="layout.meals"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/linearLayout">
+
+    <com.github.clans.fab.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        android:contentDescription="Users Created Recipes "
+        android:elevation="0dp"
+        android:onClick="viewcreatedRecipe"
+        android:src="@drawable/ic_folder_open_black_24dp"
+        app:elevation="24dp"
+        app:fab_colorNormal="@android:color/holo_green_light"
+        app:fab_colorPressed="@android:color/white"
+        app:fab_label="meal"
+        app:fab_size="mini"
+        tools:ignore="HardcodedText,UnusedAttribute" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.71"
+        android:paddingTop="12dp"
+        android:text="All"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="@color/green"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText,UnusedAttribute" />
+
+</LinearLayout>
+
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:layout_below="@+id/linearLayout"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout2">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:elevation="0dp"
+            android:src="@drawable/ic_access_time_black_24dp"
+            app:fab_colorNormal="@android:color/holo_green_light"
+            app:fab_colorPressed="@color/white"
+            app:fab_label="meal"
+            app:fab_size="mini"
+            tools:ignore="UnusedAttribute" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.71"
+            android:paddingTop="12dp"
+            android:text="Added"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="@color/green"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,InefficientWeight,UnusedAttribute" />
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:elevation="0dp"
+            android:src="@drawable/ic_star_black_24dp"
+            app:fab_colorNormal="@android:color/holo_green_light"
+            app:fab_colorPressed="@color/white"
+            app:fab_label="meal"
+            app:fab_size="mini"
+            tools:ignore="UnusedAttribute" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.71"
+            android:paddingTop="12dp"
+            android:text="Favorites"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="@color/green"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,InefficientWeight,UnusedAttribute" />
+
+    </LinearLayout>
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        app:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+        app:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+        app:menu_colorNormal="@android:color/holo_green_dark"
+        app:menu_colorPressed="@color/white">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/creatMeal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="createmeal"
+            android:src="@android:drawable/ic_menu_edit"
+            app:fab_colorNormal="@android:color/holo_green_dark"
+            app:fab_colorPressed="@color/white"
+            app:fab_label="Create Meal"
+            app:fab_size="mini" />
+    </com.github.clans.fab.FloatingActionMenu>
+
+
+</RelativeLayout>

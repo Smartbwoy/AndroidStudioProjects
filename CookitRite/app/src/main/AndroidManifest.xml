@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?><!-- "@mipmap/ic_launcher" -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.smartbwoy.cookitrite">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/company_logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Splashscreen"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.smartbwoy.cookitrite.MainActivity" />
+        </activity>
+        <activity
+            android:name=".sign_up"
+            android:label="@string/title_activity_sign_up"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.smartbwoy.cookitrite.MainActivity" />
+        </activity>
+        <!-- this is the searchable activity; it performs searches -->
+        <activity
+            android:name=".Create_MealActivity"
+            android:label="Create Recipe"
+            android:parentActivityName=".ProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.smartbwoy.cookitrite.ProfileActivity" />
+        </activity>
+        <activity
+            android:name=".ViewRecipe"
+            android:label="@string/title_activity_view_recipe"
+            android:parentActivityName=".ProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.smartbwoy.cookitrite.ProfileActivity" />
+        </activity>
+        <activity
+            android:name=".ListedRecipes"
+            android:label="CookItRite"
+            android:parentActivityName=".ProfileActivity" />
+        <activity
+            android:name=".CreateGroceryItem"
+            android:theme="@style/AppTheme.CustomTheme" />
+        <activity
+            android:name=".SearchingActivity"
+            android:label="@string/title_activity_searching" />
+        <activity
+            android:name=".LoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_login"
+            android:theme="@style/FullscreenTheme"></activity>
+    </application>
+
+</manifest>
