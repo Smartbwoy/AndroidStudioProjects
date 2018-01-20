@@ -1,36 +1,49 @@
 package com.example.smartbwoy.cookitrite;
 
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.content.Intent;
-import android.widget.EditText;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-    @Override
+
+    private FirebaseAuth userAuth;
+    private FirebaseAuth.AuthStateListener firebaseListener;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        userAuth=FirebaseAuth.getInstance();
+        firebaseListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+                if(user!=null) {
+                    Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return;
+                }
+                else{
+                    Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+        };
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        userAuth.addAuthStateListener(firebaseListener);
     }
 
-
-    /** Called when the user clicks the Send button */
-    public void LogUser(View view) {
-        // Do something in response to button
-        Intent intent = new Intent(this, ProfileActivity.class);
-        startActivity(intent);
+    @Override
+    protected void onStop() {
+        super.onStop();
+        userAuth.removeAuthStateListener(firebaseListener);
     }
 
-    public void Signup(View view){
-        Intent intent= new Intent(this,sign_up.class);
-        startActivity(intent);
-    }
 
 }

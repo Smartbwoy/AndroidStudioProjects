@@ -1,33 +1,119 @@
 package com.example.smartbwoy.cookitrite;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class sign_up extends AppCompatActivity {
-    /*View step1= (View) findViewById(R.id.setion1);
-    View step2= (View) findViewById(R.id.setion2);
-    View step3= (View) findViewById(R.id.setion3);
-    View step4= (View) findViewById(R.id.setion4);*/
+    private FirebaseAuth userAuth;
+    private FirebaseAuth.AuthStateListener firebaseListener;
+    private EditText user_name;
+    private EditText email;
+    private EditText password;
+    private EditText passwordConfirm;
+    private TextView createErrorMessage;
+    private FirebaseUser verifyuser;
 
+    Button createAccount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        EditText et = (EditText) findViewById(R.id.input_name);
+        createErrorMessage=(TextView) findViewById(R.id.createErrorMessage);
+        user_name  = (EditText) findViewById(R.id.user_name);
+        email = (EditText) findViewById(R.id.user_email);
+        password  = (EditText) findViewById(R.id.user_password);
+        passwordConfirm  = (EditText) findViewById(R.id.user_password_confirm);
+        createAccount = (Button) findViewById(R.id.createAccount);
+        userAuth=FirebaseAuth.getInstance();
+        firebaseListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+                if(user!=null) {
+                    Intent intent = new Intent(sign_up.this, ProfileActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return;
+                }
+            }
+        };
+        verifyuser=userAuth.getCurrentUser();
+        verifyuser.sendEmailVerification().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+            }
+        });
+
+       createAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String useremail = email.getText().toString();
+                String userpassword = password.getText().toString();
+                String userpasswordconfirm = passwordConfirm.getText().toString();
+
+                String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+                Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+                Matcher matcher = pattern.matcher(useremail);
+                if (matcher.matches()) {
+
+                    userAuth.createUserWithEmailAndPassword(useremail, userpassword).addOnCompleteListener(sign_up.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(getBaseContext(), "User Not Created", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getBaseContext(), "User Created", Toast.LENGTH_LONG).show();
+                                String userID = userAuth.getCurrentUser().getUid();
+                                DatabaseReference current_user_dp = FirebaseDatabase.getInstance().getReference().child("User").child(userID);
+                                String username = user_name.getText().toString();
+                                Map newPost = new HashMap();
+                                newPost.put("username", username);
+                                DatabaseReference current_user_meal = FirebaseDatabase.getInstance().getReference().child("User").child(userID).child("Meals");
+                                current_user_dp.setValue(newPost);
+
+
+                            }
+                        }
+                    });
+                }
+                else{
+                    createErrorMessage.setText("Ensure Email format is correct");
+                    createErrorMessage.setVisibility(View.VISIBLE);
+
+                }
+            }
+        });
+
+
 // to set text color using RGB code
-        et.setTextColor(Color.parseColor("#00ff00"));
+
 
         Spinner spin_country = (Spinner)findViewById(R.id.country_list);
         Spinner spin_ques1=(Spinner)findViewById(R.id.question1);
@@ -57,6 +143,17 @@ public class sign_up extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        userAuth.addAuthStateListener(firebaseListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        userAuth.removeAuthStateListener(firebaseListener);
+    }
     public void run_personal_info(View v){
         View step1= (View) findViewById(R.id.setion1);
         step1.setVisibility(View.INVISIBLE);

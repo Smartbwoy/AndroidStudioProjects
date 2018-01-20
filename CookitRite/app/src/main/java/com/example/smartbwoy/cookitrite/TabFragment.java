@@ -4,10 +4,13 @@ package com.example.smartbwoy.cookitrite;
  * Created by Smartbwoy on 7/1/2017.
  */
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Paint;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,15 +21,17 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Display;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.maps.GoogleMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,9 +43,7 @@ import java.util.List;
 public class TabFragment extends Fragment {
     public TabLayout tabLayout;
     public ViewPager viewPager;
-    TabHost tabHost;
-    Menu menu;
-
+    public static GoogleMap mGoogleMap;
     static ExpandableListAdapter listAdapter;
     static ExpandableListView expListView;
     static List<String> listDataHeader;
@@ -89,8 +92,9 @@ public class TabFragment extends Fragment {
                 //View rootView =getView().findViewById(R.layout.app_bar_profile2);
 
                 //rootView.findViewById(R.id.topbarRemover).setVisibility(View.GONE);
-                if(position==3)
-                ProfileActivity.myMenu.name.findItem(R.id.action_edit).setVisible(false);
+                if(position==3) {
+                    ProfileActivity.myMenu.name.findItem(R.id.action_edit).setVisible(false);
+                }
             }
 
             @Override
@@ -102,7 +106,7 @@ public class TabFragment extends Fragment {
 
     }
 
-public static class PlaceholderFragment extends Fragment  {
+public static class PlaceholderFragment extends Fragment {
         public static String [] MealsAry;
         /**
          * The fragment argument representing the section number for this
@@ -159,10 +163,20 @@ public static class PlaceholderFragment extends Fragment  {
                 recipes.add(new String[] {"Apple", "Miguel"});
                 recipes.add(new String[] {"Orgin", "Miguel"});
                 rv.setAdapter( new MealListAdapter(recipes));
+
                 return rootView;
             }
             if(getArguments().getInt(ARG_SECTION_NUMBER)==2){
                 View rootView = inflater.inflate(R.layout.fragment_meals, container, false);
+                FloatingActionButton viewAllmeals =(FloatingActionButton) rootView.findViewById(R.id.viewAllmeals);
+
+                viewAllmeals.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent allmeal=new Intent(getActivity(), ListedRecipes.class);
+                        startActivity(allmeal);
+                    }
+                });
                 return rootView;
             }
             if(getArguments().getInt(ARG_SECTION_NUMBER)==3){
@@ -172,7 +186,6 @@ public static class PlaceholderFragment extends Fragment  {
             if(getArguments().getInt(ARG_SECTION_NUMBER)==4){
                 View rootView = inflater.inflate(R.layout.fragment_grocery_list, container, false);
                 expListView = (ExpandableListView) rootView.findViewById(R.id.grocery_list_view);
-
                 TextView someTextView = (TextView) rootView.findViewById(R.id.gitem);
 
                 // preparing list data
@@ -283,14 +296,36 @@ public static class PlaceholderFragment extends Fragment  {
                 //mainMenu.findItem(R.id.action_edit).setVisible(false);
                 //return rootView;
             }
+            if(getArguments().getInt(ARG_SECTION_NUMBER)==5){
+                View rootView = inflater.inflate(R.layout.fragment_resturants, container, false);
+                /*if(googleServiceAvailable(rootView)){
+                    Toast.makeText(rootView.getContext(), "Success",Toast.LENGTH_LONG).show();
+                    //iniMap(rootView);
+                }else{
+                    //TextView error=(TextView) rootView.findViewById(R.id.errormessage);
+                    //error.setText("Can't Connect to Play Services");
+                    //error.setVisibility(View.VISIBLE);
+                }*/
+                return rootView;
+            }
             else {
                 View rootView = inflater.inflate(R.layout.tab_layout, container, false);
                 return rootView;
             }
         }
 
+    /*private void iniMap(View view) {
+            //SupportMapFragment mapFragment = (SupportMapFragment) getFragmentManager().findFragmentById(R.id.mapFragment);
+            //mapFragment.getMapAsync(this);
 
-    }
+    }*/
+
+
+    /*@Override
+    public void onMapReady(GoogleMap googleMap) {
+            mGoogleMap=googleMap;
+    }*/
+}
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -331,6 +366,20 @@ public static class PlaceholderFragment extends Fragment  {
             }
             return null;
         }
+    }
+
+    public static boolean googleServiceAvailable(View view){
+        GoogleApiAvailability api=GoogleApiAvailability.getInstance();
+        int isAvailable=api.isGooglePlayServicesAvailable(view.getContext());
+        if(isAvailable== ConnectionResult.SUCCESS){
+            return true;
+        }else if(api.isUserResolvableError(isAvailable)){
+            Dialog dialog=api.getErrorDialog((Activity) view.getContext(),isAvailable,0);
+            dialog.show();
+        }else{
+            Toast.makeText(view.getContext(), "Can't Connect to Play Services",Toast.LENGTH_LONG).show();
+        }
+        return false;
     }
     private void setIconTabs(){
         //Store Icons for tabs headings

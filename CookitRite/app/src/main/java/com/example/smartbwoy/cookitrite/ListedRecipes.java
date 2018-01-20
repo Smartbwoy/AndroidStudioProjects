@@ -1,10 +1,10 @@
 package com.example.smartbwoy.cookitrite;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import android.widget.Toolbar;
 
 import java.util.ArrayList;
 
@@ -16,8 +16,8 @@ public class ListedRecipes extends AppCompatActivity {
         setContentView(R.layout.activity_listed_recipes);
         rv = (RecyclerView)findViewById(R.id.rv);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar(toolbar);
+       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //rv.setHasFixedSize(true);
         RecyclerView.LayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);

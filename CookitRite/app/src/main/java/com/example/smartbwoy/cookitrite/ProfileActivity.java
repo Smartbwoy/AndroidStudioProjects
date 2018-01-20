@@ -3,7 +3,6 @@ package com.example.smartbwoy.cookitrite;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -14,22 +13,26 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ViewFlipper;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import static android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
 
 public class ProfileActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
+    private FirebaseAuth userAuth;
+    private FirebaseAuth.AuthStateListener firebaseListener;
+    //private FusedLocationProviderClient mFusedLocationClient;
     public static class myMenu{
         static Menu name;
     }
-    public TabLayout tabLayout;
-    ViewFlipper simpleViewFlipper;
-    Animation in,out;
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
     @Override
@@ -42,6 +45,10 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        //TextView txt_username = (TextView) toolbar.findViewById(R.id.txt_username);
+        //txt_email.setText("abc@stackoverflow.com");
+        //txt_username.setText("Username");
         setSupportActionBar(toolbar);
 
 
@@ -54,8 +61,6 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        in = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
-        out = AnimationUtils.loadAnimation(this, android.R.anim.fade_out);
         ImageView done= (ImageView) findViewById(R.id.doneRemoving);
         done.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,23 +68,35 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
                 findViewById(R.id.topbarRemover).setVisibility(View.GONE);
             }
         });
+        userAuth=FirebaseAuth.getInstance();
+        String userID=userAuth.getCurrentUser().getUid();
+        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference current_user_dp= FirebaseDatabase.getInstance().getReference().child("User").child(userID);
+
+        if (user != null && !user.isAnonymous()) {
+            View header=navigationView.getHeaderView(0);
+            TextView email = (TextView)header.findViewById(R.id.userEmailAddress);
+            final TextView name=(TextView)header.findViewById(R.id.userName);
+            email.setText(user.getEmail().toString());
+
+            current_user_dp.child("username").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String value = dataSnapshot.getValue(String.class);
+                    name.setText(value);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
 
     }
-
-    public void nextpic(View v){
-        //simpleViewFlipper = (ViewFlipper) findViewById(R.id.simpleViewFlipper);
-        simpleViewFlipper.setFlipInterval(2000);
-        simpleViewFlipper.setInAnimation(in);
-        simpleViewFlipper.setOutAnimation(out);
-        simpleViewFlipper.startFlipping();
-
-        //simpleViewFlipper.showNext();
     }
-    public void backpic(View v){
-        //simpleViewFlipper = (ViewFlipper) findViewById(R.id.simpleViewFlipper);
-        simpleViewFlipper.stopFlipping();
-        //simpleViewFlipper.showPrevious();
-    }
+
+
 
     @Override
     public void onBackPressed() {
@@ -104,6 +121,7 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        userAuth=FirebaseAuth.getInstance();
         int id = item.getItemId();
 
         if(id==R.id.action_logout){
@@ -123,11 +141,14 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
         if (id == R.id.action_settings) {
             return true;
         }
+        if (id==R.id.action_logout){
+            userAuth.signOut();
+        }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.

@@ -11,6 +11,18 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.smartbwoy.cookitrite.sign_up"
     tools:showIn="@layout/activity_sign_up">
+
+    <TextView
+        android:id="@+id/createErrorMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:textAlignment="center"
+        android:textColor="@color/red"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,9 +32,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:weightSum="1"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:paddingTop="56dp"
             android:paddingLeft="24dp"
             android:paddingRight="24dp">
@@ -38,11 +47,14 @@
                 android:layout_marginBottom="8dp"
                 tools:ignore="ObsoleteLayoutParam">
 
-                <EditText android:id="@+id/input_name"
+                <EditText
+                    android:id="@+id/user_name"
+                    style="@style/Widget.AppCompat.AutoCompleteTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textCapWords"
-                    android:hint="Create Username"
+                    android:hint="@string/create_username"
+                    android:inputType="text"
+                    android:textColor="@color/white"
                     android:textSize="24sp"
                     android:textStyle="normal|bold" />
             </android.support.design.widget.TextInputLayout>
@@ -51,17 +63,18 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:id="@+id/textInputLayout">
 
                 <EditText
+                    android:id="@+id/user_email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textEmailAddress"
                     android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="false"
+                    android:textColor="@color/white"
                     android:textSize="24sp"
                     android:textStyle="normal|bold" />
             </android.support.design.widget.TextInputLayout>
@@ -70,17 +83,16 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textInputLayout"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
 
                 <EditText
+                    android:id="@+id/user_password"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textPassword"
                     android:hint="Password"
+                    android:inputType="textPassword"
+                    android:textColor="@color/white"
                     android:textSize="24sp"
                     android:textStyle="normal|bold" />
 
@@ -98,33 +110,35 @@
                 tools:ignore="ObsoleteLayoutParam">
 
                 <EditText
+                    android:id="@+id/user_password_confirm"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textPassword"
                     android:hint="Confirm Password"
+                    android:inputType="textPassword"
+                    android:textColor="@color/white"
                     android:textSize="24sp"
                     android:textStyle="normal|bold" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.v7.widget.AppCompatButton
+                android:id="@+id/createAccount"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:text="Create Account"
-                android:layout_below="@+id/scrollView2"
+                android:layout_height="0dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="24dp"
+                android:layout_below="@+id/scrollView2"
                 android:layout_marginBottom="24dp"
+                android:layout_marginTop="24dp"
                 android:layout_weight="1"
-                tools:ignore="ObsoleteLayoutParam"
+                android:background="@android:color/holo_green_light"
                 android:elevation="24dp"
-                android:visibility="visible"
+                android:padding="12dp"
+                android:text="@string/create_account"
                 android:textColor="@android:color/white"
                 android:textStyle="normal|bold"
-                android:onClick="run_personal_info"
-                android:background="@android:color/holo_green_light" />
+                android:visibility="visible"
+                tools:ignore="ObsoleteLayoutParam" />
 
         </LinearLayout>
     </ScrollView>

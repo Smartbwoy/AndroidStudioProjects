@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "45826408656",
+    "firebase_url": "https://cookitrite.firebaseio.com",
+    "project_id": "cookitrite",
+    "storage_bucket": "cookitrite.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45826408656:android:d63f71e32ec6db87",
+        "android_client_info": {
+          "package_name": "com.example.smartbwoy.cookitrite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "45826408656-s4jac0fcejphglm1jjqbr51i71f634ud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZ8UGd93xAuXvKpVu0nMsLeiOQSMiFon0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "45826408656-s4jac0fcejphglm1jjqbr51i71f634ud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

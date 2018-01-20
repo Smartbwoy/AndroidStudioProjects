@@ -6,15 +6,27 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
 public class LoginActivity extends Activity {
+    private FirebaseAuth userAuth;
+    private FirebaseAuth.AuthStateListener firebaseListener;
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -34,6 +46,7 @@ public class LoginActivity extends Activity {
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
     private View mContentView;
+    private EditText username,passwrod;
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
         @Override
@@ -84,16 +97,31 @@ public class LoginActivity extends Activity {
             return false;
         }
     };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
+        userAuth=FirebaseAuth.getInstance();
+        firebaseListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+                if(user!=null) {
+                    Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
+                    startActivity(intent);
+                    finish();
+                return;
+            }
+            }
+        };
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
         Button signup=(Button) findViewById(R.id.createaccount_button);
+        Button login=(Button) findViewById(R.id.btn_login);
+        Button guestLogin=(Button) findViewById(R.id.guessSignIn);
+        TextView passReset=(TextView) findViewById(R.id.pass_forget);
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,6 +129,56 @@ public class LoginActivity extends Activity {
                 startActivity(intent);
             }
         });
+        passReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(),ResetPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                username=(EditText) findViewById(R.id.input_email);
+                passwrod=(EditText) findViewById(R.id.input_password);
+                String uname=username.getText().toString();
+                String userpassword=passwrod.getText().toString();
+                userAuth.signInWithEmailAndPassword(uname,userpassword).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (!task.isSuccessful()){
+                            Toast.makeText(getBaseContext(), "User Not login",Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(getBaseContext(), "User login",Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(LoginActivity.this,ProfileActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
+
+            }
+        });
+        guestLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userAuth.signInAnonymously().addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            FirebaseUser user = userAuth.getCurrentUser();
+                            Intent intent = new Intent(LoginActivity.this,ProfileActivity.class);
+                            startActivity(intent);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(new View.OnClickListener() {
             @Override

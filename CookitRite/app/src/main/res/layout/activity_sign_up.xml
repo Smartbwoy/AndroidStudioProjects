@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/side_nav_bar"
     android:fitsSystemWindows="true"
     tools:context="com.example.smartbwoy.cookitrite.sign_up">
 
@@ -24,16 +25,17 @@
     <include
         android:id="@+id/setion1"
         layout="@layout/content_sign_up"
-        android:visibility="visible"/>
+        android:visibility="visible" />
+
     <include
         android:id="@+id/setion2"
         layout="@layout/content_personal_info"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
+
     <include
         android:id="@+id/setion3"
         layout="@layout/security"
-        android:visibility="invisible"
-        />
+        android:visibility="invisible" />
 
     <include
         android:id="@+id/setion4"
