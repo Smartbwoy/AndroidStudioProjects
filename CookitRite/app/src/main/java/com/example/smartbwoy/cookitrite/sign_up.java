@@ -63,13 +63,21 @@ public class sign_up extends AppCompatActivity {
                 }
             }
         };
-        verifyuser=userAuth.getCurrentUser();
+       /* verifyuser=userAuth.getCurrentUser();
         verifyuser.sendEmailVerification().addOnCompleteListener(this, new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-
+                if (task.isSuccessful()) {
+                    Toast.makeText(sign_up.this,
+                            "Verification email sent to " + verifyuser.getEmail(),
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(sign_up.this,
+                            "Failed to send verification email.",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
-        });
+        });*/
 
        createAccount.setOnClickListener(new View.OnClickListener() {
             @Override

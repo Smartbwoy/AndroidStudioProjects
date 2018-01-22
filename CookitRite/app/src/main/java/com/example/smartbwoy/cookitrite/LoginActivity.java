@@ -3,6 +3,7 @@ package com.example.smartbwoy.cookitrite;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -140,25 +141,55 @@ public class LoginActivity extends Activity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+                progressDialog.setIndeterminate(true);
+                progressDialog.setMessage("Authenticating...");
                 username=(EditText) findViewById(R.id.input_email);
                 passwrod=(EditText) findViewById(R.id.input_password);
-                String uname=username.getText().toString();
-                String userpassword=passwrod.getText().toString();
-                userAuth.signInWithEmailAndPassword(uname,userpassword).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()){
-                            Toast.makeText(getBaseContext(), "User Not login",Toast.LENGTH_LONG).show();
-                        }else{
-                            Toast.makeText(getBaseContext(), "User login",Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(LoginActivity.this,ProfileActivity.class);
-                            startActivity(intent);
+                String uname=username.getText().toString().trim();
+                String userpassword=passwrod.getText().toString().trim();
+                progressDialog.show();
+                if(!uname.isEmpty()|| !userpassword.isEmpty() ) {
+                    userAuth.signInWithEmailAndPassword(uname, userpassword).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (!task.isSuccessful()) {
+                                new android.os.Handler().postDelayed(
+                                        new Runnable() {
+                                            public void run() {
+                                                // onLoginFailed();
+                                                progressDialog.dismiss();
+                                                Toast.makeText(getBaseContext(), "User Not Logged in", Toast.LENGTH_LONG).show();
+                                            }
+                                        }, 3000);
+                            } else {
+                                new android.os.Handler().postDelayed(
+                                        new Runnable() {
+                                            public void run() {
+                                                // onLoginFailed();
+                                                progressDialog.dismiss();
+                                                Toast.makeText(getBaseContext(), "User Logged in", Toast.LENGTH_LONG).show();
+                                            }
+                                        }, 3000);
+                                Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
+                                startActivity(intent);
+                            }
                         }
-                    }
-                });
+                    });
+                }else{
+                     new android.os.Handler().postDelayed(
+                            new Runnable() {
+                                public void run() {
+                                    // onLoginFailed();
+                                    progressDialog.dismiss();
+                                    Toast.makeText(getBaseContext(), "Enter Email Addresss or Password", Toast.LENGTH_LONG).show();
+                                }
+                            }, 3000);
 
+                }
             }
         });
+
         guestLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
