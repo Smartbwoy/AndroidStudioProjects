@@ -5,7 +5,8 @@
     android:id="@+id/activity_splashscreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/side_nav_bar"
+    android:background="@drawable/bkimage"
+    android:scaleType = "centerCrop"
     tools:context="com.example.smartbwoy.cookitrite.Splashscreen">
 
     <ImageView
@@ -18,7 +19,7 @@
         android:layout_marginTop="111dp"
         android:contentDescription=""
         android:src="@drawable/company_logo"
-        tools:ignore="ContentDescription,InefficientWeight" />
+        tools:ignore="ContentDescription,InefficientWeight"/>
 
 
 </RelativeLayout>
