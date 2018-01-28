@@ -18,11 +18,6 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import static android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
 
@@ -71,7 +66,7 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
         userAuth=FirebaseAuth.getInstance();
         String userID=userAuth.getCurrentUser().getUid();
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference current_user_dp= FirebaseDatabase.getInstance().getReference().child("User").child(userID);
+        //DatabaseReference current_user_dp= FirebaseDatabase.getInstance().getReference().child("User").child(userID);
 
         if (user != null && !user.isAnonymous()) {
             View header=navigationView.getHeaderView(0);
@@ -79,7 +74,7 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
             final TextView name=(TextView)header.findViewById(R.id.userName);
             email.setText(user.getEmail().toString());
 
-            current_user_dp.child("username").addValueEventListener(new ValueEventListener() {
+           /* current_user_dp.child("username").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     String value = dataSnapshot.getValue(String.class);
@@ -90,7 +85,7 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
                 public void onCancelled(DatabaseError databaseError) {
 
                 }
-            });
+            });*/
 
 
     }

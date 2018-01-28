@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -141,7 +142,9 @@ public class LoginActivity extends Activity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                 final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+                //final Dialog alert=new Dialog(LoginActivity.this,R.style.Theme_AppCompat_DayNight);
                 progressDialog.setIndeterminate(true);
                 progressDialog.setMessage("Authenticating...");
                 username=(EditText) findViewById(R.id.input_email);
@@ -154,19 +157,23 @@ public class LoginActivity extends Activity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
+
                                 new android.os.Handler().postDelayed(
                                         new Runnable() {
                                             public void run() {
-                                                // onLoginFailed();
+
                                                 progressDialog.dismiss();
-                                                Toast.makeText(getBaseContext(), "User Not Logged in", Toast.LENGTH_LONG).show();
+                                                builder.setMessage("Password or Email maybe incorrect")
+                                                        .setTitle("ERROR");
+                                                AlertDialog dialog = builder.create();
+                                                dialog.show();
+                                                Toast.makeText(getBaseContext(), "Password or Email maybe incorrect", Toast.LENGTH_LONG).show();
                                             }
                                         }, 3000);
                             } else {
                                 new android.os.Handler().postDelayed(
                                         new Runnable() {
                                             public void run() {
-                                                // onLoginFailed();
                                                 progressDialog.dismiss();
                                                 Toast.makeText(getBaseContext(), "User Logged in", Toast.LENGTH_LONG).show();
                                             }
@@ -180,9 +187,11 @@ public class LoginActivity extends Activity {
                      new android.os.Handler().postDelayed(
                             new Runnable() {
                                 public void run() {
-                                    // onLoginFailed();
                                     progressDialog.dismiss();
-                                    Toast.makeText(getBaseContext(), "Enter Email Addresss or Password", Toast.LENGTH_LONG).show();
+                                    builder.setMessage("Enter Email Addresss or Password")
+                                            .setTitle("ERROR");
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
                                 }
                             }, 3000);
 

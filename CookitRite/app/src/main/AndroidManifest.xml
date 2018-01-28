@@ -101,7 +101,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".ResetPasswordActivity" />
-        <activity android:name=".VerifyEmail"></activity>
+        <activity android:name=".VerifyEmail" />
     </application>
 
 </manifest>

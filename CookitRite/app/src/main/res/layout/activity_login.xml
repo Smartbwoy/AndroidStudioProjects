@@ -29,6 +29,7 @@
             android:paddingLeft="24dp"
             android:paddingRight="24dp">
 
+            <!-- Email Label -->
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="72dp"
@@ -36,7 +37,6 @@
                 android:layout_marginTop="15dp"
                 android:src="@drawable/company_logo" />
 
-            <!-- Email Label -->
             <TextView
                 android:id="@+id/loginError"
                 android:layout_width="match_parent"
