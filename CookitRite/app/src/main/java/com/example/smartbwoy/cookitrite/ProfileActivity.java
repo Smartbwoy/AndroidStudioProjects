@@ -71,24 +71,34 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
             }
         });
         userAuth=FirebaseAuth.getInstance();
+        View header1=navigationView.getHeaderView(0);
         String userID=userAuth.getCurrentUser().getUid();
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        final String[] userName = new String[1];
         DocumentReference docRef = db.collection("Users").document(userID);
+        final TextView uname=(TextView) header1.findViewById(R.id.userName);
+
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document != null) {
-                        Toast.makeText(getApplicationContext(),task.getResult().getData().toString(),Toast.LENGTH_SHORT);
+                    DocumentSnapshot doc = task.getResult();
+                    StringBuilder fields = new StringBuilder("");
+                    fields.append(doc.get("Userame"));
+                    uname.setText(fields.toString());
+
+                   /* if (doc != null) {
+                        userName[0] =doc.get("Username").toString();
+
+                        //Toast.makeText(getApplicationContext(),task.getResult().getData().toString(),Toast.LENGTH_SHORT);
                         //Log.d(TAG, "DocumentSnapshot data: " + task.getResult().getData());
                     } else {
                         Toast.makeText(getApplicationContext(),"No such document",Toast.LENGTH_SHORT);
 
-                    }
+                    }*/
                 } else {
-                    Toast.makeText(getApplicationContext(), task.getException().getMessage(),Toast.LENGTH_SHORT);
-                    
+                    Toast.makeText(getApplicationContext(), "error",Toast.LENGTH_SHORT);
+
                 }
             }
         });
@@ -100,6 +110,7 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
             TextView email = (TextView)header.findViewById(R.id.userEmailAddress);
             final TextView name=(TextView)header.findViewById(R.id.userName);
             email.setText(user.getEmail().toString());
+            //name.setText(userName[0]);
 
            /* current_user_dp.child("username").addValueEventListener(new ValueEventListener() {
                 @Override
