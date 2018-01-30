@@ -22,7 +22,7 @@ public class Splashscreen extends AppCompatActivity {
         setContentView(R.layout.activity_splashscreen);
         firebaseListener = new FirebaseAuth.AuthStateListener() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+            public void onAuthStateChanged(FirebaseAuth firebaseAuth) {
                 FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
                 if(user!=null) {
                     Intent intent = new Intent(getBaseContext(), ProfileActivity.class);

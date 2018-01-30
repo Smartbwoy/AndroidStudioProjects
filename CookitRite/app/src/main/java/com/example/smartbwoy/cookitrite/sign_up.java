@@ -2,7 +2,7 @@ package com.example.smartbwoy.cookitrite;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+//import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -62,7 +62,7 @@ public class sign_up extends AppCompatActivity {
         userAuth = FirebaseAuth.getInstance();
         firebaseListener = new FirebaseAuth.AuthStateListener() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+            public void onAuthStateChanged(FirebaseAuth firebaseAuth) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
                     Intent intent = new Intent(sign_up.this, ProfileActivity.class);
@@ -242,7 +242,7 @@ public class sign_up extends AppCompatActivity {
                 else {
                     userAuth.createUserWithEmailAndPassword(useremail, userpassword).addOnCompleteListener(sign_up.this, new OnCompleteListener<AuthResult>() {
                         @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
+                        public void onComplete(Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(getBaseContext(), "User Not Created", Toast.LENGTH_LONG).show();
                             } else {
@@ -301,7 +301,7 @@ public class sign_up extends AppCompatActivity {
         final int[] result = new int[1];
         userAuth.fetchProvidersForEmail(email).addOnCompleteListener(new OnCompleteListener<ProviderQueryResult>() {
             @Override
-            public void onComplete(@NonNull Task<ProviderQueryResult> task) {
+            public void onComplete(Task<ProviderQueryResult> task) {
                 if(!task.getResult().getProviders().isEmpty()){
                     result[0] =1;
                 }

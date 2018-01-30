@@ -43,7 +43,7 @@ public class ResetPasswordActivity extends Activity {
 
                 mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
-                            public void onComplete(@NonNull Task<Void> task) {
+                            public void onComplete(Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(ResetPasswordActivity.this, "Check email to reset your password!", Toast.LENGTH_SHORT).show();
                                 } else {

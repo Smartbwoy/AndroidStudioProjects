@@ -15,15 +15,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import static android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
 
 public class ProfileActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
     private FirebaseAuth userAuth;
     private FirebaseAuth.AuthStateListener firebaseListener;
+    private FirebaseFirestore db=FirebaseFirestore.getInstance();
     //private FusedLocationProviderClient mFusedLocationClient;
     public static class myMenu{
         static Menu name;
@@ -66,6 +73,26 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
         userAuth=FirebaseAuth.getInstance();
         String userID=userAuth.getCurrentUser().getUid();
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        DocumentReference docRef = db.collection("Users").document(userID);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document != null) {
+                        Toast.makeText(getApplicationContext(),task.getResult().getData().toString(),Toast.LENGTH_SHORT);
+                        //Log.d(TAG, "DocumentSnapshot data: " + task.getResult().getData());
+                    } else {
+                        Toast.makeText(getApplicationContext(),"No such document",Toast.LENGTH_SHORT);
+
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), task.getException().getMessage(),Toast.LENGTH_SHORT);
+                    
+                }
+            }
+        });
+
         //DatabaseReference current_user_dp= FirebaseDatabase.getInstance().getReference().child("User").child(userID);
 
         if (user != null && !user.isAnonymous()) {

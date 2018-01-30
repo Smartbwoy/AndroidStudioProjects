@@ -106,7 +106,7 @@ public class LoginActivity extends Activity {
         userAuth=FirebaseAuth.getInstance();
         firebaseListener = new FirebaseAuth.AuthStateListener() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+            public void onAuthStateChanged(FirebaseAuth firebaseAuth) {
                 FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
                 if(user!=null) {
                     Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
@@ -155,7 +155,7 @@ public class LoginActivity extends Activity {
                 if(!uname.isEmpty()|| !userpassword.isEmpty() ) {
                     userAuth.signInWithEmailAndPassword(uname, userpassword).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
+                        public void onComplete(Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
 
                                 new android.os.Handler().postDelayed(
@@ -204,7 +204,7 @@ public class LoginActivity extends Activity {
             public void onClick(View view) {
                 userAuth.signInAnonymously().addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    public void onComplete(Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = userAuth.getCurrentUser();
