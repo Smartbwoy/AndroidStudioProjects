@@ -1,8 +1,11 @@
 package com.advancemoms.theserviceapp;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -11,19 +14,24 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
 public class MainActivity extends AppCompatActivity {
-    private static final in ERROR_DIOLOG_REQUEST = 9001; @Override
+    private static final String TAG = "MainActivity";
+    private static final int ERROR_DIOLOG_REQUEST = 9001; @Override
+
+
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "Main activity: start here");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         if(isServiceOk()){
+            Log.d(TAG, "Service is ok");
             init();
         }
     }
 
     private void init(){
-        Button btnMap = (Button) FindViewById(R.id.btnMap);
-        btnMap.setOnClickListener(New View.OnClickListener() {
+        Button btnMap = (Button) findViewById(R.id.btnMap);
+        btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(MainActivity.this, MapActivity.class);
@@ -33,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean isServiceOk(){
+        Log.d(TAG, "isServiceOk:Checking service");
         Log.d(TAG, "isServiceOk: checking google services version:");
 
         int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(MainActivity.this);
@@ -44,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
             //an error accor but can be resolved
             Log.d(TAG, "isServiceOk: and error occur but can be resolved");
-            Dialog diolog = GoogleApiAvailability.getInstance().getErrorDialog(MainActivity.this, available, ERROR_DIOLOG_REQUEST)
+            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(MainActivity.this, available, ERROR_DIOLOG_REQUEST);
             dialog.show();
         }
         else{
