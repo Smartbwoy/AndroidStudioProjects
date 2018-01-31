@@ -84,7 +84,7 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
                 if (task.isSuccessful()) {
                     DocumentSnapshot doc = task.getResult();
                     StringBuilder fields = new StringBuilder("");
-                    fields.append(doc.get("Userame"));
+                    fields.append(doc.get("Username"));
                     uname.setText(fields.toString());
 
                    /* if (doc != null) {

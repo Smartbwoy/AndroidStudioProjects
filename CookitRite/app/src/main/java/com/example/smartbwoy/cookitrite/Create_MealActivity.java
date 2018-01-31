@@ -1,22 +1,16 @@
 package com.example.smartbwoy.cookitrite;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.NumberPicker;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-
+//Class to create a Meal
 public class Create_MealActivity extends AppCompatActivity {
     private List hr,min,sec;
     private ImageView imageView;//Image request code
