@@ -25,7 +25,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-
 import java.util.Set;
 
 /*
@@ -65,11 +64,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private void getDeviceLocation(){
         Log.d(TAG, "getDeviceLocation: getting device current location");
         mfusedLocationProviderClient =  LocationServices.getFusedLocationProviderClient(this);
-        Log.d(TAG, "before try");
         try{
-            Log.d(TAG, "try error");
             if(mLocationPermissionGranted){
-                Log.d(TAG, "if work");
                 Task location = mfusedLocationProviderClient.getLastLocation();
 
                 location.addOnCompleteListener(new OnCompleteListener() {
@@ -78,7 +74,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         if(task.isSuccessful()){
                             Log.d(TAG, "onComplete: Found location");
                             Location currentLocation = (Location)task.getResult();
-                            Log.d(TAG , "OnComplete: Latitube dir " + currentLocation.toString() );
+                            Toast.makeText(MapActivity.this, "unable to get current location" + currentLocation.show());
+                            Log.d(TAG , "OnComplete: Latitube dir " + ((Location)task.getResult()).toString());
                             //LatLng ltlg = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
                             //moveCamera(ltlg,15F);
                         }
