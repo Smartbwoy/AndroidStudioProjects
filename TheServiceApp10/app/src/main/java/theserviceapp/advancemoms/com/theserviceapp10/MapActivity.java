@@ -28,7 +28,8 @@ import android.Manifest;
         import com.google.android.gms.common.ConnectionResult;
         import com.google.android.gms.maps.model.LatLng;
         import com.google.android.gms.tasks.OnCompleteListener;
-        import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 
         import java.util.Set;
 
@@ -74,13 +75,27 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             Log.d(TAG, "try error");
             if(mLocationPermissionGranted){
                 Log.d(TAG, "if work");
-                Task location = mfusedLocationProviderClient.getLastLocation();
+                mfusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        if(location!=null){
+                            Log.d(TAG, "onComplete: Found location");
+                            Log.d(TAG, location.toString()+"hi foll");
+                            LatLng ltlg = new LatLng(location.getLatitude(), location.getLongitude());
+                            Log.d(TAG,ltlg.toString());
+                            moveCamera(ltlg,15F);
+                        }
+
+                    }
+                });
+               /* Task location = mfusedLocationProviderClient.getLocationAvailability();
 
                 location.addOnCompleteListener(new OnCompleteListener() {
                     @Override
                     public void onComplete(@NonNull Task task) {
                         if(task.isSuccessful()){
                             Log.d(TAG, "onComplete: Found location");
+                            Log.d(TAG, task.getResult().toString()+"hi foll");
                             Location currentLocation = (Location)task.getResult();
                             Log.d(TAG , "OnComplete: Latitube dir " + currentLocation.toString() );
                             LatLng ltlg = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
@@ -92,7 +107,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             Toast.makeText(MapActivity.this, "unable to get current location",Toast.LENGTH_SHORT).show();
                         }
                     }
-                });
+                });*/
             }
         }catch(SecurityException e){
             Log.e(TAG, "getDeviceLocation: SecurityExecution: " + e.getMessage());
@@ -101,7 +116,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private void moveCamera(LatLng latLng, Float zoom){
         //Log.d(TAG, "moveCamera: moving camera to lat: " + latLng.latitude + ", lng " + latLng.longitude);
-        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,zoom));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,zoom));
         //Log.d(TAG, "MoveCamera: moving");
     }
 
