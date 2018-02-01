@@ -5,47 +5,59 @@ package theserviceapp.advancemoms.com.theserviceapp10;
  */
 
 import android.Manifest;
-        import android.content.pm.PackageManager;
-        import android.location.Location;
-        import android.os.Bundle;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.os.Bundle;
 
-        import com.google.android.gms.maps.CameraUpdate;
-        import com.google.android.gms.maps.CameraUpdateFactory;
-        import com.google.android.gms.maps.GoogleMap;
-        import com.google.android.gms.maps.OnMapReadyCallback;
-        import com.google.android.gms.maps.SupportMapFragment;
-        import android.support.annotation.NonNull;
-        import android.support.annotation.Nullable;
-        import android.support.v4.app.ActivityCompat;
-        import android.support.v4.content.ContextCompat;
-        import android.support.v7.app.AppCompatActivity;
-        import android.support.v4.app.Fragment;
-        import android.util.Log;
-        import android.widget.Toast;
-        import com.google.android.gms.location.FusedLocationProviderClient;
-        import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 
-        import com.google.android.gms.common.ConnectionResult;
-        import com.google.android.gms.maps.model.LatLng;
-        import com.google.android.gms.tasks.OnCompleteListener;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
-        import java.util.Set;
+import java.util.Set;
 
 /*
  * Created by alway on 1/31/2018.
  */
 
-public class MapActivity extends AppCompatActivity implements OnMapReadyCallback{
+public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Toast.makeText(this, "Map is ready", Toast.LENGTH_SHORT).show();
         mMap = googleMap;
         Log.d(TAG, "OnMapReady: map is reeady here");
-        if(mLocationPermissionGranted){
-
+        if (mLocationPermissionGranted) {
             getDeviceLocation();
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            mMap.setMyLocationEnabled(true);
         }
     }
 
@@ -70,11 +82,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private void getDeviceLocation(){
         Log.d(TAG, "getDeviceLocation: getting device current location");
         mfusedLocationProviderClient =  LocationServices.getFusedLocationProviderClient(this);
-        Log.d(TAG, "before try");
         try{
-            Log.d(TAG, "try error");
             if(mLocationPermissionGranted){
-                Log.d(TAG, "if work");
                 mfusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
@@ -85,29 +94,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             Log.d(TAG,ltlg.toString());
                             moveCamera(ltlg,15F);
                         }
-
-                    }
-                });
-               /* Task location = mfusedLocationProviderClient.getLocationAvailability();
-
-                location.addOnCompleteListener(new OnCompleteListener() {
-                    @Override
-                    public void onComplete(@NonNull Task task) {
-                        if(task.isSuccessful()){
-                            Log.d(TAG, "onComplete: Found location");
-                            Log.d(TAG, task.getResult().toString()+"hi foll");
-                            Location currentLocation = (Location)task.getResult();
-                            Log.d(TAG , "OnComplete: Latitube dir " + currentLocation.toString() );
-                            LatLng ltlg = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-                            Log.d(TAG,ltlg.toString());
-                            //moveCamera(ltlg,15F);
-                        }
                         else{
                             Log.d(TAG, "OnComplete: current location not found");
                             Toast.makeText(MapActivity.this, "unable to get current location",Toast.LENGTH_SHORT).show();
                         }
                     }
-                });*/
+                });
             }
         }catch(SecurityException e){
             Log.e(TAG, "getDeviceLocation: SecurityExecution: " + e.getMessage());
