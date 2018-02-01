@@ -83,7 +83,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             Log.d(TAG, "onComplete: Found location");
                             Location currentLocation = (Location)task.getResult();
                             Log.d(TAG , "OnComplete: Latitube dir " + currentLocation.toString() );
-                            //LatLng ltlg = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+                            LatLng ltlg = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+                            Log.d(TAG,ltlg.toString());
                             //moveCamera(ltlg,15F);
                         }
                         else{
