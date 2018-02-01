@@ -48,7 +48,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private static final String TAG = "MapActivity";
-    private static final float DEFAULT_ZOOM = 15;
+    private static final float DEFAULT_ZOOM = 15f;
     //var
     private Boolean mLocationPermissionGranted = false;
     private GoogleMap mMap;
@@ -76,14 +76,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     @Override
                     public void onComplete(@NonNull Task task) {
                         if(task.isSuccessful()){
-                            Log.d(TAG, "onCoplete: Found location");
-                            Location currentLocation = (Location) task.getResult();
-                            moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getAltitude()),
-                                    DEFAULT_ZOOM);
+                            Log.d(TAG, "onComplete: Found location");
+                            Location currentLocation = (Location)task.getResult();
+                            Log.d(TAG , "OnComplete: Latitube dir " + currentLocation.toString() );
+                            //LatLng ltlg = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+                            //moveCamera(ltlg,15F);
                         }
                         else{
                             Log.d(TAG, "OnComplete: current location not found");
-                            Toast.makeText(MapActivity.this, "unable to get currnent location",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MapActivity.this, "unable to get current location",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -94,8 +95,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     private void moveCamera(LatLng latLng, Float zoom){
-        Log.d(TAG, "moveCamera: moving camera to lat: " + latLng.latitude + ", lng " + latLng.longitude);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,zoom));
+        //Log.d(TAG, "moveCamera: moving camera to lat: " + latLng.latitude + ", lng " + latLng.longitude);
+        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,zoom));
+        //Log.d(TAG, "MoveCamera: moving");
     }
 
     private void initMap(){
