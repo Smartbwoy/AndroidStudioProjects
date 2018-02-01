@@ -1,0 +1,7 @@
+#Internal package file, do not edit.
+#Thu Feb 01 12:38:04 COT 2018
+0.baseType=DIRECTORY
+0.base=D\:\\Documents\\GitHub\\AndroidStudioProjects\\AndroidStudioProjects\\TheServiceApp\\app\\build\\intermediates\\transforms\\dex\\release\\0
+0.path=classes.dex
+0.set=DEX
+count=1
