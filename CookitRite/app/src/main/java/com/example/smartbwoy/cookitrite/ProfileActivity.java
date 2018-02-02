@@ -76,7 +76,7 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         final String[] userName = new String[1];
         DocumentReference docRef = db.collection("Users").document(userID);
-        final TextView uname=(TextView) header1.findViewById(R.id.userName);
+       // final TextView uname=(TextView) header1.findViewById(R.id.userName);
 
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -84,8 +84,8 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
                 if (task.isSuccessful()) {
                     DocumentSnapshot doc = task.getResult();
                     StringBuilder fields = new StringBuilder("");
-                    fields.append(doc.get("Username"));
-                    uname.setText(fields.toString());
+                    //fields.append(doc.get("Username"));
+                    //uname.setText(fields.toString());
 
                    /* if (doc != null) {
                         userName[0] =doc.get("Username").toString();

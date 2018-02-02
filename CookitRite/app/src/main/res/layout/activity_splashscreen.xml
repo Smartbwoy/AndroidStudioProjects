@@ -5,21 +5,27 @@
     android:id="@+id/activity_splashscreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bkimage"
     android:scaleType = "centerCrop"
     tools:context="com.example.smartbwoy.cookitrite.Splashscreen">
 
     <ImageView
+        android:id="@+id/bkimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/bkimage" android:contentDescription="@string/todo" />
+
+    <ImageView
         android:id="@+id/splash_image"
         android:layout_width="match_parent"
-        android:layout_height="286dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="111dp"
+        android:layout_marginBottom="130dp"
         android:contentDescription=""
         android:src="@drawable/company_logo"
-        tools:ignore="ContentDescription,InefficientWeight"/>
+        tools:ignore="ContentDescription,InefficientWeight" />
 
 
 </RelativeLayout>

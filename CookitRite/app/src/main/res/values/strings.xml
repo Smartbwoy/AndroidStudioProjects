@@ -298,4 +298,5 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="create_username">Create Username</string>
     <string name="required">Required</string>
+    <string name="todo">TODO</string>
 </resources>

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/borderchage">
 
     <LinearLayout
@@ -12,34 +13,73 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
 
-        <EditText
-            android:id="@+id/editText"
+        <!--Phone Number-->
+        <android.support.design.widget.TextInputLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:layout_marginBottom="8dp"
+             android:layout_marginTop="8dp">
+
+             <net.rimoto.intlphoneinput.IntlPhoneInput
+                 android:id="@+id/user_phonenumber"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:singleLine="false"
+                 android:textStyle="normal|bold"
+                 app:flagPaddingBottom="4dp"
+                 app:flagPaddingEnd="4dp"
+                 app:flagPaddingStart="4dp"
+                 app:flagPaddingTop="4dp"
+                 app:textColor="@color/white"
+                 app:textColorHint="@color/white"
+                 app:textSize="24sp" />
+
+         </android.support.design.widget.TextInputLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:hint="Category"
-            android:inputType="textPersonName"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/addgroitem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_weight="1"
-            android:background="@color/transparent"
-            android:elevation="11dp"
-            android:fontFamily="casual"
-            android:lineSpacingExtra="60sp"
-            android:text="@string/addgroceryitem"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:typeface="normal"
-            tools:targetApi="lollipop" />
+            <Button
+                android:id="@+id/addgroitem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:elevation="11dp"
+                android:fontFamily="casual"
+                android:lineSpacingExtra="60sp"
+                android:text="@string/addgroceryitem"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                tools:targetApi="lollipop" />
+
+            <Button
+                android:id="@+id/skipItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:elevation="11dp"
+                android:fontFamily="casual"
+                android:lineSpacingExtra="60sp"
+                android:text="@string/addgroceryitem"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                tools:targetApi="lollipop" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>

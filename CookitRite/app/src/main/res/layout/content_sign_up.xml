@@ -71,30 +71,6 @@
                     android:visibility="invisible" />
             </android.support.design.widget.TextInputLayout>
 
-            <!--Phone Number-->
-           <!--<android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp">
-
-                <net.rimoto.intlphoneinput.IntlPhoneInput
-                    android:id="@+id/user_phonenumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:singleLine="false"
-                    android:textStyle="normal|bold"
-                    app:flagPaddingBottom="4dp"
-                    app:flagPaddingEnd="4dp"
-                    app:flagPaddingStart="4dp"
-                    app:flagPaddingTop="4dp"
-                    app:textColor="@color/white"
-                    app:textColorHint="@color/white"
-                    app:textSize="24sp" />
-
-            </android.support.design.widget.TextInputLayout>-->
-
-
             <!-- Password Label -->
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/textInputLayout"
