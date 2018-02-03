@@ -58,6 +58,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 return;
             }
             mMap.setMyLocationEnabled(true);
+            mMap.getUiSettings().setZoomGesturesEnabled(true);
+            mMap.getUiSettings().isZoomControlsEnabled();
+           // mMap.getUiSettings().setMyLocationButtonEnabled(false);
         }
     }
 

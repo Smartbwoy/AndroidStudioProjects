@@ -3,9 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TheServiceApp10.iml" filepath="$PROJECT_DIR$/TheServiceApp10.iml" />
-      <module fileurl="file://D:\Documents\GitHub\AndroidStudioProjects\AndroidStudioProjects\TheServiceApp10\TheServiceApp10.iml" filepath="D:\Documents\GitHub\AndroidStudioProjects\AndroidStudioProjects\TheServiceApp10\TheServiceApp10.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\Documents\GitHub\AndroidStudioProjects\AndroidStudioProjects\TheServiceApp10\app\app.iml" filepath="D:\Documents\GitHub\AndroidStudioProjects\AndroidStudioProjects\TheServiceApp10\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/circleimage/circleimage.iml" filepath="$PROJECT_DIR$/circleimage/circleimage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/circleimageview/circleimageview.iml" filepath="$PROJECT_DIR$/circleimageview/circleimageview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/circleimageview1/circleimageview1.iml" filepath="$PROJECT_DIR$/circleimageview1/circleimageview1.iml" />
     </modules>
   </component>
 </project>
