@@ -10,8 +10,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:background="@drawable/food2"
         android:onClick="viewmeal">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/food2" />
 
         <LinearLayout
             android:layout_width="80dp"

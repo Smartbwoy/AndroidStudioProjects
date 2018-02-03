@@ -298,14 +298,6 @@ public static class PlaceholderFragment extends Fragment {
             }
             if(getArguments().getInt(ARG_SECTION_NUMBER)==5){
                 View rootView = inflater.inflate(R.layout.fragment_resturants, container, false);
-                /*if(googleServiceAvailable(rootView)){
-                    Toast.makeText(rootView.getContext(), "Success",Toast.LENGTH_LONG).show();
-                    //iniMap(rootView);
-                }else{
-                    //TextView error=(TextView) rootView.findViewById(R.id.errormessage);
-                    //error.setText("Can't Connect to Play Services");
-                    //error.setVisibility(View.VISIBLE);
-                }*/
                 return rootView;
             }
             else {
