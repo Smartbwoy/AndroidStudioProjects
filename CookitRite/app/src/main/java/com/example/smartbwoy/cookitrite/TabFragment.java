@@ -296,10 +296,10 @@ public static class PlaceholderFragment extends Fragment {
                 //mainMenu.findItem(R.id.action_edit).setVisible(false);
                 //return rootView;
             }
-            if(getArguments().getInt(ARG_SECTION_NUMBER)==5){
+           /* if(getArguments().getInt(ARG_SECTION_NUMBER)==5){
                 View rootView = inflater.inflate(R.layout.fragment_resturants, container, false);
                 return rootView;
-            }
+            }*/
             else {
                 View rootView = inflater.inflate(R.layout.tab_layout, container, false);
                 return rootView;

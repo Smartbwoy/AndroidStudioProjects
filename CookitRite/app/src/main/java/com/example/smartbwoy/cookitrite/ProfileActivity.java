@@ -1,5 +1,6 @@
 package com.example.smartbwoy.cookitrite;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -31,6 +32,10 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
     private FirebaseAuth userAuth;
     private FirebaseAuth.AuthStateListener firebaseListener;
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
+    View header;
+    private Animator mCurrentAnimator;
+    private int mShortAnimationDuration;
+
     //private FusedLocationProviderClient mFusedLocationClient;
     public static class myMenu{
         static Menu name;
@@ -62,6 +67,17 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header=navigationView.getHeaderView(0);
+        final View profilePhoto= header.findViewById(R.id.profilephoto);
+
+        profilePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent additem=new Intent(view.getContext(), ViewImage.class);
+                startActivity(additem);
+            }
+        });
+
 
         ImageView done= (ImageView) findViewById(R.id.doneRemoving);
         done.setOnClickListener(new View.OnClickListener() {
@@ -70,22 +86,23 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
                 findViewById(R.id.topbarRemover).setVisibility(View.GONE);
             }
         });
+
         userAuth=FirebaseAuth.getInstance();
         View header1=navigationView.getHeaderView(0);
         String userID=userAuth.getCurrentUser().getUid();
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         final String[] userName = new String[1];
         DocumentReference docRef = db.collection("Users").document(userID);
-       // final TextView uname=(TextView) header1.findViewById(R.id.userName);
-
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc = task.getResult();
-                    StringBuilder fields = new StringBuilder("");
-                    //fields.append(doc.get("Username"));
-                    //uname.setText(fields.toString());
+       final TextView uname=(TextView) header1.findViewById(R.id.userName);
+if(!user.isAnonymous()) {
+    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        @Override
+        public void onComplete(Task<DocumentSnapshot> task) {
+            if (task.isSuccessful()) {
+                DocumentSnapshot doc = task.getResult();
+                StringBuilder fields = new StringBuilder("");
+                fields.append(doc.get("Username"));
+                uname.setText(fields.toString());
 
                    /* if (doc != null) {
                         userName[0] =doc.get("Username").toString();
@@ -96,17 +113,17 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
                         Toast.makeText(getApplicationContext(),"No such document",Toast.LENGTH_SHORT);
 
                     }*/
-                } else {
-                    Toast.makeText(getApplicationContext(), "error",Toast.LENGTH_SHORT);
+            } else {
+                Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT);
 
-                }
             }
-        });
-
+        }
+    });
+}
         //DatabaseReference current_user_dp= FirebaseDatabase.getInstance().getReference().child("User").child(userID);
 
         if (user != null && !user.isAnonymous()) {
-            View header=navigationView.getHeaderView(0);
+            header=navigationView.getHeaderView(0);
             TextView email = (TextView)header.findViewById(R.id.userEmailAddress);
             final TextView name=(TextView)header.findViewById(R.id.userName);
             email.setText(user.getEmail().toString());
