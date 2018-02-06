@@ -1,10 +1,17 @@
 package com.advancemoms.theserviceapp;
 
 import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+
+import com.google.android.gms.common.ConnectionResult;
+
+import java.util.Set;
 
 /*
  * Created by alway on 1/31/2018.
@@ -22,7 +29,7 @@ public class MapActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activitymap);
+        setContentView(R.layout.activity_map);
     }
 
     /*private void initMap(){

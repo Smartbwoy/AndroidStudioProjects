@@ -1,20 +1,25 @@
 package com.advancemoms.theserviceapp;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-//import android.support.v7.widget.GridLayoutManager;
-//import android.support.v7.widget.RecyclerView;
-
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
     ///private static final in ERROR_DIOLOG_REQUEST = 9001; @Override
-    //MyRecyclerViewAdapter adapter;
+    MyRecyclerViewAdapter adapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activitymain);
+        setContentView(R.layout.activity_main);
 // data to populate the RecyclerView with
         String[] data = {"Machanic","Plumber","Doctor","Teacher"};
-
+        // set up the RecyclerView
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rvNumbers);
+        int numberOfColumns = 2;
+        recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
+        adapter = new MyRecyclerViewAdapter(this, data);
+        //adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
     }
 
 

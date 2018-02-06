@@ -14,7 +14,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <com.mikhaellopez.circularimageview.CircularImageView
+    <!--<com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/profilephoto"
         android:layout_width="92dp"
         android:layout_height="72dp"
@@ -24,13 +24,13 @@
         app:civ_border_color="#EEEEEE"
         app:civ_border_width="4dp"
         app:civ_shadow_color="#8BC34A"
-        app:civ_shadow_radius="10" />
-    <!--<ImageView
+        app:civ_shadow_radius="10" />-->
+    <ImageView
         android:id="@+id/profilephoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@android:drawable/sym_def_app_icon" />-->
+        android:background="@drawable/img" />
 
     <TextView
         android:id="@+id/userName"

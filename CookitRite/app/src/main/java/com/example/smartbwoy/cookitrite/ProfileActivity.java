@@ -2,6 +2,8 @@ package com.example.smartbwoy.cookitrite;
 
 import android.animation.Animator;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -68,6 +70,9 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View header=navigationView.getHeaderView(0);
+
+        ImageView prophoto=(ImageView) header.findViewById(R.id.profilePhoto);
+        Bitmap bitmap= BitmapFactory.decodeResource(getResources(),R.drawable.side_nav_bar);
         final View profilePhoto= header.findViewById(R.id.profilephoto);
 
         profilePhoto.setOnClickListener(new View.OnClickListener() {

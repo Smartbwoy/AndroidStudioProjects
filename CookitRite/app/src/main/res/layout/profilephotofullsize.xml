@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/viewImage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/food2">
+    android:background="@drawable/food2"
+    android:orientation="vertical">
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop" />
-</RelativeLayout>
+        android:scaleType="centerCrop" />-->
+
+    <Button
+        android:id="@+id/uploadphoto"
+        style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/side_nav_bar"
+        android:text="Change photo" />
+
+    <ImageView
+        android:id="@+id/profilePhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bkimage" />
+
+</LinearLayout>
