@@ -35,6 +35,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile 'com.mikhaellopez:circularimageview:3.0.2'
     compile files('libs/facebook-android-sdk-4.29.0')
     compile files('libs/universal-image-loader-1.9.5.jar')
     compile 'com.android.support:appcompat-v7:24.2.1'

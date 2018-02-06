@@ -1,6 +1,7 @@
 package com.advancemoms.theserviceapp;
 
 import android.content.Context;
+// android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +14,7 @@ import android.widget.Toast;
  * Created by Smartbwoy on 31/1/2018.
  */
 
-    public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
+   public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
         private String[] mData = new String[0];
         private LayoutInflater mInflater;

@@ -38,7 +38,7 @@
                 android:paddingLeft="24dp"
                 android:paddingRight="24dp">
 
-                <!-- Email Label -->
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="72dp"
@@ -51,11 +51,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:textColor="?android:attr/navigationBarColor"
                     android:textSize="14sp"
                     android:textStyle="bold"
-                    android:visibility="invisible"
-                    tools:targetApi="lollipop" />
+                    android:visibility="invisible" />
 
                 <!-- Password Label -->
                 <android.support.design.widget.TextInputLayout
@@ -153,7 +151,7 @@
                     android:elevation="24dp"
                     android:text="Google+"
                     android:textColor="#ffffff"
-                    android:textStyle="bold" tools:targetApi="lollipop"/>
+                    android:textStyle="bold" tools:targetApi="lollipop" android:layout_marginEnd="12dp" />
 
                 <Button
                     android:id="@+id/twitt"

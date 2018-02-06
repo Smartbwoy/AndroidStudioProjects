@@ -104,6 +104,10 @@
 
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".VerifyEmail" />
+        <activity
+            android:name=".ViewImage"
+            android:theme="@style/AppTheme.CustomTheme"
+            />
     </application>
 
 </manifest>

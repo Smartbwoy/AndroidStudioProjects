@@ -1,17 +1,9 @@
 package com.advancemoms.theserviceapp;
 
-import android.nfc.Tag;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
 
 public class MainActivity extends AppCompatActivity {
     ///private static final in ERROR_DIOLOG_REQUEST = 9001; @Override
