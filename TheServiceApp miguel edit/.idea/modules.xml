@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TheServiceApp.iml" filepath="$PROJECT_DIR$/TheServiceApp.iml" />
+      <module fileurl="file://D:\Documents\GitHub\AndroidStudioProjects\AndroidStudioProjects\TheServiceApp miguel edit\TheServiceApp.iml" filepath="D:\Documents\GitHub\AndroidStudioProjects\AndroidStudioProjects\TheServiceApp miguel edit\TheServiceApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TheServiceApp miguel edit.iml" filepath="$PROJECT_DIR$/TheServiceApp miguel edit.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
