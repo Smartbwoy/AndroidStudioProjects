@@ -2,8 +2,6 @@ package com.example.smartbwoy.cookitrite;
 
 import android.animation.Animator;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +27,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
 
@@ -37,6 +41,9 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
     View header;
     private Animator mCurrentAnimator;
     private int mShortAnimationDuration;
+    CircleImageView proimage;
+    FirebaseStorage storage;
+    StorageReference storageReference;
 
     //private FusedLocationProviderClient mFusedLocationClient;
     public static class myMenu{
@@ -71,10 +78,19 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
         navigationView.setNavigationItemSelectedListener(this);
         View header=navigationView.getHeaderView(0);
 
-        ImageView prophoto=(ImageView) header.findViewById(R.id.profilePhoto);
-        Bitmap bitmap= BitmapFactory.decodeResource(getResources(),R.drawable.side_nav_bar);
-        final View profilePhoto= header.findViewById(R.id.profilephoto);
+        final CircleImageView profilePhoto= (CircleImageView) header.findViewById(R.id.profilephoto);
+        ImageView imageView = (ImageView) findViewById(R.id.imageViewphoto);
 
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+        userAuth=FirebaseAuth.getInstance();
+        
+        // Load the image using Glide
+        StorageReference ref = storageReference.child("images/usersprofilephotoes/"+ userAuth.getCurrentUser().getUid());
+        Glide.with(this /* context */)
+                .using(new FirebaseImageLoader())
+                .load(ref)
+                .into(profilePhoto);
         profilePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

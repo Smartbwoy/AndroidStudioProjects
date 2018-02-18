@@ -1,12 +1,13 @@
 package com.example.smartbwoy.cookitrite;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -14,7 +15,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.io.FileNotFoundException;
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
 import java.io.IOException;
 
 /**
@@ -22,65 +32,104 @@ import java.io.IOException;
  */
 
 public class ViewImage extends Activity {
-    Button uploadphoto;
-    private static int RESULT_LOAD_IMAGE = 1;
+    private FirebaseAuth userAuth=FirebaseAuth.getInstance();
+    Button uploadphoto,saveImage;
+    private final int PICK_IMAGE_REQUEST = 71;
+    private Uri filePath;
+    //Firebase
+    FirebaseStorage storage=FirebaseStorage.getInstance();;
+    StorageReference storageReference= storage.getReference();
+
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profilephotofullsize);
         uploadphoto=(Button) findViewById(R.id.uploadphoto);
+        saveImage=(Button) findViewById(R.id.savephoto);
+
+        ImageView imageView = (ImageView) findViewById(R.id.imageViewphoto);
+        // Load the image using Glide
+        StorageReference ref = storageReference.child("images/usersprofilephotoes/"+ userAuth.getCurrentUser().getUid());
+        Glide.with(this /* context */)
+                .using(new FirebaseImageLoader())
+                .load(ref)
+                .into(imageView);
+
        uploadphoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                Intent chimg = new Intent(Intent.ACTION_GET_CONTENT,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(i,RESULT_LOAD_IMAGE);
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
             }
         });
 
-
-        /*NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        View header=navigationView.getHeaderView(0);
-        final View profilePhoto= header.findViewById(R.id.profilephoto);
-        profilePhoto.getContext();*/
+        saveImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                uploadImage();
+            }
+        });
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setLayout((int) (width/2), (int) (height/2));
+        getWindow().setLayout((int) (width/1.2), (int) (height/1.2));
         Toast.makeText(this,width+" ",Toast.LENGTH_LONG).show();
 
 
     }
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == this.RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
-
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-
-            ImageView imageView = (ImageView) findViewById(R.id.profilePhoto);
-            //imageView.setBackgroundResource(BitmapFactory.decodeFile(picturePath));
-            ///imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-            try {
-                Bitmap bm = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
-                imageView.setImageBitmap(bm);
-            } catch (FileNotFoundException e) {
-            } catch (IOException e) {
-            }
-
+        filePath = data.getData();
+        ImageView imageView = (ImageView) findViewById(R.id.imageViewphoto);
+        try {
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+            imageView.setImageBitmap(bitmap);
         }
-
-
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
+
+    private void uploadImage() {
+        if(filePath != null)
+        {
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+
+            StorageReference ref = storageReference.child("images/usersprofilephotoes/"+ userAuth.getCurrentUser().getUid());
+
+            ref.putFile(filePath)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+                            Toast.makeText(ViewImage.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(ViewImage.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                        }
+                    });
+        }
+    }
+
+
 }
 
