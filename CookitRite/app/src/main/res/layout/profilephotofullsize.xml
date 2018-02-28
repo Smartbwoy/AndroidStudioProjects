@@ -4,27 +4,36 @@
     android:id="@+id/viewImage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/food2"
     android:orientation="vertical">
 
-    <!--<ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop" />-->
-
-    <Button
-        android:id="@+id/uploadphoto"
-        style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/side_nav_bar"
-        android:text="Change photo" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/uploadphoto"
+            style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/side_nav_bar"
+            android:text="Change photo" />
+
+        <Button
+            android:id="@+id/savephoto"
+            style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/side_nav_bar"
+            android:text="save photo" />
+    </LinearLayout>
 
     <ImageView
-        android:id="@+id/profilePhoto"
+        android:id="@+id/imageViewphoto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bkimage" />
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
 
 </LinearLayout>
