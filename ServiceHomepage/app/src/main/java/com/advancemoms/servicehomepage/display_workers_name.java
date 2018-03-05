@@ -29,7 +29,7 @@ public class display_workers_name extends AppCompatActivity {
                          "23 walkers lane St james", "9 zinnia drive kingston 02", "9 bob lane kingston 11", "9 zinnia avenue kingston 11",
                          "123 park road portlant", "kristal blv kingston 11", "9 zinnia avenue kingston 11", "34 owen road, kngs 12"};
 
-    int[] rating = {2,4,6,3,7,4,9,1,3,6};
+    int[] rating = {2,4,5,3,2,4,4,1,3, 3,1};
     int[] IMAGES = {R.drawable.profile1, R.drawable.profile2, R.drawable.profile3, R.drawable.profile4,
             R.drawable.profile5, R.drawable.profile6, R.drawable.profile7, R.drawable.profile8,
             R.drawable.profile9, R.drawable.profile10, R.drawable.profile11};

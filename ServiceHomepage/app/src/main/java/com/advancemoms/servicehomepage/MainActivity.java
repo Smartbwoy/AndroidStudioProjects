@@ -13,15 +13,31 @@ package com.advancemoms.servicehomepage;
         import android.widget.ListView;
         import android.widget.Toast;
 
+        import com.google.firebase.auth.FirebaseAuth;
+        import com.google.firebase.auth.FirebaseUser;
+
         import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
+
     private ArrayAdapter adapter;
     String TAG = "MainActivity";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser=mAuth.getCurrentUser();
+        Log.d(TAG, "check user");
+        if(currentUser==null){
+            Log.d(TAG, "no user");
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+
+        }
+       setContentView(R.layout.activity_main);
 
         //Declearing service buttons
         ImageButton box1 = (ImageButton) findViewById(R.id.home_box_1);
