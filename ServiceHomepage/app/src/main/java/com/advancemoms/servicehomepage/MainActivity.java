@@ -20,6 +20,8 @@ package com.advancemoms.servicehomepage;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    String[] boxName = {"Gardener", "Mechanic", "Plumber", "Worker 4", "Worker 5", "Worker 6", "Worker 7", "Worker 8" , "Worker 1"};
+    static int wNumb;
 
     private ArrayAdapter adapter;
     String TAG = "MainActivity";
@@ -90,67 +92,81 @@ public class MainActivity extends AppCompatActivity {
         box1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "BOX 1", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, display_workers_name.class);
-                startActivity(intent);
+                home_button(0);
             }
         });
 
         box2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "BOX 2", Toast.LENGTH_SHORT).show();
+                home_button(1);
             }
         });
 
         box3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "BOX 3", Toast.LENGTH_SHORT).show();
+                home_button(2);
             }
         });
 
         box4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "BOX 4", Toast.LENGTH_SHORT).show();
+                home_button(3);
             }
         });
 
         box5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "BOX 5", Toast.LENGTH_SHORT).show();
+                home_button(4);
             }
         });
 
         box6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "BOX 6", Toast.LENGTH_SHORT).show();
+                home_button(5);
             }
         });
 
         box7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "BOX 7", Toast.LENGTH_SHORT).show();
+                home_button(6);
             }
         });
 
         box8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "BOX 8", Toast.LENGTH_SHORT).show();
+                home_button(7);
             }
         });
 
         box9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "BOX 9", Toast.LENGTH_SHORT).show();
+                home_button(8);
             }
         });
 
     }
+
+    private void home_button(int boxNum){
+        setNumb(boxNum);
+        Toast.makeText(MainActivity.this, "box number" + wNumb, Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(MainActivity.this, display_workers_name.class);
+        startActivity(intent);
+    }
+
+    private  void setNumb(int x){
+        wNumb = x;
+    }
+
+    static int getWorkerNum (){
+       return wNumb;
+    }
+
 }

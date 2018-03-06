@@ -15,11 +15,15 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static com.advancemoms.servicehomepage.MainActivity.*;
+
 /**
  * Created by alway on 2/25/2018.
  */
 
 public class display_workers_name extends AppCompatActivity {
+    String[] boxName = {"Gardener", "Mechanic", "Plumber", "Worker 4", "Worker 5", "Worker 6", "Worker 7", "Worker 8" , "Worker 1"};
+
     String[] workers = {"Romain", "small", "alwayne", "bob", "wayne", "kim", "marvin", "steph", "alisa", "monique", "migs"};
 
     String[] contact = {"(876)785-3923", "(876)565-7783", "(876)894-3498", "(876)565-3433", "(876)565-3555", "(876)558-3493",
@@ -37,8 +41,10 @@ public class display_workers_name extends AppCompatActivity {
     private static final String TAG = "display_workers_name";
 
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.setTitle(boxName[wNumb]);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_workers_by_service);
         Log.d(TAG, "REACH");
