@@ -38,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
 
+        }else{
+            Intent intent = new Intent(MainActivity.this, constructingDatabase.class);
+            startActivity(intent);
         }
        setContentView(R.layout.activity_main);
 
