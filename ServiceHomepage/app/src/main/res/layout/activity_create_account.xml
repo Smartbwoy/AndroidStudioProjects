@@ -41,6 +41,7 @@
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -56,6 +57,20 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/userType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="C"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -74,6 +89,9 @@
                     android:singleLine="true" />
             </android.support.design.widget.TextInputLayout>
 
+
+
+
             <Button
                 android:id="@+id/sign_up_button"
                 style="?android:textAppearanceSmall"
@@ -86,5 +104,7 @@
         </LinearLayout>
 
     </ScrollView>
+
+
 
 </android.support.constraint.ConstraintLayout>

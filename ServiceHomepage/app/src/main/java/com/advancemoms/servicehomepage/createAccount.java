@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class createAccount extends AppCompatActivity {
     private FirebaseAuth mAuth=FirebaseAuth.getInstance();
     private DatabaseReference mDatabase;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,9 @@ public class createAccount extends AppCompatActivity {
                 final String email=((EditText)findViewById(R.id.emailAddress)).getText().toString();
                 String password=((EditText)findViewById(R.id.userpassword)).getText().toString();
                 final String userName=((EditText)findViewById(R.id.username)).getText().toString();
+                final String user_type = ((EditText)findViewById(R.id.userType)).getText().toString();
                 mAuth=FirebaseAuth.getInstance();
+
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(createAccount.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -45,16 +48,16 @@ public class createAccount extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
                                     //Log.d(TAG, "createUserWithEmail:success");
 
+                                    MapOperations mapp = new MapOperations();
                                     mDatabase = FirebaseDatabase.getInstance().getReference();
-                                    User user = new User(userName, mAuth.getCurrentUser().getEmail().toString());
+                                    user = new User(userName, user_type, mapp.getLlocation());
 
                                     mDatabase.child("User").child(mAuth.getCurrentUser().getUid().toString()).setValue(user);
                                     Toast.makeText(createAccount.this, "Authentication Successful.",
                                             Toast.LENGTH_LONG).show();
                                     Intent i = new Intent(createAccount.this, LoginActivity.class);
                                     startActivity(i);
-                                    //FirebaseUser user = mAuth.getCurrentUser();
-                                    //updateUI(user);
+
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     //Log.d(TAG, "createUserWithEmail:failure", task.getException());

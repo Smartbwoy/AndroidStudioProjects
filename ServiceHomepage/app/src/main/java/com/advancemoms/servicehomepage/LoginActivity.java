@@ -71,6 +71,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    User current_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +80,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
+
+
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -112,11 +115,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
-                                    //Log.d(TAG, "signInWithEmail:success");
+
+                                    //Creating current user object
                                     FirebaseUser user = mAuth.getCurrentUser();
+                                    //current_user = new User(user.getDisplayName(), user.getDisplayName(), );
+                                    current_user = new User();
                                     Intent i = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(i);
                                     //updateUI(user);
+
                                     Toast.makeText(LoginActivity.this, "Welcome",
                                             Toast.LENGTH_SHORT).show();
                                 } else {
