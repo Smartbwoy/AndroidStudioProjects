@@ -22,7 +22,7 @@ import static com.advancemoms.servicehomepage.MainActivity.*;
  */
 
 public class display_workers_name extends AppCompatActivity {
-    String[] boxName = {"Cooking Gas", "Electrician ", "Gardener","Mechanic", "plumbing", "Removal","Technician ", "Wrecker", "cesspool truck"};
+    String[] boxName = {"Gardener", "Mechanic", "Plumber", "Worker 4", "Worker 5", "Worker 6", "Worker 7", "Worker 8" , "Worker 1"};
 
     String[] workers = {"Romain", "small", "alwayne", "bob", "wayne", "kim", "marvin", "steph", "alisa", "monique", "migs"};
 

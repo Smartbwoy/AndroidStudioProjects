@@ -41,9 +41,6 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".createAccount"></activity>
         <activity android:name=".constructingDatabase"></activity>
-        <activity android:name=".MapOperations"></activity>
-        <!--<activity android:name=".User"></activity>
-        -->
     </application>
 
 </manifest>

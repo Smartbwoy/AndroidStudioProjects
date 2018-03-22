@@ -33,16 +33,12 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser=mAuth.getCurrentUser();
         Log.d(TAG, "check user");
-        if(currentUser==null) {
+        if(currentUser==null){
             Log.d(TAG, "no user");
-            Toast.makeText(MainActivity.this, "No user", Toast.LENGTH_LONG).show();
-            //Intent i = new Intent(this, LoginActivity.class);
-            Intent intent = new Intent(MainActivity.this, constructingDatabase.class);
-            startActivity(intent);
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
 
         }else{
-            Log.d(TAG, "user");
-            Toast.makeText(MainActivity.this, "user user", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(MainActivity.this, constructingDatabase.class);
             startActivity(intent);
         }
