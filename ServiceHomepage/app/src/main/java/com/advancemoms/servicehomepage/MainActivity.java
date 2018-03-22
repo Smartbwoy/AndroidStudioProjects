@@ -38,10 +38,14 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
 
+<<<<<<< HEAD
         }else{
             Intent intent = new Intent(MainActivity.this, constructingDatabase.class);
             startActivity(intent);
         //}
+=======
+        }
+>>>>>>> parent of 40852a8... get location
        setContentView(R.layout.activity_main);
 
         //Declearing service buttons
