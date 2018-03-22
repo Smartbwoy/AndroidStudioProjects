@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "user user", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(MainActivity.this, constructingDatabase.class);
             startActivity(intent);
-        //}
+        }
        setContentView(R.layout.activity_main);
 
         //Declearing service buttons

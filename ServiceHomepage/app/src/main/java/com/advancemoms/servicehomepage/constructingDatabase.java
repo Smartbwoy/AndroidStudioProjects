@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,6 +30,8 @@ public class constructingDatabase extends AppCompatActivity
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private DatabaseReference mDatabase;
     String userName;
+    private String password;
+    private String email;
     User user;
     private static final String TAG = "constructingDatabase";
     private String[] UT = {"Customer", "Worker"};
@@ -38,15 +41,10 @@ public class constructingDatabase extends AppCompatActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate: access constructing database");
-    }
 
-}
-/*
-        Log.d(TAG, "onCreate: constructing database");
         for(int i = 1; i<2; i++) {
-            String email = "serviceapp" + i +"@hotmail.com";
-            String password = "qwerty123";
+            email = "serviceapp" + i +"@hotmail.com";
+            password = "qwerty123";
             userName = "romain" + i;
 
             mAuth=FirebaseAuth.getInstance();
@@ -55,6 +53,21 @@ public class constructingDatabase extends AppCompatActivity
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                                 // Sign in success, update UI with the signed-in user's information
+                            mAuth.signInWithEmailAndPassword(email, password)
+                                    .addOnCompleteListener(constructingDatabase.this, new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(constructingDatabase.this, "Welcome",
+                                                        Toast.LENGTH_SHORT).show();
+
+
+                                            } else {
+                                                Toast.makeText(constructingDatabase.this, "not welcome",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
                             if (task.isSuccessful()) {
                                 Log.d(TAG, "onComplete: sucessfull");
                                 Toast.makeText(constructingDatabase.this, "Authenticated.",
@@ -89,4 +102,4 @@ public class constructingDatabase extends AppCompatActivity
     }
 
 
-}*/
+}
