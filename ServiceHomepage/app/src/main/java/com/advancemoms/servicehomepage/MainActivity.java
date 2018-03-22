@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         }else{
             Intent intent = new Intent(MainActivity.this, constructingDatabase.class);
             startActivity(intent);
-        }
+        //}
        setContentView(R.layout.activity_main);
 
         //Declearing service buttons

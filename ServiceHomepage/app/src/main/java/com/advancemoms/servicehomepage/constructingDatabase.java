@@ -17,7 +17,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -39,8 +38,11 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
     String userName;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     private String password;
     private String email;
+=======
+>>>>>>> parent of 28b41db... still not creating users
     User user;
 =======
     static String LLocation;
@@ -57,8 +59,17 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
         super.onCreate(savedInstanceState);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        Log.d(TAG, "onCreate: access constructing database");
+    }
+>>>>>>> parent of 28b41db... still not creating users
 
+}
+/*
+        Log.d(TAG, "onCreate: constructing database");
         for(int i = 1; i<2; i++) {
+<<<<<<< HEAD
             email = "serviceapp" + i +"@hotmail.com";
             password = "qwerty123";
 =======
@@ -104,6 +115,11 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
             onLocationChanged(location);
 
 
+=======
+            String email = "serviceapp" + i +"@hotmail.com";
+            String password = "qwerty123";
+            userName = "romain" + i;
+>>>>>>> parent of 28b41db... still not creating users
 
 >>>>>>> parent of 39e3266... setting up objects and populating server
 /*
@@ -121,6 +137,7 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
 <<<<<<< HEAD
 <<<<<<< HEAD
                                 // Sign in success, update UI with the signed-in user's information
+<<<<<<< HEAD
                             mAuth.signInWithEmailAndPassword(email, password)
                                     .addOnCompleteListener(constructingDatabase.this, new OnCompleteListener<AuthResult>() {
                                         @Override
@@ -140,6 +157,8 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
 >>>>>>> parent of 39e3266... setting up objects and populating server
 =======
 >>>>>>> parent of 39e3266... setting up objects and populating server
+=======
+>>>>>>> parent of 28b41db... still not creating users
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
 
@@ -195,6 +214,7 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
     @Override
     public void onProviderDisabled(String s) {
 
+<<<<<<< HEAD
     }
 
     @Override
@@ -213,3 +233,6 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
 =======
 >>>>>>> parent of 39e3266... setting up objects and populating server
 }
+=======
+}*/
+>>>>>>> parent of 28b41db... still not creating users
