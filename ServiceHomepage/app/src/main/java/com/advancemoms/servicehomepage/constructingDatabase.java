@@ -38,9 +38,13 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
     private DatabaseReference mDatabase;
     String userName;
 <<<<<<< HEAD
+<<<<<<< HEAD
     private String password;
     private String email;
     User user;
+=======
+    static String LLocation;
+>>>>>>> parent of 39e3266... setting up objects and populating server
 =======
     static String LLocation;
 >>>>>>> parent of 39e3266... setting up objects and populating server
@@ -51,6 +55,7 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
         for(int i = 1; i<2; i++) {
@@ -78,6 +83,29 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
 
 
 
+=======
+        Toast.makeText(constructingDatabase.this, "getting location1", Toast.LENGTH_LONG).show();
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+        }
+            Location location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
+            onLocationChanged(location);
+
+
+
+>>>>>>> parent of 39e3266... setting up objects and populating server
 /*
         for(int i = 10; i<50; i++) {
             mAuth=FirebaseAuth.getInstance();
@@ -90,6 +118,7 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
                     .addOnCompleteListener(constructingDatabase.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+<<<<<<< HEAD
 <<<<<<< HEAD
                                 // Sign in success, update UI with the signed-in user's information
                             mAuth.signInWithEmailAndPassword(email, password)
@@ -107,6 +136,8 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
                                             }
                                         }
                                     });
+=======
+>>>>>>> parent of 39e3266... setting up objects and populating server
 =======
 >>>>>>> parent of 39e3266... setting up objects and populating server
                             if (task.isSuccessful()) {
@@ -149,6 +180,7 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
     public void onProviderEnabled(String s) {
 
     }
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
@@ -158,6 +190,15 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
     }
 
     @Override
+=======
+
+    @Override
+    public void onProviderDisabled(String s) {
+
+    }
+
+    @Override
+>>>>>>> parent of 39e3266... setting up objects and populating server
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == REQUEST_LOCATION) {
             if(grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -167,5 +208,8 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
             }
         }
     }
+<<<<<<< HEAD
+>>>>>>> parent of 39e3266... setting up objects and populating server
+=======
 >>>>>>> parent of 39e3266... setting up objects and populating server
 }
