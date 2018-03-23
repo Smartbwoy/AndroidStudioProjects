@@ -36,20 +36,10 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private DatabaseReference mDatabase;
     String userName;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     private String password;
     private String email;
-=======
->>>>>>> parent of 28b41db... still not creating users
     User user;
-=======
     static String LLocation;
->>>>>>> parent of 39e3266... setting up objects and populating server
-=======
-    static String LLocation;
->>>>>>> parent of 39e3266... setting up objects and populating server
     private static final String TAG = "constructingDatabase";
     static public final int REQUEST_LOCATION = 1;
     private LocationManager locationManager;
@@ -57,40 +47,34 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
         Log.d(TAG, "onCreate: access constructing database");
     }
->>>>>>> parent of 28b41db... still not creating users
 
-}
-/*
+        Toast.makeText(constructingDatabase.this, "getting location1", Toast.LENGTH_LONG).show();
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+        }
+            Location location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
+            onLocationChanged(location);
+
+
+
         Log.d(TAG, "onCreate: constructing database");
         for(int i = 1; i<2; i++) {
-<<<<<<< HEAD
             email = "serviceapp" + i +"@hotmail.com";
             password = "qwerty123";
-=======
-        Toast.makeText(constructingDatabase.this, "getting location1", Toast.LENGTH_LONG).show();
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-        }
-            Location location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
-            onLocationChanged(location);
 
 
 
@@ -115,29 +99,17 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
             onLocationChanged(location);
 
 
-=======
-            String email = "serviceapp" + i +"@hotmail.com";
-            String password = "qwerty123";
-            userName = "romain" + i;
->>>>>>> parent of 28b41db... still not creating users
-
->>>>>>> parent of 39e3266... setting up objects and populating server
-/*
         for(int i = 10; i<50; i++) {
             mAuth=FirebaseAuth.getInstance();
             String email = "serviceapp" + i +"@hotmail.com";
             String password = "qwerty123";
->>>>>>> parent of 39e3266... setting up objects and populating server
             userName = "romain" + i;
 
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(constructingDatabase.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-<<<<<<< HEAD
-<<<<<<< HEAD
                                 // Sign in success, update UI with the signed-in user's information
-<<<<<<< HEAD
                             mAuth.signInWithEmailAndPassword(email, password)
                                     .addOnCompleteListener(constructingDatabase.this, new OnCompleteListener<AuthResult>() {
                                         @Override
@@ -153,18 +125,11 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
                                             }
                                         }
                                     });
-=======
->>>>>>> parent of 39e3266... setting up objects and populating server
-=======
->>>>>>> parent of 39e3266... setting up objects and populating server
-=======
->>>>>>> parent of 28b41db... still not creating users
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
 
                                 mDatabase = FirebaseDatabase.getInstance().getReference();
                                 User user = new User(userName, mAuth.getCurrentUser().getEmail().toString());
-
                                 mDatabase.child("User").child(mAuth.getCurrentUser().getUid().toString()).setValue("userType", "Regular");
                                 //FirebaseUser user = mAuth.getCurrentUser();
                                 //updateUI(user);
@@ -200,15 +165,20 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
 
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
+=======
+
+>>>>>>> parent of 39e3266... setting up objects and populating server
     @Override
     public void onProviderDisabled(String s) {
 
     }
 
     @Override
+<<<<<<< HEAD
 =======
 
     @Override
@@ -218,6 +188,8 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
     }
 
     @Override
+>>>>>>> parent of 39e3266... setting up objects and populating server
+=======
 >>>>>>> parent of 39e3266... setting up objects and populating server
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == REQUEST_LOCATION) {
@@ -229,6 +201,7 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> parent of 39e3266... setting up objects and populating server
 =======
 >>>>>>> parent of 39e3266... setting up objects and populating server
@@ -236,3 +209,6 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
 =======
 }*/
 >>>>>>> parent of 28b41db... still not creating users
+=======
+}
+>>>>>>> parent of 39e3266... setting up objects and populating server

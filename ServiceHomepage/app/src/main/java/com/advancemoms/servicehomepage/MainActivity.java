@@ -18,7 +18,7 @@ package com.advancemoms.servicehomepage;
 
         import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+    public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     String[] boxName = {"Gardener", "Mechanic", "Plumber", "Worker 4", "Worker 5", "Worker 6", "Worker 7", "Worker 8" , "Worker 1"};
     static int wNumb;
@@ -38,14 +38,11 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
 
-<<<<<<< HEAD
         }else{
             Intent intent = new Intent(MainActivity.this, constructingDatabase.class);
             startActivity(intent);
-        //}
-=======
-        }
->>>>>>> parent of 40852a8... get location
+
+
        setContentView(R.layout.activity_main);
 
         //Declearing service buttons

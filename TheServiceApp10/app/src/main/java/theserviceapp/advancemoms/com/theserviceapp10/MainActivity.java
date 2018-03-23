@@ -1,5 +1,5 @@
 package theserviceapp.advancemoms.com.theserviceapp10;
-
+/*
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -15,7 +15,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.Toast;*/
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -31,12 +35,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        if(isServiceOk()){
+        //if(isServiceOk()){
             Log.d(TAG, "Service is ok");
-            init();
-        }
+           // init();
+        //}
     }
-
+/*
     private void init(){
         //Switches and buttons from main xml
         Switch wswitch = (Switch) findViewById(R.id.worker_switch);
@@ -120,5 +124,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
-
+*/
 }

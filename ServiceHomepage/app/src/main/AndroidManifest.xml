@@ -27,6 +27,10 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".createAccount"></activity>
+<<<<<<< HEAD
+=======
+        <activity android:name=".constructingDatabase"></activity>
+>>>>>>> parent of 39e3266... setting up objects and populating server
     </application>
 
 </manifest>
