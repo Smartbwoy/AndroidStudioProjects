@@ -50,7 +50,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //public void settingsPage()
+    public void settingsPage(){
+        Intent i = new Intent(this, SettingsActivity.class);
+        startActivity(i);
+    }
 
 
 }
