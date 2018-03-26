@@ -3,7 +3,7 @@
     package="com.advancemoms.theserviceapp">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -12,23 +12,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDTuSFPxIskpwCv2-gqMIPoxVFqAPD8ANw"/>
+            android:value="AIzaSyDTuSFPxIskpwCv2-gqMIPoxVFqAPD8ANw" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".userHomeScreen"></activity>
-        <activity android:name=".display_workers_industry"></activity>
-        <activity android:name=".mapOperations"/>
-
-
-
+        <activity android:name=".userHomeScreen" />
+        <activity android:name=".display_workers_industry" />
+        <activity android:name=".mapOperations" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".userHomeScreen">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.advancemoms.theserviceapp.userHomeScreen" />
+        </activity>
     </application>
 
 </manifest>
