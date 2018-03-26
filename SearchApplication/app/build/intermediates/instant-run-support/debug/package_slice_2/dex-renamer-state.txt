@@ -1,0 +1,4 @@
+#Mon Mar 05 21:25:18 COT 2018
+base.0=C\:\\Users\\Smartbwoy\\AndroidStudioProjects\\SearchApplication\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\40
+path.0=classes.dex
+renamed.0=classes.dex

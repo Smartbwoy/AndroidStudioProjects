@@ -18,7 +18,7 @@ package com.advancemoms.servicehomepage;
 
         import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+    public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     String[] boxName = {"Gardener", "Mechanic", "Plumber", "Worker 4", "Worker 5", "Worker 6", "Worker 7", "Worker 8" , "Worker 1"};
     static int wNumb;
@@ -33,19 +33,16 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser=mAuth.getCurrentUser();
         Log.d(TAG, "check user");
-        if(currentUser==null) {
+        if(currentUser==null){
             Log.d(TAG, "no user");
-            Toast.makeText(MainActivity.this, "No user", Toast.LENGTH_LONG).show();
-            //Intent i = new Intent(this, LoginActivity.class);
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+
+        }else{
             Intent intent = new Intent(MainActivity.this, constructingDatabase.class);
             startActivity(intent);
 
-        }else{
-            Log.d(TAG, "user");
-            Toast.makeText(MainActivity.this, "user user", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(MainActivity.this, constructingDatabase.class);
-            startActivity(intent);
-        //}
+
        setContentView(R.layout.activity_main);
 
         //Declearing service buttons
