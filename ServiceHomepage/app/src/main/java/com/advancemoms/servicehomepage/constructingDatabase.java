@@ -38,17 +38,14 @@ public class constructingDatabase extends AppCompatActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate: access constructing database");
-    }
+        Log.d(TAG,"onCreate: access constructing database");
 
-}
-/*
+
         Log.d(TAG, "onCreate: constructing database");
-        for(int i = 1; i<2; i++) {
+        for(int i = 0; i<2; i++) {
             String email = "serviceapp" + i +"@hotmail.com";
             String password = "qwerty123";
             userName = "romain" + i;
-
             mAuth=FirebaseAuth.getInstance();
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(constructingDatabase.this, new OnCompleteListener<AuthResult>() {
@@ -57,10 +54,12 @@ public class constructingDatabase extends AppCompatActivity
                                 // Sign in success, update UI with the signed-in user's information
                             if (task.isSuccessful()) {
                                 Log.d(TAG, "onComplete: sucessfull");
+
                                 Toast.makeText(constructingDatabase.this, "Authenticated.",
                                         Toast.LENGTH_SHORT).show();
 
                                 mDatabase = FirebaseDatabase.getInstance().getReference();
+                                Log.d(TAG, "I am here");
                                 int rnd = new Random().nextInt( UT.length);
                                 int rnd2 = new Random().nextInt( boxName.length);
                                 MapOperations mmap = new MapOperations();
@@ -71,7 +70,7 @@ public class constructingDatabase extends AppCompatActivity
                                     user = new User(userName, UT[rnd], mmap.getLlocation());
                                 }
 
-                                mDatabase.child("User").child(mAuth.getCurrentUser().getUid().toString()).setValue(user );
+                                mDatabase.child("User").child(mAuth.getCurrentUser().getUid().toString()).setValue(user);
                                 //FirebaseUser user = mAuth.getCurrentUser();
                                 //updateUI(user);
                             } else {
@@ -89,4 +88,4 @@ public class constructingDatabase extends AppCompatActivity
     }
 
 
-}*/
+}

@@ -160,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    }
 
     private void home_button(int boxNum){
         setNumb(boxNum);

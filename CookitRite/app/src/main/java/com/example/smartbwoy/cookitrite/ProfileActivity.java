@@ -87,6 +87,7 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
         
         // Load the image using Glide
         StorageReference ref = storageReference.child("images/usersprofilephotoes/"+ userAuth.getCurrentUser().getUid());
+        //StorageReference ref= new FirebaseStorage("images/usersprofilephotoes")
         Glide.with(this /* context */)
                 .using(new FirebaseImageLoader())
                 .load(ref)
