@@ -47,9 +47,17 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate: access constructing database");
-    }
+        Log.d(TAG,"onCreate: access constructing database");
 
+
+<<<<<<< HEAD
+        Log.d(TAG, "onCreate: constructing database");
+        for(int i = 0; i<2; i++) {
+            String email = "serviceapp" + i +"@hotmail.com";
+            String password = "qwerty123";
+            userName = "romain" + i;
+            mAuth=FirebaseAuth.getInstance();
+=======
         Toast.makeText(constructingDatabase.this, "getting location1", Toast.LENGTH_LONG).show();
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
@@ -105,6 +113,7 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
             String password = "qwerty123";
             userName = "romain" + i;
 
+>>>>>>> 38f48f95c006a4f23ccaf484aeb529e24dd16db2
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(constructingDatabase.this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -126,11 +135,32 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
                                         }
                                     });
                             if (task.isSuccessful()) {
+<<<<<<< HEAD
+                                Log.d(TAG, "onComplete: sucessfull");
+
+                                Toast.makeText(constructingDatabase.this, "Authenticated.",
+                                        Toast.LENGTH_SHORT).show();
+
+                                mDatabase = FirebaseDatabase.getInstance().getReference();
+                                Log.d(TAG, "I am here");
+                                int rnd = new Random().nextInt( UT.length);
+                                int rnd2 = new Random().nextInt( boxName.length);
+                                MapOperations mmap = new MapOperations();
+                                if(rnd==1){
+                                    user =(Worker) new Worker(userName, UT[rnd], mmap.getLlocation(), boxName[rnd2]);
+                                    mDatabase.child("Worker").child(mAuth.getCurrentUser().getUid().toString()).setValue(boxName[rnd2]);
+                                }else{
+                                    user = new User(userName, UT[rnd], mmap.getLlocation());
+                                }
+
+                                mDatabase.child("User").child(mAuth.getCurrentUser().getUid().toString()).setValue(user);
+=======
                                 // Sign in success, update UI with the signed-in user's information
 
                                 mDatabase = FirebaseDatabase.getInstance().getReference();
                                 User user = new User(userName, mAuth.getCurrentUser().getEmail().toString());
                                 mDatabase.child("User").child(mAuth.getCurrentUser().getUid().toString()).setValue("userType", "Regular");
+>>>>>>> 38f48f95c006a4f23ccaf484aeb529e24dd16db2
                                 //FirebaseUser user = mAuth.getCurrentUser();
                                 //updateUI(user);
                             } else {
@@ -155,6 +185,9 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
         LLocation = longitude + "--" + latitude;
     }
 
+<<<<<<< HEAD
+}
+=======
     @Override
     public void onStatusChanged(String s, int i, Bundle bundle) {
 
@@ -212,3 +245,4 @@ public class constructingDatabase extends AppCompatActivity implements LocationL
 =======
 }
 >>>>>>> parent of 39e3266... setting up objects and populating server
+>>>>>>> 38f48f95c006a4f23ccaf484aeb529e24dd16db2

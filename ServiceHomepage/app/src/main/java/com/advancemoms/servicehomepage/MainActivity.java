@@ -157,6 +157,7 @@ package com.advancemoms.servicehomepage;
         });
 
     }
+    }
 
     private void home_button(int boxNum){
         setNumb(boxNum);
