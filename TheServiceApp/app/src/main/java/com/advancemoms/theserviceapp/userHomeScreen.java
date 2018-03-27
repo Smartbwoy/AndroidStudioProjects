@@ -43,6 +43,8 @@ public class userHomeScreen extends AppCompatActivity {
             ImageButton box8 = (ImageButton) findViewById(R.id.home_box_8);
             ImageButton box9 = (ImageButton) findViewById(R.id.home_box_9);
 
+
+
             //Declaring search variables
             EditText searchWorker = (EditText) findViewById(R.id.SearchEditView);
             ListView list = (ListView) findViewById(R.id.display_workers_list_view);

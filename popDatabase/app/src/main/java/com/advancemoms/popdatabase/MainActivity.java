@@ -1,13 +1,10 @@
 package com.advancemoms.popdatabase;
 
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
@@ -44,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
 
 
 
-
+       /*
         LocationManager locationManager =(LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, COURSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -65,20 +62,20 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         onLocationChanged(location);
 
         Log.d(TAG, "onCreate: mappp" + location.getLatitude() + " " + location.getLongitude());
-
+           */
 
 
         setContentView(R.layout.activity_main);
-
+        createIndustry();
         //Intent in = new Intent(MainActivity.this, CreateAccount.class);
         //startActivity(in);
         //setContentView(R.layout.activity_create_account);
 
-        for(i = 5; i<=10; i++) {
+        //for(i = 5; i<=5; i++) {
             //Log.d(TAG, "onCreate: Accessing for loop");
-            String eml = "serviceapp" + i +"@hotmail.com";
-            String pword = "qwerty123";
-            String uname = "romain" + i;
+            //String eml = "serviceapp" + i +"@hotmail.com";
+            //String pword = "qwerty123";
+            //String uname = "romain" + i;
 
             //createAuthUser(uname, pword, eml);
             //loginAuthUser(uname, pword, eml);
@@ -90,9 +87,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
             //Log.d(TAG, "onCreate: current user " + currentUser.getUid().toString());
             //FirebaseAuth.getInstance().signOut();
 
-        }
+        //}
 
     }
+
 
     public void createWorker(){
         int ind;
@@ -107,20 +105,20 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         mDatabase.child("Worker").child(mAuth.getCurrentUser().getUid()).child("Industry").setValue(sss);
     }
 
-   /* public void createIndustry(){
-        String[] service = {"Cooking Gas","Electrician ", "Gardener","Mechanic", "plumbing", "Removal","Technician ", "Wrecker", "cesspool truck"};
-        FirebaseUser user = mAuth.getCurrentUser();
+   public void createIndustry(){
+        String[] Service = {"Cooking Gas","Electrician ", "Gardener","Mechanic", "Plumbing", "Removal","Technician ", "Wrecker", "Cesspool Truck"};
+       String[] imgs = {"cookinggas","electrician ", "gardener","mechanic", "plumbing", "removal","technician ", "wrecker", "cesspooltruck"};
+       FirebaseUser user = mAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        for(int i =0; i< service.length;i++){
+        for(int i =0; i< Service.length;i++){
             int sid = 10000 +i;
 
-            mDatabase.child("worker").child(""+sid).setValue(user);
-            mDatabase.child("User").child(mAuth.getCurrentUser().getUid()).child("Type").setValue(uType);
-
-            mDatabase.child("Worker").child(mAuth.getCurrentUser().getUid()).child("Industry").setValue();
+            mDatabase.child("Industry").child(""+sid).setValue(Service[i]);
+            mDatabase.child("Industry").child(""+sid).child("Type").setValue(Service[i]);
+            mDatabase.child("Industry").child(""+sid).child("ImgUrl").setValue("ggjg");
         }
-    }*/
+    }
 
     public void loginAuthUser(String userName, String password, String email){
         final String userName1 = userName;
