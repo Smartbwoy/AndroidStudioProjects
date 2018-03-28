@@ -44,8 +44,8 @@ import java.util.Map;
 public class HomeScreen extends AppCompatActivity {
 
     //Declaring database variables
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private DatabaseReference mDatabase;
+    DatabaseReference myRef;
+    FirebaseDatabase database;
 
     public interface OnGridImageSelectedListener{
         void onGridImageSelected(Upload upload);
@@ -62,9 +62,11 @@ public class HomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen);
-        //Log.d(TAG,  "work nowwww 1"+getImagesActivity());
-        //Log.d(TAG,  "work nowwww 2"+getImagesActivity());
-        //loginAuthUser("querty", "alwaynesmall@hotmail.com");
+
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("Industry");
+
+
 
         initImageLoader();
         databasecheck();
@@ -78,11 +80,7 @@ public class HomeScreen extends AppCompatActivity {
         ImageLoader.getInstance().init(universalImageLoader.getConfig());
     }
 
-
-
     public void databasecheck(){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Industry");
 
         final GridView gridView = (GridView) findViewById(R.id.gridView);
         final ArrayList<Upload> wNames = new ArrayList<>();  //names of all the jobs
@@ -108,12 +106,11 @@ public class HomeScreen extends AppCompatActivity {
                 }
                 GridImageAdapter adapter = new GridImageAdapter(HomeScreen.this,R.layout.layout_grid_imageview, "", urlimg);
                 //setupGrid();
-                gridView.setAdapter(adapter);
 
+                gridView.setAdapter(adapter);
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        //mOnGridImageSelectedListener.onGridImageSelected(wNames.get(position));
                         Toast.makeText(HomeScreen.this, "Service "+wNames.get(position).getmName(), Toast.LENGTH_LONG).show();
                     }
                 });
@@ -177,39 +174,8 @@ public class HomeScreen extends AppCompatActivity {
 
     }
 
-    public void loginAuthUser(String password, String email){
-        password = "qwerty";
-        email = "alwaynesmall@hotmail.com";
-        FirebaseAuth.getInstance().signOut();
-        Log.d(TAG, "loginAuthUser: "+ email);
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser==null) {
-            Log.d(TAG, "loginAuthUser: no user found");
-            mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(HomeScreen.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            Log.d(TAG, "onComplete: about to add user");
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Log.d(TAG, "signInWithEmail:success");
-                                Toast.makeText(HomeScreen.this, "signInWithEmail:success.", Toast.LENGTH_SHORT).show();
 
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                Toast.makeText(HomeScreen.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                            }
 
-                            // ...
-                        }
-                    });
-        }
-        else{
-            Log.w(TAG, "signInWithEmail:failure user found ");
-        }
-        Log.d(TAG, "loginAuthUser: ends");
-    }
 
 }
 

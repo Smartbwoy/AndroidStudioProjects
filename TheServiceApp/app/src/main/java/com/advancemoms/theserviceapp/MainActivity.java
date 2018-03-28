@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,17 +13,27 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final databaseOperations dpopp = new databaseOperations();
+        //dpopp.loginAuthUser("qwerty", "alwaynesmall@hotmail.com");
         Button ldBtn = (Button) findViewById(R.id.loading_btn);
         ldBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, userHomeScreen.class);
-                startActivity(i);
+                if(dpopp.getUserNow()==null){
+                    Toast.makeText(MainActivity.this, "No user Found", Toast.LENGTH_LONG).show();
+                    Log.d(TAG, "onClick: No user Found");
+                }else {
+                    Toast.makeText(MainActivity.this, "user " + dpopp.getUserNow().getUid(), Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(MainActivity.this, userHomeScreen.class);
+                    startActivity(i);
+
+                }
             }
         });
     }

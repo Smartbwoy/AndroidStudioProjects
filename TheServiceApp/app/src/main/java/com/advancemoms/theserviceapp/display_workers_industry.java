@@ -15,7 +15,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static com.advancemoms.theserviceapp.userHomeScreen.wNumb;
+import static com.advancemoms.theserviceapp.userHomeScreen.wCat;
 
 /**
  * Created by alway on 3/22/2018.
@@ -44,7 +44,7 @@ public class display_workers_industry extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.setTitle(boxName[wNumb]);
+        super.setTitle(wCat);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_workers_by_industry);
         ListView workersView = (ListView) findViewById(R.id.display_workers_list_view);

@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onDataChange: ");
-        new getImagesActivity();
         mButtonChooseImage = findViewById(R.id.button_choose_image);
         mButtonUpload = findViewById(R.id.button_upload);
         mTextViewShowUploads = findViewById(R.id.text_view_show_uploads);
@@ -63,6 +62,14 @@ public class MainActivity extends AppCompatActivity {
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 
+        databaseOperation ddpp = new databaseOperation();
+        if(ddpp.getUserNow()!=null){
+            Log.d(TAG, "onCreate: user "+ddpp.getUserNow().getUid());
+        }
+        else {
+            Log.d(TAG, "onCreate: no usser");
+            ddpp.loginAuthUser("qwerty", "alwaynesmall@hotmail.com");
+        }
         Intent i = new Intent(MainActivity.this, HomeScreen.class);
         startActivity(i);
 
@@ -162,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openImagesActivity() {
-        Intent intent = new Intent(this, ImagesActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, ImagesActivity.class);
+        //startActivity(intent);
     }
 }

@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -23,116 +20,27 @@
         tools:padding="10dp" />
 
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/relLayout3"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@android:color/white"
-        android:orientation="vertical"
-        android:weightSum="3"
-        tools:padding="5sp">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linLayout2"
+        android:layout_marginBottom="50dp">
 
-        <LinearLayout
+        <GridView
+            android:id="@+id/gridView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@android:color/white"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <ImageButton
-                android:id="@+id/home_box_1"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:src="@drawable/gardener" />
-
-            <ImageButton
-                android:id="@+id/home_box_2"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:src="@drawable/mechanic" />
-
-            <ImageButton
-                android:id="@+id/home_box_3"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:src="@drawable/plumbing" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:horizontalSpacing="2dp"
+            android:numColumns="3"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="2dp">
 
 
+        </GridView>
 
 
-            <ImageButton
-                android:id="@+id/home_box_4"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:src="@drawable/cookinggas" />
-
-            <ImageButton
-                android:id="@+id/home_box_5"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:src="@drawable/electrician" />
-
-            <ImageButton
-                android:id="@+id/home_box_6"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:src="@drawable/removal" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <ImageButton
-                android:id="@+id/home_box_7"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:src="@drawable/wrecker" />
-
-            <ImageButton
-                android:id="@+id/home_box_8"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:src="@drawable/technician" />
-
-            <ImageButton
-                android:id="@+id/home_box_9"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:src="@drawable/cesspooltruck" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
