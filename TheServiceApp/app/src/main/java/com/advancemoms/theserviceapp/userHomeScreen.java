@@ -64,12 +64,14 @@ public class userHomeScreen extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Industry");
 
+        initImageLoader();         //Loagding grid images configeration
+        setUpGrid();    //Loading images into grid
+
         //Declaring search variables
         EditText searchWorker = (EditText) findViewById(R.id.SearchEditView);
         ListView list = (ListView) findViewById(R.id.display_workers_list_view);
 
         final ArrayAdapter<String> WNames;   //names oh all the workers
-        ArrayList<String> wNames = new ArrayList<>();  //names of all the jobs
 
         searchWorker.addTextChangedListener(new TextWatcher() {
             @Override
@@ -87,8 +89,7 @@ public class userHomeScreen extends AppCompatActivity {
             }
         });
 
-        initImageLoader();         //Loagding grid images configeration
-        setUpGrid();    //Loading images into grid
+
     }
 
 
