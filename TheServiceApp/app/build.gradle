@@ -39,6 +39,9 @@ dependencies {
 
     //universal image loader
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
+    //Design library for Coordinator Layout and Toolbars
+    compile 'com.android.support:design:25.3.1'
 }
 
 
