@@ -88,7 +88,28 @@ public class userHomeScreen extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
             }
         });
+        findViewById(R.id.settingsPage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(userHomeScreen.this, SettingsActivity.class);
+                startActivity(i);
+            }
+        });
 
+        findViewById(R.id.logOut).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(FirebaseAuth.getInstance().getCurrentUser()==null){
+                    //Toast.makeText(userHomeScreen.this, "No user Found", Toast.LENGTH_LONG).show();
+                    Log.d(TAG, "onClick: No user Found");
+                }else {
+                    Toast.makeText(userHomeScreen.this, "user logout " + dpop.getUserNow().getUid(), Toast.LENGTH_LONG).show();
+                    //Intent i = new Intent(this, MainActivity.class);
+                    //startActivity(i);
+
+                }
+            }
+        });
 
     }
 

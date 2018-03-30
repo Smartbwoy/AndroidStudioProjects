@@ -22,7 +22,9 @@ public class MainActivity extends AppCompatActivity {
         final databaseOperations dpopp = new databaseOperations();
         //dpopp.loginAuthUser("qwerty", "alwaynesmall@hotmail.com");
         Button ldBtn = (Button) findViewById(R.id.loading_btn);
+        dpopp.loginAuthUser("Password100", "rrennie66@gmail.com");
         ldBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 if(dpopp.getUserNow()==null){
@@ -61,11 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }*/
-
-    public void settingsPage(){
-        Intent i = new Intent(this, SettingsActivity.class);
-        startActivity(i);
-    }
 
 
 }
