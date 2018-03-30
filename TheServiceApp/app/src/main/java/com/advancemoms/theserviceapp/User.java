@@ -1,14 +1,16 @@
 package com.advancemoms.theserviceapp;
 
 import android.location.Location;
+import android.util.Log;
 
 /**
  * Created by alway on 3/22/2018.
  */
 
 public class User {
-    private String Email, LName, FName, Uname, Telephone, DOB, Gender, Type;
-    private Location llocation ;
+    private static final String TAG = "User";
+    private String Email, LName, FName, Uname, Telephone, DOB, Gender, Type, ImgUrl, UID;
+    private Location llocation =  new Location("");;
     private int Age;
 
     //First Constructor
@@ -16,23 +18,60 @@ public class User {
         this.Uname = "anonymous";
     }
 
-    //First Constructor
+    //Second Constructor
+    public User(String username, String email) {
+        this.Uname = username;
+        this.Email = email;
+    }
+
+    //Third Constructor
     public User (String uname, String type, Location location){
         this.Uname = uname;
         this.Type = type;
         setLocation(location);
     }
 
-    //Second Constructor
-    public  User (String uname, String lname, String fname, String email, String type){
+
+    //Fourth Constructor
+    public User(String uname, String email, String type, String telephone, String imgurl, int age) {
         this.Email = email;
         this.Uname = uname;
+        this.Type = type;
+        this.Telephone = telephone;
+        this.ImgUrl = imgurl;
+        this.Age = age;
+    }
+
+    public User(String uname, String email, String type, String ulocation, String telephone, String imgurl, int age, String uid){
+        this.Email = email;
+        this.Uname = uname;
+        this.Type = type;
+        this.Telephone = telephone;
+        this.ImgUrl = imgurl;
+        this.Age = age;
+        this.UID = uid;
+        Log.d(TAG, "User: loc" + ulocation);
+        Log.d(TAG, "User: nam " + uname);
+        setLocation(ulocation);
+
+    }
+
+    public String getUID() {
+        return UID;
+    }
+
+    //Fifth Constructor
+    public User(String uname, String lname, String fname, String email, String dob, String telephone, String gender, String type){
+        this.Email = email;
+        this.Uname = uname;
+        this.DOB = dob;
         this.FName = fname;
         this.LName = lname;
+        this.Telephone = telephone;
+        this.Gender = gender;
         this.Type = type;
     }
 
-    //Third Constructor
     public User(String uname, String lname, String fname, String email, String dob, String location, String telephone, String gender, String type){
         this.Email = email;
         this.Uname = uname;
@@ -46,8 +85,12 @@ public class User {
     }
 
 
-    public String username;
-    public String email;
+
+
+
+
+
+
     //BEGIN SETTERS
 
     //Set type of user, customer or service provider
@@ -79,9 +122,14 @@ public class User {
         this.Telephone = telephone;
     }
 
-    public void setLocation(String location) {
-        this.llocation.setLatitude(Double.parseDouble(location.split("-")[0]));
-        this.llocation.setLongitude(Double.parseDouble(location.split("-")[1]));
+    public String getType() {
+        return Type;
+    }
+
+    public void setLocation(String uLocation) {
+            
+        this.llocation.setLatitude(Double.parseDouble(uLocation.split(" ")[0].trim()));
+        this.llocation.setLongitude(Double.parseDouble(uLocation.split(" ")[1].trim()));
     }
 
     public void setLocation(Location location) {
@@ -92,10 +140,26 @@ public class User {
         this.Gender = gender;
     }
 
+    public void setImgUrl(String imgUrl) {
+        ImgUrl = imgUrl;
+    }
+
+    public void setAge(int age) {
+        Age = age;
+    }
+
     //END SETTERS
 
 
     //BEGIN MUTATORS
+
+    public int getAge() {
+        return Age;
+    }
+
+    public String getImgUrl() {
+        return ImgUrl;
+    }
 
     public String getEmail(){
         return Email;
@@ -129,10 +193,7 @@ public class User {
         return Gender;
     }
 
-    public User(String username, String email) {
-        this.username = username;
-        this.email = email;
-    }
+
 
     //overtide tostring function
     public String toString(){

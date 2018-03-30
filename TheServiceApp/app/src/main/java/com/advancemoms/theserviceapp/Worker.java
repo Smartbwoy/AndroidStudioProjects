@@ -9,11 +9,57 @@ import android.location.Location;
 public class Worker extends User{
     //initializing variables
 
-    String Industry;
+    String  Qualification, Status, Industry;
+    int Experience, Ratings;
 
-    public Worker(String userN, String type, Location location, String industry){
-        super(userN,type,location);
-        this.Industry=industry;
+    public Worker(){
+        super();
+    }
+
+    public Worker(int experience, String qualification, int ratings, String status, String industry) {
+        super();
+        this.Experience = experience;
+        this.Qualification = qualification;
+        this.Status = status;
+        this.Industry = industry;
+        this.Ratings = ratings;
+    }
+
+    public Worker(User user, int experience, String qualification, int ratings, String status, String industry){
+        super(user.getUname(), user.getEmail(), user.getType(), user.getTelephone(), user.getImgUrl(), user.getAge());
+        super.setLocation(user.getLlocation());
+
+        this.Experience = experience;
+        this.Qualification = qualification;
+        this.Status = status;
+        this.Industry = industry;
+        this.Ratings = ratings;
+    }
+
+
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
+    }
+
+    public int getExperience() {
+        return Experience;
+    }
+
+    public void setExperience(int experience) {
+        Experience = experience;
+    }
+
+    public String getQualification() {
+        return Qualification;
+    }
+
+    public void setQualification(String qualification) {
+        Qualification = qualification;
     }
 
     public void setIndustry(String industry){
@@ -22,5 +68,9 @@ public class Worker extends User{
 
     public String getIndustry(){
         return Industry;
+    }
+
+    public int getRatings() {
+        return Ratings;
     }
 }

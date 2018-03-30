@@ -35,6 +35,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.advancemoms.theserviceapp.userHomeScreen" />
         </activity>
+        <activity android:name=".DisplayServiceAdapter" />
     </application>
 
 </manifest>
