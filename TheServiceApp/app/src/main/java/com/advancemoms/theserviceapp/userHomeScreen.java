@@ -69,7 +69,7 @@ public class userHomeScreen extends AppCompatActivity {
 
         //Declaring search variables
         EditText searchWorker = (EditText) findViewById(R.id.SearchEditView);
-        ListView list = (ListView) findViewById(R.id.display_workers_list_view);
+        //ListView list = (ListView) findViewById(R.id.display_workers_list_view);
 
         final ArrayAdapter<String> WNames;   //names oh all the workers
 
@@ -126,14 +126,13 @@ public class userHomeScreen extends AppCompatActivity {
                     urlimg.add(wNames.get(i).getImageUrl());
                 }
                 GridImageAdapter adapter = new GridImageAdapter(userHomeScreen.this,R.layout.layout_grid_imageview, "", urlimg);
-                //setupGrid();
-                Log.d(TAG, "onDataChange: images" + urlimg);
                 gridView.setAdapter(adapter);
 
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Toast.makeText(userHomeScreen.this, "Services "+wNames.get(position).getmName(), Toast.LENGTH_LONG).show();
+                        home_button(wNames.get(position).getmName());
                     }
                 });
             }

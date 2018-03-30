@@ -3,6 +3,8 @@ package com.advancemoms.theserviceapp;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +15,14 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 import static com.advancemoms.theserviceapp.userHomeScreen.wCat;
 
@@ -22,7 +31,19 @@ import static com.advancemoms.theserviceapp.userHomeScreen.wCat;
  */
 
 public class display_workers_industry extends AppCompatActivity {
-    String[] boxName = {"Gardener", "Mechanic", "Plumber", "Worker 4", "Worker 5", "Worker 6", "Worker 7", "Worker 8" , "Worker 1"};
+
+    RecyclerView recyclerView;
+    DisplayUsersAdapter adapter;
+
+
+    //Declaring database variables
+    DatabaseReference myRef;
+    FirebaseDatabase database;
+
+    // Global Variables
+    String WORKER_DATABASE;
+
+    Worker worker;
 
     String[] workers = {"Romain", "small", "alwayne", "bob", "wayne", "kim", "marvin", "steph", "alisa", "monique", "migs"};
 
@@ -47,12 +68,14 @@ public class display_workers_industry extends AppCompatActivity {
         super.setTitle(wCat);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_workers_by_industry);
-        ListView workersView = (ListView) findViewById(R.id.display_workers_list_view);
 
-        CustomAdapter customAdapter = new CustomAdapter();
-        Log.d(TAG, "CustomAdapter");
-        workersView.setAdapter(customAdapter);
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("User");
+
+        createrWorkerUser();
     }
+
+
 
     class CustomAdapter extends BaseAdapter {
 
@@ -113,5 +136,108 @@ public class display_workers_industry extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void createrWorkerUser() {
+        // Read from the database
+
+        myRef = database.getReference("User");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                ArrayList<User> data_list = new ArrayList<>();
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    String wType = (String)postSnapshot.child("Type").getValue();
+                    if (wType.equalsIgnoreCase("work")) {
+                        data_list.add(new User((String)postSnapshot.child("uname").getValue(),
+                                "", (String) postSnapshot.child("Type").getValue(),
+                                    (String) postSnapshot.child("Location").getValue(),
+                                (String) postSnapshot.child("Telephone").getValue(),
+                                (String) postSnapshot.child("ImgUrl").getValue(),
+                                Integer.parseInt("33"), postSnapshot.getKey().toString()));
+                    }
+                }
+                getData(data_list);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+    }
+
+
+    //getting data for database
+    public void getData(final ArrayList<User> uUser){
+
+        // Read from the database
+
+
+        myRef = database.getReference("Worker");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                ArrayList<Worker> data_list = new ArrayList<>();
+                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    String industry = (String)postSnapshot.child("Industry").getValue() ;
+                    User user_in_list = (User)FindUser(postSnapshot.getKey().toString(), uUser);
+                    if(user_in_list.getUname().equalsIgnoreCase("anonymous")){
+                        //nothing happens
+                    }
+                    else{
+                        if(industry.trim().equalsIgnoreCase(wCat.trim())) {
+                            Log.d(TAG, "onDataChange: found someone");
+                            int experience = Integer.parseInt((String)postSnapshot.child("Experience").getValue());
+                            String qualification = (String) postSnapshot.child("Qualification").getValue();
+                            String status = (String) postSnapshot.child("Status").toString();
+                            int rating = Integer.parseInt((String) postSnapshot.child("Ratings").getValue());
+
+                            data_list.add( new Worker(user_in_list, experience, qualification, rating,  status, industry));
+                        }
+                    }
+                }
+                //ArrayList<String> urlimg = new ArrayList<>();
+               // for(int i=0; i< data_list.size(); i++) {
+                //    urlimg.add( data_list.get(i).getImgUrl());
+                //}
+                //DisplayServiceAdapter adapter = new DisplayServiceAdapter(display_workers_industry.this,R.layout.layout_grid_imageview, "", data_list);
+
+
+                recyclerView = (RecyclerView) findViewById(R.id.display_workers_recycler_view);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setLayoutManager(new LinearLayoutManager(display_workers_industry.this));
+
+                adapter = new DisplayUsersAdapter(display_workers_industry.this, data_list);
+                recyclerView.setAdapter(adapter);
+                //ustomAdapter customAdapter = new CustomAdapter();
+                //DisplayServiceAdapter adapter = new DisplayServiceAdapter(display_workers_industry.this,R.layout.layout_grid_imageview,  workersView, data_list);
+                //workersView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
+    }
+
+    public User FindUser(String key, ArrayList<User> uuser){
+        for(User u :uuser){
+            if (u.getUID().equalsIgnoreCase(key)) {
+                return u;
+            }
+        }
+        return new User();
     }
 }
