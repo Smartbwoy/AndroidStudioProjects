@@ -18,6 +18,10 @@
         tools:background="?android:attr/colorButtonNormal"
         tools:layout_margin="2sp"
         tools:padding="10dp" />
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/findWorker"/>
 
 
     <RelativeLayout
