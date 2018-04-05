@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -53,8 +54,14 @@ public class userHomeScreen extends AppCompatActivity {
     OnGridImageSelectedListener mOnGridImageSelectedListener;
 
     private ArrayAdapter adapter;
+
     private static final String TAG = "userHomeScreen";
     databaseOperations dpop;
+
+    ArrayList<String> workNames= new ArrayList<String>();
+
+    private ListView listView;
+    private SuggestionAdapter sugAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,14 +71,35 @@ public class userHomeScreen extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Industry");
 
+        listView = (ListView) findViewById(R.id.workers_list);
+        ArrayList<UserSample> workersList = new ArrayList<>();
+        workersList.add(new UserSample("After Earth" , "2013"));
+        workersList.add(new UserSample("Baby Driver" , "2017"));
+        workersList.add(new UserSample("Deadpool" , "2016"));
+        workersList.add(new UserSample("Divergent" , "2014"));
+
+        sugAdapter = new SuggestionAdapter(this,workersList);
+        //listView.setAdapter( sugAdapter);
+
         initImageLoader();         //Loagding grid images configeration
         setUpGrid();    //Loading images into grid
 
         //Declaring search variables
         EditText searchWorker = (EditText) findViewById(R.id.SearchEditView);
+        AutoCompleteTextView findWorker=(AutoCompleteTextView) findViewById(R.id.findWorker);
         //ListView list = (ListView) findViewById(R.id.display_workers_list_view);
 
         final ArrayAdapter<String> WNames;   //names oh all the workers
+
+        workNames.add("Peter");
+        workNames.add("John");
+        workNames.add("Steve");
+        workNames.add("Lane");
+
+        final ArrayAdapter<String> suggAdapter= new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,workNames);
+        //searchWorker.setAdapter(suggAdapter);
+        //findWorker.setAdapter(sugAdapter);
+
 
         searchWorker.addTextChangedListener(new TextWatcher() {
             @Override
@@ -81,7 +109,8 @@ public class userHomeScreen extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 Log.d(TAG, "At onchange");
-                (userHomeScreen.this).adapter.getFilter().filter(charSequence);
+                //sugAdapter.getFilter().filter(charSequence);
+                //suggAdapter.getFilter().filter(charSequence);
             }
 
             @Override
@@ -103,7 +132,7 @@ public class userHomeScreen extends AppCompatActivity {
                     //Toast.makeText(userHomeScreen.this, "No user Found", Toast.LENGTH_LONG).show();
                     Log.d(TAG, "onClick: No user Found");
                 }else {
-                    Toast.makeText(userHomeScreen.this, "user logout " + dpop.getUserNow().getUid(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(userHomeScreen.this, "user logout " + dpop.getUserNow().getUid(), Toast.LENGTH_LONG).show();
                     //Intent i = new Intent(this, MainActivity.class);
                     //startActivity(i);
 
