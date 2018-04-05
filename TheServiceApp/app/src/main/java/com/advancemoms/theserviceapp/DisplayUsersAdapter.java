@@ -1,21 +1,26 @@
 package com.advancemoms.theserviceapp;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
+import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Locale;
 
@@ -39,6 +44,7 @@ public class DisplayUsersAdapter extends RecyclerView.Adapter<DisplayUsersAdapte
     public DisplayUsersAdapter(Context mCtx, List<Worker> userstList) {
         this.mCtx = mCtx;
         this.usersList = userstList;
+
     }
 
     @Override
@@ -49,8 +55,8 @@ public class DisplayUsersAdapter extends RecyclerView.Adapter<DisplayUsersAdapte
     }
 
     @Override
-    public void onBindViewHolder(DisplayViewHolder holder, int position) {
-        Worker worker = usersList.get(position);
+    public void onBindViewHolder(DisplayViewHolder holder, final int position) {
+        final Worker worker = usersList.get(position);
         Log.d(TAG, "onBindViewHolder: worker ratings  = " + worker.getRatings());
 
         Picasso.get().load(worker.getImgUrl()).into(holder.workerImg);
@@ -59,6 +65,15 @@ public class DisplayUsersAdapter extends RecyclerView.Adapter<DisplayUsersAdapte
         holder.workerLocation.setText(sss);
         holder.workerContact.setText(worker.getTelephone());
         holder.workersRatings.setRating(worker.getRatings());
+        holder.lineralayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mCtx, "You seleceted " + usersList.get(position).getUname() , Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(mCtx,workers_details_activity.class);
+                intent.putExtra("worker", worker);
+                mCtx.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -67,10 +82,12 @@ public class DisplayUsersAdapter extends RecyclerView.Adapter<DisplayUsersAdapte
     }
 
 
+
     class DisplayViewHolder extends RecyclerView.ViewHolder {
         ImageView workerImg;
         TextView workersName, workerContact, workerLocation ;
         RatingBar workersRatings;
+        LinearLayout lineralayout;
 
         public DisplayViewHolder(View itemView) {
             super(itemView);
@@ -79,8 +96,10 @@ public class DisplayUsersAdapter extends RecyclerView.Adapter<DisplayUsersAdapte
             workerContact = (TextView) itemView.findViewById(R.id.worker_search_contact);
             workerLocation = (TextView) itemView.findViewById(R.id.worker_search_location);
             workersRatings = (RatingBar) itemView.findViewById(R.id.worker_search_ratingBar);
+            lineralayout = (LinearLayout) itemView.findViewById(R.id.linearlayout);
 
         }
+
     }
 
 

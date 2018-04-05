@@ -10,11 +10,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -218,6 +220,13 @@ public class display_workers_industry extends AppCompatActivity {
 
                 adapter = new DisplayUsersAdapter(display_workers_industry.this, data_list);
                 recyclerView.setAdapter(adapter);
+
+                recyclerView.setOnClickListener(new AdapterView.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(display_workers_industry.this, "workers layout", Toast.LENGTH_LONG).show();
+                    }
+                });
                 //ustomAdapter customAdapter = new CustomAdapter();
                 //DisplayServiceAdapter adapter = new DisplayServiceAdapter(display_workers_industry.this,R.layout.layout_grid_imageview,  workersView, data_list);
                 //workersView.setAdapter(adapter);

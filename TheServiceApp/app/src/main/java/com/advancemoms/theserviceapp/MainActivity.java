@@ -20,49 +20,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final databaseOperations dpopp = new databaseOperations();
-        //dpopp.loginAuthUser("qwerty", "alwaynesmall@hotmail.com");
-        Button ldBtn = (Button) findViewById(R.id.loading_btn);
-        dpopp.loginAuthUser("Password100", "rrennie66@gmail.com");
-        ldBtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                if(dpopp.getUserNow()==null){
-                    Toast.makeText(MainActivity.this, "No user Found", Toast.LENGTH_LONG).show();
-                    Log.d(TAG, "onClick: No user Found");
-                }else {
-                    Toast.makeText(MainActivity.this, "user " + dpopp.getUserNow().getUid(), Toast.LENGTH_LONG).show();
-                    Intent i = new Intent(MainActivity.this, userHomeScreen.class);
-                    startActivity(i);
-
-                }
-            }
-        });
-    }
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent i = new Intent(MainActivity.this, SettingsActivity.class);
+        if(dpopp.getUserNow()==null){
+            Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
-            return true;
+        }else {
+            Intent i = new Intent(this, userHomeScreen.class);
+            startActivity(i);
         }
-
-        return super.onOptionsItemSelected(item);
-    }*/
-
-
+    }
 }

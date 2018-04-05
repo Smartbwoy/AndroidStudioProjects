@@ -2,11 +2,13 @@ package com.advancemoms.theserviceapp;
 
 import android.location.Location;
 
+import java.io.Serializable;
+
 /**
  * Created by alway on 3/22/2018.
  */
 
-public class Worker extends User{
+public class Worker extends User  implements Serializable {
     //initializing variables
 
     String  Qualification, Status, Industry;

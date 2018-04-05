@@ -7,90 +7,96 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-
-    <ImageView
-        android:id="@+id/worker_search_image"
-        android:layout_width="111dp"
-        android:layout_height="106dp"
-        android:layout_margin="5sp"
-        android:layout_marginTop="140dp"
-        android:adjustViewBounds="false"
-        android:cropToPadding="false"
-        android:scaleType="fitXY"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp" />
-
     <LinearLayout
+        android:id="@+id/linearlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/worker_search_username"
-            android:layout_width="227dp"
-            android:layout_height="35dp"
-            android:lineSpacingExtra="10sp"
-            android:padding="5sp"
-            android:text="textview"
-            android:textAlignment="textStart"
-            android:textSize="18sp"
-            android:textStyle="bold|italic"
+        <ImageView
+            android:id="@+id/worker_search_image"
+            android:layout_width="111dp"
+            android:layout_height="106dp"
+            android:layout_margin="5sp"
+            android:layout_marginTop="140dp"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="120dp"
-            tools:layout_editor_absoluteY="16dp"
-            tools:text="User Name" />
-
-        <TextView
-            android:id="@+id/worker_search_location"
-            android:layout_width="229dp"
-            android:layout_height="wrap_content"
-            android:padding="5sp"
-            android:text="location"
-            android:textAlignment="viewStart"
-            android:visibility="visible"
-            tools:ignore="MissingConstraints,Suspicious0dp"
-            tools:layout_editor_absoluteX="120dp"
-            tools:layout_editor_absoluteY="51dp" />
-
-        <TextView
-            android:id="@+id/worker_search_contact"
-            android:layout_width="226dp"
-            android:layout_height="wrap_content"
-            android:padding="5sp"
-            android:text="contact"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="120dp"
-            tools:layout_editor_absoluteY="72dp" />
+            tools:layout_editor_absoluteX="16dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <RatingBar
-                android:id="@+id/worker_search_ratingBar"
-                style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
-                android:layout_width="91dp"
-                android:layout_height="wrap_content"
-                android:numStars="5"
-                android:padding="5sp"
-                android:rating="1"
-                android:stepSize="1"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="120dp"
-                tools:layout_editor_absoluteY="90dp" />
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView"
-                android:layout_width="98dp"
-                android:layout_height="30dp"
-                android:text="read_reviews"
-                android:textColor="#2d4bed"
-                tools:text="Read Reviews" />
+                android:id="@+id/worker_search_username"
+                android:layout_width="227dp"
+                android:layout_height="35dp"
+                android:lineSpacingExtra="10sp"
+                android:padding="5sp"
+                android:text="textview"
+                android:textAlignment="textStart"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="120dp"
+                tools:layout_editor_absoluteY="16dp"
+                tools:text="User Name" />
+
+            <TextView
+                android:id="@+id/worker_search_location"
+                android:layout_width="229dp"
+                android:layout_height="wrap_content"
+                android:padding="5sp"
+                android:text="location"
+                android:textAlignment="viewStart"
+                android:visibility="visible"
+                tools:ignore="MissingConstraints,Suspicious0dp"
+                tools:layout_editor_absoluteX="120dp"
+                tools:layout_editor_absoluteY="51dp" />
+
+            <TextView
+                android:id="@+id/worker_search_contact"
+                android:layout_width="226dp"
+                android:layout_height="wrap_content"
+                android:padding="5sp"
+                android:text="contact"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="120dp"
+                tools:layout_editor_absoluteY="72dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RatingBar
+                    android:id="@+id/worker_search_ratingBar"
+                    style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
+                    android:layout_width="91dp"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:padding="5sp"
+                    android:rating="1"
+                    android:stepSize="1"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="120dp"
+                    tools:layout_editor_absoluteY="90dp" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="98dp"
+                    android:layout_height="30dp"
+                    android:text="read_reviews"
+                    android:textColor="#2d4bed"
+                    tools:text="Read Reviews" />
+
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
-
 
 </LinearLayout>
