@@ -30,7 +30,7 @@
         <activity android:name=".mapOperations" />
         <activity android:name=".workers_details_activity" />
         <activity android:name=".LoginActivity"/>
-        <activity android:name=".LoginActivity"/>
+        <activity android:name=".createAccount"/>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"

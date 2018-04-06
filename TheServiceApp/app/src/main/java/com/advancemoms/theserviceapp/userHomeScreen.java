@@ -129,12 +129,13 @@ public class userHomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(FirebaseAuth.getInstance().getCurrentUser()==null){
-                    //Toast.makeText(userHomeScreen.this, "No user Found", Toast.LENGTH_LONG).show();
-                    Log.d(TAG, "onClick: No user Found");
+                    Toast.makeText(userHomeScreen.this, "No user Found", Toast.LENGTH_LONG).show();
+                    //Log.d(TAG, "onClick: No user Found");
                 }else {
-                    //Toast.makeText(userHomeScreen.this, "user logout " + dpop.getUserNow().getUid(), Toast.LENGTH_LONG).show();
-                    //Intent i = new Intent(this, MainActivity.class);
-                    //startActivity(i);
+                    FirebaseAuth.getInstance().signOut();
+                    Toast.makeText(userHomeScreen.this, "user logout ", Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(userHomeScreen.this, MainActivity.class);
+                    startActivity(i);
 
                 }
             }
