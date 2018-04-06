@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.advancemoms.theserviceapp.LoginActivity;
@@ -20,13 +21,20 @@ import com.google.firebase.database.FirebaseDatabase;
 public class createAccount extends AppCompatActivity {
     private FirebaseAuth mAuth=FirebaseAuth.getInstance();
     private DatabaseReference mDatabase;
-
+    private TextView signin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
+        signin = (TextView)findViewById(R.id.signin);
 
-
+        signin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(createAccount.this, LoginActivity.class);
+                startActivity(it);
+            }
+        });
         final Button createbtn=(Button)findViewById(R.id.sign_up_button);
         createbtn.setOnClickListener(new View.OnClickListener() {
 
