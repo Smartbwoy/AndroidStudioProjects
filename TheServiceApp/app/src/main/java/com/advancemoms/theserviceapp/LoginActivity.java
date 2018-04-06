@@ -92,9 +92,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
         TextView createUser=(TextView) findViewById(R.id.createUser);
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+
         createUser.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent i = new Intent(LoginActivity.this, createAccount.class);
                 startActivity(i);
             }
