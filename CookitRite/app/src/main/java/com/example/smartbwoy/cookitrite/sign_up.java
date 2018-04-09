@@ -29,11 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import net.rimoto.intlphoneinput.IntlPhoneInput;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -87,23 +83,16 @@ public class sign_up extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 // Create a reference to the cities collection
 
-                CollectionReference usersRef = userdb.collection("Users");
-                // Create a query against the collection.
-                usersRef.whereEqualTo("Username", charSequence.toString()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot documentSnapshots) {
-                        if(!documentSnapshots.isEmpty())
-                        {
-                            userNameError.setText("User Exist");
-                            userNameError.setVisibility(View.VISIBLE);
-                            userNamError[0] =true;
-                        }
-                        else{
-                            userNameError.setVisibility(View.INVISIBLE);
-                            userNamError[0]=false;
-                        }
-                    }
-                });
+                DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference();
+                System.out.println(usersRef.child("userName"));
+                if(usersRef.child("userName").equals(charSequence.toString())){
+                    userNameError.setText("User Exist");
+                    userNameError.setVisibility(View.VISIBLE);
+                    userNamError[0] =true;
+                }else{
+                    userNameError.setVisibility(View.INVISIBLE);
+                    userNamError[0]=false;
+                }
 
             }
 
