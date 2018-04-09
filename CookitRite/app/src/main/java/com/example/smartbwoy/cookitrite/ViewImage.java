@@ -55,7 +55,9 @@ public class ViewImage extends Activity {
                 .using(new FirebaseImageLoader())
                 .load(ref)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .error(R.drawable.user_default)
                 .skipMemoryCache(true)
+                .dontAnimate()
                 .into(imageView);
 
        uploadphoto.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +75,8 @@ public class ViewImage extends Activity {
             @Override
             public void onClick(View view) {
                 uploadImage();
+
+
             }
         });
 
@@ -113,9 +117,14 @@ public class ViewImage extends Activity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Toast.makeText(ViewImage.this, "Uploaded", Toast.LENGTH_SHORT).show();
-
-
+                            Glide.with(ViewImage.this /* context */)
+                                    .using(new FirebaseImageLoader())
+                                    .load(ref)
+                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .skipMemoryCache(true)
+                                    .dontAnimate()
+                                    .into(ProfileActivity.profilePhoto);
+                            Toast.makeText(ViewImage.this, " Image Uploaded", Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -123,6 +132,7 @@ public class ViewImage extends Activity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+
                             progressDialog.dismiss();
                             Toast.makeText(ViewImage.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -132,9 +142,10 @@ public class ViewImage extends Activity {
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                     .getTotalByteCount());
-                            progressDialog.setMessage("Image Uploaded "+(int)progress+"%");
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
                         }
                     });
+
         }
     }
 

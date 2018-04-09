@@ -47,9 +47,6 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
     private FirebaseAuth userAuth;
     private FirebaseAuth.AuthStateListener firebaseListener;
     View header;
-    private Animator mCurrentAnimator;
-    private int mShortAnimationDuration;
-    CircleImageView proimage;
     StorageReference storageReference;
     static CircleImageView profilePhoto;
     //private FusedLocationProviderClient mFusedLocationClient;
@@ -93,7 +90,8 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
             Glide.with(this)
                     .using(new FirebaseImageLoader())
                     .load(ref)
-                    //.error(R.drawable.user_default)
+                    .dontAnimate()
+                    .error(R.drawable.user_default)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true)
                     .into(profilePhoto);

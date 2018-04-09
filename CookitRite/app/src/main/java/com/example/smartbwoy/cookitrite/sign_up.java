@@ -223,7 +223,8 @@ public class sign_up extends AppCompatActivity {
                 }
                 else {
                     final User newUser = new User(userpassword,useremail,username);
-                    userAuth.createUserWithEmailAndPassword(newUser.getEmail(), newUser.getPassword()).addOnCompleteListener(sign_up.this, new OnCompleteListener<AuthResult>() {
+                    userAuth.createUserWithEmailAndPassword(newUser.getEmail(), newUser.getPassword())
+                            .addOnCompleteListener(sign_up.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
