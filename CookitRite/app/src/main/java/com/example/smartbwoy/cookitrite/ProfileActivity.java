@@ -46,7 +46,6 @@ import static android.support.design.widget.NavigationView.OnNavigationItemSelec
 public class ProfileActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
     private FirebaseAuth userAuth;
     private FirebaseAuth.AuthStateListener firebaseListener;
-    private FirebaseFirestore db=FirebaseFirestore.getInstance();
     View header;
     private Animator mCurrentAnimator;
     private int mShortAnimationDuration;
@@ -84,7 +83,6 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
         header = navigationView.getHeaderView(0);
 
         profilePhoto = (CircleImageView) header.findViewById(R.id.profilephoto);
-        ImageView imageView = (ImageView) findViewById(R.id.imageViewphoto);
 
 
         userAuth = FirebaseAuth.getInstance();
@@ -95,7 +93,7 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
             Glide.with(this)
                     .using(new FirebaseImageLoader())
                     .load(ref)
-                    .error(R.drawable.user_default)
+                    //.error(R.drawable.user_default)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true)
                     .into(profilePhoto);
@@ -139,21 +137,6 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
 
                     }
                 });
-                //name.setText(userName[0]);
-
-           /* current_user_dp.child("username").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    String value = dataSnapshot.getValue(String.class);
-                    name.setText(value);
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });*/
-
 
             }
         }
@@ -249,6 +232,7 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
         Intent allmeal=new Intent(this, ListedRecipes.class);
         startActivity(allmeal);
     }
+
     public void addGroceryitem(View view){
         Intent additem=new Intent(this, CreateGroceryItem.class);
         startActivity(additem);

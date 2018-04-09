@@ -40,7 +40,7 @@ public class ViewImage extends Activity {
     //Firebase
     FirebaseStorage storage=FirebaseStorage.getInstance();;
     StorageReference storageReference= storage.getReference();
-
+    final StorageReference ref = storageReference.child("images/usersprofilephotoes/"+ userAuth.getCurrentUser().getUid());
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +50,7 @@ public class ViewImage extends Activity {
 
         final ImageView imageView = (ImageView) findViewById(R.id.imageViewphoto);
         // Load the image using Glide
-        final StorageReference ref = storageReference.child("images/usersprofilephotoes/"+ userAuth.getCurrentUser().getUid());
+
         Glide.with(this /* context */)
                 .using(new FirebaseImageLoader())
                 .load(ref)
@@ -65,6 +65,7 @@ public class ViewImage extends Activity {
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+
             }
         });
 
@@ -74,13 +75,13 @@ public class ViewImage extends Activity {
                 uploadImage();
             }
         });
+
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;
         int height = dm.heightPixels;
         getWindow().setLayout((int) (width/1.2), (int) (height/1.2));
-        Toast.makeText(this,width+" ",Toast.LENGTH_LONG).show();
-
+        //Toast.makeText(this,width+" ",Toast.LENGTH_LONG).show();
 
     }
     @Override
@@ -105,7 +106,7 @@ public class ViewImage extends Activity {
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            final StorageReference ref = storageReference.child("images/usersprofilephotoes/"+ userAuth.getCurrentUser().getUid());
+            //final StorageReference ref = storageReference.child("images/usersprofilephotoes/"+ userAuth.getCurrentUser().getUid());
 
             ref.putFile(filePath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -113,7 +114,11 @@ public class ViewImage extends Activity {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
                             Toast.makeText(ViewImage.this, "Uploaded", Toast.LENGTH_SHORT).show();
+
+
+
                         }
+
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -127,7 +132,7 @@ public class ViewImage extends Activity {
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                     .getTotalByteCount());
-                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                            progressDialog.setMessage("Image Uploaded "+(int)progress+"%");
                         }
                     });
         }
