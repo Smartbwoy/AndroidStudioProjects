@@ -2,6 +2,7 @@ package com.example.smartbwoy.cookitrite;
 
 import android.animation.Animator;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -19,11 +20,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.smartbwoy.cookitrite.Entity.User;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -42,9 +51,8 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
     private Animator mCurrentAnimator;
     private int mShortAnimationDuration;
     CircleImageView proimage;
-    FirebaseStorage storage;
     StorageReference storageReference;
-
+    static CircleImageView profilePhoto;
     //private FusedLocationProviderClient mFusedLocationClient;
     public static class myMenu{
         static Menu name;
@@ -57,14 +65,11 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
         setContentView(R.layout.activity_profile);
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
-        mFragmentTransaction.replace(R.id.containerView,new TabFragment()).commit();
+        mFragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        //TextView txt_username = (TextView) toolbar.findViewById(R.id.txt_username);
-        //txt_email.setText("abc@stackoverflow.com");
-        //txt_username.setText("Username");
         setSupportActionBar(toolbar);
 
 
@@ -76,32 +81,34 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        View header=navigationView.getHeaderView(0);
+        header = navigationView.getHeaderView(0);
 
-        final CircleImageView profilePhoto= (CircleImageView) header.findViewById(R.id.profilephoto);
+        profilePhoto = (CircleImageView) header.findViewById(R.id.profilephoto);
         ImageView imageView = (ImageView) findViewById(R.id.imageViewphoto);
 
-        storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference();
-        userAuth=FirebaseAuth.getInstance();
-        
+
+        userAuth = FirebaseAuth.getInstance();
+
         // Load the image using Glide
-        StorageReference ref = storageReference.child("images/usersprofilephotoes/"+ userAuth.getCurrentUser().getUid());
-        //StorageReference ref= new FirebaseStorage("images/usersprofilephotoes")
-        Glide.with(this /* context */)
-                .using(new FirebaseImageLoader())
-                .load(ref)
-                .into(profilePhoto);
+        storageReference= FirebaseStorage.getInstance().getReference();
+        StorageReference ref = storageReference.child("images/usersprofilephotoes/" + userAuth.getCurrentUser().getUid());
+            Glide.with(this)
+                    .using(new FirebaseImageLoader())
+                    .load(ref)
+                    .error(R.drawable.user_default)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .into(profilePhoto);
         profilePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent additem=new Intent(view.getContext(), ViewImage.class);
+                Intent additem = new Intent(view.getContext(), ViewImage.class);
                 startActivity(additem);
             }
         });
 
 
-        ImageView done= (ImageView) findViewById(R.id.doneRemoving);
+        ImageView done = (ImageView) findViewById(R.id.doneRemoving);
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,47 +116,30 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
             }
         });
 
-        userAuth=FirebaseAuth.getInstance();
-        View header1=navigationView.getHeaderView(0);
-        String userID=userAuth.getCurrentUser().getUid();
-        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
-        final String[] userName = new String[1];
-        DocumentReference docRef = db.collection("Users").document(userID);
-       final TextView uname=(TextView) header1.findViewById(R.id.userName);
-if(!user.isAnonymous()) {
-    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-        @Override
-        public void onComplete(Task<DocumentSnapshot> task) {
-            if (task.isSuccessful()) {
-                DocumentSnapshot doc = task.getResult();
-                StringBuilder fields = new StringBuilder("");
-                fields.append(doc.get("Username"));
-                uname.setText(fields.toString());
+        userAuth = FirebaseAuth.getInstance();
+        String userID = userAuth.getCurrentUser().getUid();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                   /* if (doc != null) {
-                        userName[0] =doc.get("Username").toString();
+        if (!user.isAnonymous()) {
+            final DatabaseReference current_user_dp = FirebaseDatabase.getInstance().getReference("Users").child(userID);
+            if (user != null && !user.isAnonymous()) {
+                header = navigationView.getHeaderView(0);
+                TextView email = (TextView) header.findViewById(R.id.userEmailAddress);
+                final TextView uname = (TextView) header.findViewById(R.id.userName);
+                email.setText(user.getEmail().toString());
+                current_user_dp.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        User currentUser=dataSnapshot.getValue(User.class);
+                        uname.setText(currentUser.getUsername());
+                    }
 
-                        //Toast.makeText(getApplicationContext(),task.getResult().getData().toString(),Toast.LENGTH_SHORT);
-                        //Log.d(TAG, "DocumentSnapshot data: " + task.getResult().getData());
-                    } else {
-                        Toast.makeText(getApplicationContext(),"No such document",Toast.LENGTH_SHORT);
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
-                    }*/
-            } else {
-                Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT);
-
-            }
-        }
-    });
-}
-        //DatabaseReference current_user_dp= FirebaseDatabase.getInstance().getReference().child("User").child(userID);
-
-        if (user != null && !user.isAnonymous()) {
-            header=navigationView.getHeaderView(0);
-            TextView email = (TextView)header.findViewById(R.id.userEmailAddress);
-            final TextView name=(TextView)header.findViewById(R.id.userName);
-            email.setText(user.getEmail().toString());
-            //name.setText(userName[0]);
+                    }
+                });
+                //name.setText(userName[0]);
 
            /* current_user_dp.child("username").addValueEventListener(new ValueEventListener() {
                 @Override
@@ -165,10 +155,10 @@ if(!user.isAnonymous()) {
             });*/
 
 
-    }
-    }
+            }
+        }
 
-
+    }
 
     @Override
     public void onBackPressed() {

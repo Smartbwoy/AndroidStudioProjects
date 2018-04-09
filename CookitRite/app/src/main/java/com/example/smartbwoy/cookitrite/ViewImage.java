@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -47,12 +48,14 @@ public class ViewImage extends Activity {
         uploadphoto=(Button) findViewById(R.id.uploadphoto);
         saveImage=(Button) findViewById(R.id.savephoto);
 
-        ImageView imageView = (ImageView) findViewById(R.id.imageViewphoto);
+        final ImageView imageView = (ImageView) findViewById(R.id.imageViewphoto);
         // Load the image using Glide
-        StorageReference ref = storageReference.child("images/usersprofilephotoes/"+ userAuth.getCurrentUser().getUid());
+        final StorageReference ref = storageReference.child("images/usersprofilephotoes/"+ userAuth.getCurrentUser().getUid());
         Glide.with(this /* context */)
                 .using(new FirebaseImageLoader())
                 .load(ref)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
                 .into(imageView);
 
        uploadphoto.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +105,7 @@ public class ViewImage extends Activity {
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            StorageReference ref = storageReference.child("images/usersprofilephotoes/"+ userAuth.getCurrentUser().getUid());
+            final StorageReference ref = storageReference.child("images/usersprofilephotoes/"+ userAuth.getCurrentUser().getUid());
 
             ref.putFile(filePath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

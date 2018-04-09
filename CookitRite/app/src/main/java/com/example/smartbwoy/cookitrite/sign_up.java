@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.smartbwoy.cookitrite.Entity.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -23,6 +24,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.ProviderQueryResult;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -149,22 +152,6 @@ public class sign_up extends AppCompatActivity {
             }
         });
 
-       /* verifyuser=userAuth.getCurrentUser();
-        verifyuser.sendEmailVerification().addOnCompleteListener(this, new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(sign_up.this,
-                            "Verification email sent to " + verifyuser.getEmail(),
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(sign_up.this,
-                            "Failed to send verification email.",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });*/
-
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -234,13 +221,9 @@ public class sign_up extends AppCompatActivity {
                     dialog.show();
 
                 }
-                /*else if (userpasswordconfirm.isEmpty()) {
-                    builder.setMessage("Retype Entered Password to confirm").setTitle(" Error");
-                    dialog=builder.create();
-                    dialog.show();
-                } */
                 else {
-                    userAuth.createUserWithEmailAndPassword(useremail, userpassword).addOnCompleteListener(sign_up.this, new OnCompleteListener<AuthResult>() {
+                    final User newUser = new User(userpassword,useremail,username);
+                    userAuth.createUserWithEmailAndPassword(newUser.getEmail(), newUser.getPassword()).addOnCompleteListener(sign_up.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
@@ -251,10 +234,9 @@ public class sign_up extends AppCompatActivity {
                                 //FirebaseUser user = userAuth.getCurrentUser();
                                 //UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
                                 //user.updateProfile(profileUpdates);
-                                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                                Map<String, Object> user = new HashMap<>();
-                                user.put("Username", user_name.getText().toString());
-                                db.collection("Users").document(userID).set(user);
+                                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                                mDatabase.child("Users").child(userID).setValue(newUser);
+
 
 
                             }
