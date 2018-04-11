@@ -145,7 +145,7 @@ public static class PlaceholderFragment extends Fragment {
                 int width = size.x;
                 int height = size.y;
                 RecyclerView.LayoutManager llm;
-                if(width<=1100){
+                if(width<=1500){
                     llm=new LinearLayoutManager(rootView.getContext());
                 }else{
                     llm=new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);

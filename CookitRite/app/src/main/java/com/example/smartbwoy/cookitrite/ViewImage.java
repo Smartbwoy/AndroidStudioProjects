@@ -51,11 +51,10 @@ public class ViewImage extends Activity {
         final ImageView imageView = (ImageView) findViewById(R.id.imageViewphoto);
         // Load the image using Glide
 
-        Glide.with(this /* context */)
+        Glide.with(this/* context */)
                 .using(new FirebaseImageLoader())
                 .load(ref)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .error(R.drawable.user_default)
                 .skipMemoryCache(true)
                 .dontAnimate()
                 .into(imageView);
@@ -95,7 +94,8 @@ public class ViewImage extends Activity {
         ImageView imageView = (ImageView) findViewById(R.id.imageViewphoto);
         try {
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-            imageView.setImageBitmap(bitmap);
+            //imageView.refreshDrawableState();
+            //imageView.setImageBitmap(bitmap);
         }
         catch (IOException e)
         {
@@ -117,14 +117,17 @@ public class ViewImage extends Activity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Glide.with(ViewImage.this /* context */)
+                            Glide.with(getApplicationContext() /* context */)
                                     .using(new FirebaseImageLoader())
                                     .load(ref)
                                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                                     .skipMemoryCache(true)
+                                    .error(R.drawable.user_default)
                                     .dontAnimate()
                                     .into(ProfileActivity.profilePhoto);
+
                             Toast.makeText(ViewImage.this, " Image Uploaded", Toast.LENGTH_SHORT).show();
+
 
                         }
 
@@ -147,6 +150,7 @@ public class ViewImage extends Activity {
                     });
 
         }
+
     }
 
 

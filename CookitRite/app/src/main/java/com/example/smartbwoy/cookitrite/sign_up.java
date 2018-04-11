@@ -18,17 +18,18 @@ import android.widget.Toast;
 
 import com.example.smartbwoy.cookitrite.Entity.User;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.ProviderQueryResult;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 import net.rimoto.intlphoneinput.IntlPhoneInput;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -72,30 +73,40 @@ public class sign_up extends AppCompatActivity {
             }
         };
         user_name.addTextChangedListener(new TextWatcher() {
-            FirebaseFirestore userdb=  FirebaseFirestore.getInstance();
+            DatabaseReference usersRef;
             TextView userNameError=(TextView) findViewById(R.id.userNameError);
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                // Create a reference to the cities collection
-
-                DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference();
-                System.out.println(usersRef.child("userName"));
-                if(usersRef.child("userName").equals(charSequence.toString())){
-                    userNameError.setText("User Exist");
-                    userNameError.setVisibility(View.VISIBLE);
-                    userNamError[0] =true;
-                }else{
-                    userNameError.setVisibility(View.INVISIBLE);
-                    userNamError[0]=false;
-                }
+            public void onTextChanged(final CharSequence charSequence, int i, int i1, int i2) {
+                usersRef = FirebaseDatabase.getInstance().getReference("Users");
+                usersRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot user : dataSnapshot.getChildren()) {
+                                String foundUser = (String) user.child("username").getValue();
+                               // Toast.makeText(sign_up.this,foundUser,Toast.LENGTH_LONG).show();
+                                if(foundUser.equals(charSequence.toString().toLowerCase())){
+                                    userNameError.setText("Username Already Exist");
+                                    userNameError.setVisibility(View.VISIBLE);
+                                    userNamError[0] =true;
+                                    break;
+                                }else{
+                                    userNameError.setVisibility(View.INVISIBLE);
+                                    userNamError[0]=false;
+                                }
+                            }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+                });
+                //usersRef.orderByChild("userName").equalTo()
+                //Query searchQuery=usersRef.orderByChild("userName").startAt(charSequence.toString()).endAt(charSequence.toString()+"\uf8ff");
+                //Firebase<User> options = new FirebaseRecyclerOptions.Builder<User>().setQuery(searchQuery, User.class).build();
+               // System.out.println(options.getOwner());
 
             }
-
             @Override
             public void afterTextChanged(Editable editable) {
 
@@ -111,7 +122,6 @@ public class sign_up extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
                 if (charSequence.length() < 8) {
                     pwdError.setText("Use 8 or more Characters");
                     pwdError.setVisibility(View.VISIBLE);
@@ -211,6 +221,7 @@ public class sign_up extends AppCompatActivity {
 
                 }
                 else {
+
                     final User newUser = new User(userpassword,useremail,username);
                     userAuth.createUserWithEmailAndPassword(newUser.getEmail(), newUser.getPassword())
                             .addOnCompleteListener(sign_up.this, new OnCompleteListener<AuthResult>() {
@@ -220,11 +231,12 @@ public class sign_up extends AppCompatActivity {
                                 Toast.makeText(getBaseContext(), "User Not Created", Toast.LENGTH_LONG).show();
                             } else {
                                 Toast.makeText(getBaseContext(), "User Created", Toast.LENGTH_LONG).show();
-                                final String userID = userAuth.getCurrentUser().getUid();
+                                ;
                                 //FirebaseUser user = userAuth.getCurrentUser();
                                 //UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
                                 //user.updateProfile(profileUpdates);
                                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                                final String userID = userAuth.getCurrentUser().getUid();
                                 mDatabase.child("Users").child(userID).setValue(newUser);
 
 
