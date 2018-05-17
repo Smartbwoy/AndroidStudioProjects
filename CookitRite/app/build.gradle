@@ -52,7 +52,7 @@ dependencies {
     compile 'com.google.firebase:firebase-firestore:12.0.1'
     compile 'com.google.android.gms:play-services-maps:12.0.1'
     compile 'net.rimoto:intlphoneinput:1.0.1'
-
+    compile 'com.github.eventtus:photo-editor-android:v1.0'
     testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'

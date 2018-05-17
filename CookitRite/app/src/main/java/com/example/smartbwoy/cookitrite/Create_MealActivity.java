@@ -1,27 +1,28 @@
 package com.example.smartbwoy.cookitrite;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
+import android.widget.LinearLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 //Class to create a Meal
 public class Create_MealActivity extends AppCompatActivity {
     private List hr,min,sec;
     private ImageView imageView;//Image request code
     private int PICK_IMAGE_REQUEST = 1;
+    private ViewPager mViewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create__meal);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Button btnCapturePicture = (Button) findViewById(R.id.btnCapturePicture);
+        /*Button btnCapturePicture = (Button) findViewById(R.id.btnCapturePicture);
         hr = new ArrayList<Integer>();
         min = new ArrayList<Integer>();
         sec = new ArrayList<Integer>();
@@ -64,10 +65,25 @@ public class Create_MealActivity extends AppCompatActivity {
         measure_type.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
         mealcategory.setAdapter(adapter);
-        measurement.setAdapter(measure_type);
+        measurement.setAdapter(measure_type);*/
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        final LinearLayout rootView = (LinearLayout) findViewById(R.id.ingr_list);
+        findViewById(R.id.add_ingr).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //myEditText.setLayoutParams(new LinearLayoutCompat.LayoutParams(MATCH_PARENT,WRAP_CONTENT));
+                EditText myEditText = new EditText(rootView.getContext());
+                rootView.addView(myEditText);
+
+            }
+        });
+        //mViewPager = (ViewPager) findViewById(R.id.container_create);
+
+
+
+
     }
 
 }
