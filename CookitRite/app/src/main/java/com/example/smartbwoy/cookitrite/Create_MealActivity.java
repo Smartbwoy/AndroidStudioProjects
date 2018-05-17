@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -70,12 +71,36 @@ public class Create_MealActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final LinearLayout rootView = (LinearLayout) findViewById(R.id.ingr_list);
+        final int[] ingr_counter = {0};
         findViewById(R.id.add_ingr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ingr_counter[0] = ingr_counter[0] +1;
+                String ingrName="ingr"+ ingr_counter[0];
                 //myEditText.setLayoutParams(new LinearLayoutCompat.LayoutParams(MATCH_PARENT,WRAP_CONTENT));
-                EditText myEditText = new EditText(rootView.getContext());
+                final EditText myEditText = new EditText(rootView.getContext());
+                myEditText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_clear_black_24dp, 0, 0, 0);
+
+                myEditText.setText(ingrName);
                 rootView.addView(myEditText);
+                myEditText.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        final int DRAWABLE_LEFT = 0;
+                        final int DRAWABLE_TOP = 1;
+                        final int DRAWABLE_RIGHT = 2;
+                        final int DRAWABLE_BOTTOM = 3;
+
+                        if(event.getAction() == MotionEvent.ACTION_UP) {
+                            if(event.getRawX() <= (myEditText.getCompoundDrawables()[DRAWABLE_LEFT].getBounds().width())) {
+                                rootView.removeView(myEditText);
+
+                                return true;
+                            }
+                        }
+                        return false;
+                    }
+                });
 
             }
         });
