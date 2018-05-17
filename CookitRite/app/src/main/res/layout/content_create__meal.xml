@@ -42,10 +42,10 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="124dp"
-            app:srcCompat="@drawable/fresh_food1"
-            android:paddingBottom="12dp"
             android:layout_marginTop="10dp"
-            android:contentDescription="" />
+            android:contentDescription=""
+            android:paddingBottom="12dp"
+            app:srcCompat="@drawable/fresh_food1" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -63,21 +63,21 @@
 
             <Button
                 android:id="@+id/btnCapturePicture"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:background="@android:color/holo_green_light"
+                android:elevation="24dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:textColor="@color/white"
-                android:elevation="24dp"
-                android:background="@android:color/holo_green_light"
-                android:textSize="18sp"
-                android:textStyle="normal|bold"
-                android:textAllCaps="false"
-                android:textAlignment="center"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:text="Upload"
-                android:layout_weight="1" />
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="normal|bold" />
         </LinearLayout>
 
         <LinearLayout
