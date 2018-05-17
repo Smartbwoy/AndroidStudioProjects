@@ -1,5 +1,6 @@
 package com.example.smartbwoy.cookitrite;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -70,11 +71,18 @@ public class Create_MealActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final LinearLayout rootView = (LinearLayout) findViewById(R.id.ingr_list);
+        final int[] idNumber = {0};
         findViewById(R.id.add_ingr).setOnClickListener(new View.OnClickListener() {
+            @SuppressLint({"ResourceAsColor", "NewApi"})
             @Override
             public void onClick(View view) {
                 //myEditText.setLayoutParams(new LinearLayoutCompat.LayoutParams(MATCH_PARENT,WRAP_CONTENT));
                 EditText myEditText = new EditText(rootView.getContext());
+                idNumber[0]=idNumber[0]+1;
+                String idName="Ingr"+ idNumber[0];
+                myEditText.setHint(idName);
+                myEditText.setPaddingRelative(10,10,10,10);
+                myEditText.setBackgroundColor(R.color.cardview_shadow_start_color);
                 rootView.addView(myEditText);
 
             }
