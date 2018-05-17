@@ -1,5 +1,6 @@
 package com.example.smartbwoy.cookitrite;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -73,26 +74,28 @@ public class Create_MealActivity extends AppCompatActivity {
         final LinearLayout rootView = (LinearLayout) findViewById(R.id.ingr_list);
         final int[] ingr_counter = {0};
         findViewById(R.id.add_ingr).setOnClickListener(new View.OnClickListener() {
+            @SuppressLint({"NewApi", "ResourceAsColor"})
             @Override
             public void onClick(View view) {
                 ingr_counter[0] = ingr_counter[0] +1;
                 String ingrName="ingr"+ ingr_counter[0];
                 //myEditText.setLayoutParams(new LinearLayoutCompat.LayoutParams(MATCH_PARENT,WRAP_CONTENT));
                 final EditText myEditText = new EditText(rootView.getContext());
-                myEditText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_clear_black_24dp, 0, 0, 0);
-
-                myEditText.setText(ingrName);
+                myEditText.setCompoundDrawablesWithIntrinsicBounds( 0, 0, R.drawable.ic_clear_black_24dp,0);
+                myEditText.setBackgroundColor(R.color.light_gray);
+                myEditText.setHint("1 Pound Flour");
+                myEditText.setTag(ingrName);
                 rootView.addView(myEditText);
                 myEditText.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
-                        final int DRAWABLE_LEFT = 0;
-                        final int DRAWABLE_TOP = 1;
+                        //final int DRAWABLE_LEFT = 0;
+                        //final int DRAWABLE_TOP = 1;
                         final int DRAWABLE_RIGHT = 2;
-                        final int DRAWABLE_BOTTOM = 3;
+                        //final int DRAWABLE_BOTTOM = 3;
 
                         if(event.getAction() == MotionEvent.ACTION_UP) {
-                            if(event.getRawX() <= (myEditText.getCompoundDrawables()[DRAWABLE_LEFT].getBounds().width())) {
+                            if(event.getRawX() >= (myEditText.getRight() - myEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
                                 rootView.removeView(myEditText);
 
                                 return true;
@@ -104,7 +107,6 @@ public class Create_MealActivity extends AppCompatActivity {
 
             }
         });
-        //mViewPager = (ViewPager) findViewById(R.id.container_create);
 
 
 
