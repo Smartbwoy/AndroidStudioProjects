@@ -98,7 +98,17 @@
                     android:textSize="18sp" />
 
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ingr_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/shapeborders"
+                android:orientation="vertical"
+                android:padding="10dp">
 
+<<<<<<< HEAD
             <LinearLayout
                 android:id="@+id/ingr_list"
                 android:layout_width="match_parent"
@@ -119,6 +129,19 @@
 
             </LinearLayout>
 
+=======
+                <EditText
+                    android:id="@+id/editText2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/cardview_shadow_end_color"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:text="Name" />
+
+            </LinearLayout>
+
+>>>>>>> 5ad639803f2cdebe694db49b16a04586d55e6329
             <TextView
                 android:id="@+id/add_ingr"
                 android:layout_width="match_parent"
