@@ -108,25 +108,6 @@
                 android:orientation="vertical"
                 android:padding="10dp">
 
-            <LinearLayout
-                android:id="@+id/ingr_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/shapeborders"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <EditText
-                    android:id="@+id/editText2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shapeborders"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
-
-            </LinearLayout>
                 <EditText
                     android:id="@+id/editText2"
                     android:layout_width="match_parent"

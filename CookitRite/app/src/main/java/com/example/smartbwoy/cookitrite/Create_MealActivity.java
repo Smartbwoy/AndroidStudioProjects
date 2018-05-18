@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.List;
+
 //Class to create a Meal
 public class Create_MealActivity extends AppCompatActivity {
     private List hr,min,sec;
@@ -87,11 +88,14 @@ public class Create_MealActivity extends AppCompatActivity {
                 final EditText myEditText = new EditText(rootView.getContext());
                 idNumber[0]=idNumber[0]+1;
                 String idName="Ingr"+ idNumber[0];
-                myEditText.setHint(idName);
-                myEditText.setCompoundDrawablesWithIntrinsicBounds( 0, 0, R.drawable.ic_clear_black_24dp,0);
-                myEditText.setBackgroundColor(R.color.light_gray);
+
                 myEditText.setHint("1 Pound Flour");
                 myEditText.setTag(ingrName);
+                myEditText.setCompoundDrawablesWithIntrinsicBounds( 0, 0, R.drawable.ic_clear_black_24dp,0);
+                myEditText.setBackgroundResource(R.drawable.shape2borders);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                lp.setMargins(0,7, 0, 5);
+                myEditText.setLayoutParams(lp);
                 rootView.addView(myEditText);
                 myEditText.setOnTouchListener(new View.OnTouchListener() {
                     @Override
