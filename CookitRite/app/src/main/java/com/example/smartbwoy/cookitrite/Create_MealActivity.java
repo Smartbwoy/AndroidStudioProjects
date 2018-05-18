@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -73,16 +74,13 @@ public class Create_MealActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final LinearLayout rootView = (LinearLayout) findViewById(R.id.ingr_list);
+        final LinearLayout rootView1=(LinearLayout) findViewById(R.id.method_list);
 
         final int[] idNumber = {0};
+        final int[] method_counter={0};
         findViewById(R.id.add_ingr).setOnClickListener(new View.OnClickListener() {
-            @SuppressLint({"ResourceAsColor", "NewApi"})
-        final int[] ingr_counter = {0};
-            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
-                ingr_counter[0] = ingr_counter[0] +1;
-                String ingrName="ingr"+ ingr_counter[0];
                 //myEditText.setLayoutParams(new LinearLayoutCompat.LayoutParams(MATCH_PARENT,WRAP_CONTENT));
 
                 final EditText myEditText = new EditText(rootView.getContext());
@@ -90,7 +88,7 @@ public class Create_MealActivity extends AppCompatActivity {
                 String idName="Ingr"+ idNumber[0];
 
                 myEditText.setHint("1 Pound Flour");
-                myEditText.setTag(ingrName);
+                myEditText.setTag(idName);
                 myEditText.setCompoundDrawablesWithIntrinsicBounds( 0, 0, R.drawable.ic_clear_black_24dp,0);
                 myEditText.setBackgroundResource(R.drawable.shape2borders);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -119,7 +117,47 @@ public class Create_MealActivity extends AppCompatActivity {
             }
         });
 
+findViewById(R.id.add_method).setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        final EditText myEditText = new EditText(rootView1.getContext());
+        //final LinearLayout hlayout=new LinearLayout(rootView1.getContext());
+        //final TextView numbbr=new TextView(rootView1.getContext());
+        method_counter[0]=method_counter[0]+1;
+        //numbbr.setText(method_counter[0]);
 
+        String idName="method"+ method_counter[0];
+
+        myEditText.setHint(idName);
+        myEditText.setTag(idName);
+        myEditText.setCompoundDrawablesWithIntrinsicBounds( 0, 0, R.drawable.ic_clear_black_24dp,0);
+        myEditText.setBackgroundResource(R.drawable.shape2borders);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(0,7, 0, 5);
+        myEditText.setLayoutParams(lp);
+        //rootView1.addView(numbbr);
+        rootView1.addView(myEditText);
+       myEditText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                //final int DRAWABLE_LEFT = 0;
+                //final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                //final int DRAWABLE_BOTTOM = 3;
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (myEditText.getRight() - myEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        //rootView1.removeView(numbbr);
+                        rootView1.removeView(myEditText);
+
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+    }
+});
 
 
     }

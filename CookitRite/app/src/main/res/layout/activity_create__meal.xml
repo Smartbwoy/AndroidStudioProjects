@@ -88,7 +88,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/editText3"
+                    android:id="@+id/numServings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -98,6 +98,7 @@
                     android:textSize="18sp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/ingr_list"
                 android:layout_width="match_parent"
@@ -108,25 +109,77 @@
                 android:orientation="vertical"
                 android:padding="10dp">
 
-                <EditText
-                    android:id="@+id/editText2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/cardview_shadow_end_color"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="5dp"
-                    android:text="Name" />
 
             </LinearLayout>
+
             <TextView
                 android:id="@+id/add_ingr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/borderchage"
+                android:drawableLeft="@drawable/fab_add"
+                android:text="Add Ingredient"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Method"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/cook_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="How long to cook?"
+                    android:inputType="number"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/method_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:padding="10dp" />
+
+            <TextView
+                android:id="@+id/add_method"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
-                android:text="Add Ingredient"
+                android:background="@drawable/borderchage"
+                android:drawableLeft="@drawable/fab_add"
+                android:text="Add Method"
                 android:textAlignment="center"
+                android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:textStyle="bold|italic" />
         </LinearLayout>
