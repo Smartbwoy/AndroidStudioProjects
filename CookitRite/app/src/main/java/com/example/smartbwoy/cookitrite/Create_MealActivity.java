@@ -81,8 +81,8 @@ public class Create_MealActivity extends AppCompatActivity {
                 idNumber[0]=idNumber[0]+1;
                 String idName="Ingr"+ idNumber[0];
                 myEditText.setHint(idName);
-                myEditText.setPaddingRelative(10,10,10,10);
-                myEditText.setBackgroundColor(R.color.cardview_shadow_start_color);
+                myEditText.setBackgroundResource(R.drawable.shapeborders);
+                myEditText.setPaddingRelative(20,10,20,10);
                 rootView.addView(myEditText);
 
             }
