@@ -72,34 +72,26 @@ public class Create_MealActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final LinearLayout rootView = (LinearLayout) findViewById(R.id.ingr_list);
-<<<<<<< HEAD
+
         final int[] idNumber = {0};
         findViewById(R.id.add_ingr).setOnClickListener(new View.OnClickListener() {
             @SuppressLint({"ResourceAsColor", "NewApi"})
-=======
         final int[] ingr_counter = {0};
-        findViewById(R.id.add_ingr).setOnClickListener(new View.OnClickListener() {
-            @SuppressLint({"NewApi", "ResourceAsColor"})
->>>>>>> 5ad639803f2cdebe694db49b16a04586d55e6329
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
                 ingr_counter[0] = ingr_counter[0] +1;
                 String ingrName="ingr"+ ingr_counter[0];
                 //myEditText.setLayoutParams(new LinearLayoutCompat.LayoutParams(MATCH_PARENT,WRAP_CONTENT));
-<<<<<<< HEAD
-                EditText myEditText = new EditText(rootView.getContext());
+
+                final EditText myEditText = new EditText(rootView.getContext());
                 idNumber[0]=idNumber[0]+1;
                 String idName="Ingr"+ idNumber[0];
                 myEditText.setHint(idName);
-                myEditText.setBackgroundResource(R.drawable.shapeborders);
-                myEditText.setPaddingRelative(20,10,20,10);
-=======
-                final EditText myEditText = new EditText(rootView.getContext());
                 myEditText.setCompoundDrawablesWithIntrinsicBounds( 0, 0, R.drawable.ic_clear_black_24dp,0);
                 myEditText.setBackgroundColor(R.color.light_gray);
                 myEditText.setHint("1 Pound Flour");
                 myEditText.setTag(ingrName);
->>>>>>> 5ad639803f2cdebe694db49b16a04586d55e6329
                 rootView.addView(myEditText);
                 myEditText.setOnTouchListener(new View.OnTouchListener() {
                     @Override

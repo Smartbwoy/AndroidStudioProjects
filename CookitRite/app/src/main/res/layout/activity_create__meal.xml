@@ -108,7 +108,6 @@
                 android:orientation="vertical"
                 android:padding="10dp">
 
-<<<<<<< HEAD
             <LinearLayout
                 android:id="@+id/ingr_list"
                 android:layout_width="match_parent"
@@ -128,8 +127,6 @@
                     android:text="Name" />
 
             </LinearLayout>
-
-=======
                 <EditText
                     android:id="@+id/editText2"
                     android:layout_width="match_parent"
@@ -140,8 +137,6 @@
                     android:text="Name" />
 
             </LinearLayout>
-
->>>>>>> 5ad639803f2cdebe694db49b16a04586d55e6329
             <TextView
                 android:id="@+id/add_ingr"
                 android:layout_width="match_parent"
