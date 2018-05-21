@@ -149,8 +149,12 @@ findViewById(R.id.add_method).setOnClickListener(new View.OnClickListener() {
 
                 if(event.getAction() == MotionEvent.ACTION_UP) {
                     if(event.getRawX() >= (myEditText.getRight() - myEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        method_counter[0]=-method_counter[0]-1;
                         rootView1.removeView(numbbr);
                         rootView1.removeView(myEditText);
+                        if(method_counter[0]<=0){
+
+                        }
 
                         return true;
                     }
