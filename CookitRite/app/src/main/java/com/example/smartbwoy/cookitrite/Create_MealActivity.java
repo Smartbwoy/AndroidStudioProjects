@@ -118,15 +118,17 @@ public class Create_MealActivity extends AppCompatActivity {
         });
 
 findViewById(R.id.add_method).setOnClickListener(new View.OnClickListener() {
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onClick(View v) {
         final EditText myEditText = new EditText(rootView1.getContext());
         //final LinearLayout hlayout=new LinearLayout(rootView1.getContext());
-        //final TextView numbbr=new TextView(rootView1.getContext());
+        final TextView numbbr=new TextView(rootView1.getContext());
         method_counter[0]=method_counter[0]+1;
-        //numbbr.setText(method_counter[0]);
-
-        String idName="method"+ method_counter[0];
+        numbbr.setText("Step "+method_counter[0]);
+        numbbr.setTextSize(18);
+        numbbr.setTextColor(R.color.black);
+        String idName="method "+ method_counter[0];
 
         myEditText.setHint(idName);
         myEditText.setTag(idName);
@@ -135,7 +137,7 @@ findViewById(R.id.add_method).setOnClickListener(new View.OnClickListener() {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         lp.setMargins(0,7, 0, 5);
         myEditText.setLayoutParams(lp);
-        //rootView1.addView(numbbr);
+        rootView1.addView(numbbr);
         rootView1.addView(myEditText);
        myEditText.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -147,7 +149,7 @@ findViewById(R.id.add_method).setOnClickListener(new View.OnClickListener() {
 
                 if(event.getAction() == MotionEvent.ACTION_UP) {
                     if(event.getRawX() >= (myEditText.getRight() - myEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                        //rootView1.removeView(numbbr);
+                        rootView1.removeView(numbbr);
                         rootView1.removeView(myEditText);
 
                         return true;
