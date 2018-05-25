@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //Class to create a Meal
@@ -76,9 +77,14 @@ public class Create_MealActivity extends AppCompatActivity {
         final LinearLayout rootView = (LinearLayout) findViewById(R.id.ingr_list);
         final LinearLayout rootView1=(LinearLayout) findViewById(R.id.method_list);
 
+
+        final ArrayList<EditText> methodList=new ArrayList<>();
+        final ArrayList<TextView> stepList=new ArrayList<>();
+
         final int[] idNumber = {0};
         final int[] method_counter={0};
         findViewById(R.id.add_ingr).setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public void onClick(View view) {
                 //myEditText.setLayoutParams(new LinearLayoutCompat.LayoutParams(MATCH_PARENT,WRAP_CONTENT));
@@ -94,6 +100,7 @@ public class Create_MealActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 lp.setMargins(0,7, 0, 5);
                 myEditText.setLayoutParams(lp);
+
                 rootView.addView(myEditText);
                 myEditText.setOnTouchListener(new View.OnTouchListener() {
                     @Override
@@ -118,9 +125,12 @@ public class Create_MealActivity extends AppCompatActivity {
         });
 
 findViewById(R.id.add_method).setOnClickListener(new View.OnClickListener() {
-    @SuppressLint("ResourceAsColor")
+    @SuppressLint({"ResourceAsColor", "ClickableViewAccessibility"})
     @Override
     public void onClick(View v) {
+        final LinearLayout lv= new LinearLayout(Create_MealActivity.this);
+        lv.setOrientation(LinearLayout.HORIZONTAL);
+        lv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         final EditText myEditText = new EditText(rootView1.getContext());
         //final LinearLayout hlayout=new LinearLayout(rootView1.getContext());
         final TextView numbbr=new TextView(rootView1.getContext());
@@ -128,17 +138,25 @@ findViewById(R.id.add_method).setOnClickListener(new View.OnClickListener() {
         numbbr.setText("Step "+method_counter[0]);
         numbbr.setTextSize(18);
         numbbr.setTextColor(R.color.black);
-        String idName="method "+ method_counter[0];
 
-        myEditText.setHint(idName);
-        myEditText.setTag(idName);
+        stepList.add(numbbr);
+
+
+
         myEditText.setCompoundDrawablesWithIntrinsicBounds( 0, 0, R.drawable.ic_clear_black_24dp,0);
         myEditText.setBackgroundResource(R.drawable.shape2borders);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(0,7, 0, 5);
+        lp.setMargins(7,7, 0, 5);
         myEditText.setLayoutParams(lp);
-        rootView1.addView(numbbr);
-        rootView1.addView(myEditText);
+        methodList.add(myEditText);
+
+        String idName="method"+(1+methodList.indexOf(myEditText));
+        myEditText.setHint(idName);
+        myEditText.setTag(idName);
+
+        lv.addView(numbbr);
+        lv.addView(myEditText);
+        rootView1.addView(lv);
        myEditText.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -149,11 +167,15 @@ findViewById(R.id.add_method).setOnClickListener(new View.OnClickListener() {
 
                 if(event.getAction() == MotionEvent.ACTION_UP) {
                     if(event.getRawX() >= (myEditText.getRight() - myEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                        method_counter[0]=-method_counter[0]-1;
-                        rootView1.removeView(numbbr);
-                        rootView1.removeView(myEditText);
-                        if(method_counter[0]<=0){
+                        method_counter[0]=method_counter[0]-1;
+                        methodList.remove(myEditText);
+                        stepList.remove(stepList);
 
+                        rootView1.removeView(lv);
+                        for(int i=0;i<methodList.size();i++){
+                            methodList.get(i).setHint("method"+(1+i));
+                            //stepList.get(i).clearComposingText();
+                            stepList.get(i).setText("Step "+(1+i));
                         }
 
                         return true;
