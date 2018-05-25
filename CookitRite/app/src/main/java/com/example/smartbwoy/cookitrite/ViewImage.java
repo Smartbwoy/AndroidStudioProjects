@@ -34,8 +34,9 @@ import java.io.IOException;
 public class ViewImage extends Activity {
     private FirebaseAuth userAuth=FirebaseAuth.getInstance();
     Button uploadphoto,saveImage;
-    private final int PICK_IMAGE_REQUEST = 71;
+    private final int PICK_IMAGE_REQUEST = 200;
     private Uri filePath;
+    public static final String DS_PHOTO_API_KEY="12e1c7b5a40cbc831a9e987bea6bd45dc7842560";
     //Firebase
     FirebaseStorage storage=FirebaseStorage.getInstance();;
     StorageReference storageReference= storage.getReference();
@@ -90,6 +91,12 @@ public class ViewImage extends Activity {
    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         filePath = data.getData();
+        //Intent dsPhotoEditorIntent = new Intent(this, DsPhotoEditorActivity.class);
+        //dsPhotoEditorIntent.setData(filePath);
+        //dsPhotoEditorIntent.putExtra(DsPhotoEditorConstants.DS_PHOTO_EDITOR_API_KEY,DS_PHOTO_API_KEY);
+        //startActivityForResult(Intent.createChooser(dsPhotoEditorIntent, "Select Picture"), PICK_IMAGE_REQUEST);
+
+        //dsPhotoEditorIntent.putExtra(DsPhotoEditorConstants.DS_PHOTO_EDITOR_OUTPUT_DIRECTORY, "CookitRight");
         ImageView imageView = (ImageView) findViewById(R.id.imageViewphoto);
         try {
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);

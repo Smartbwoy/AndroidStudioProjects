@@ -1,6 +1,10 @@
 package com.example.smartbwoy.cookitrite;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -8,13 +12,16 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -45,6 +52,8 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
     }
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
+    private Camera mCamera;
+    private CameraPreview mPreview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,8 +97,32 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
         profilePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent additem = new Intent(view.getContext(), ViewImage.class);
-                startActivity(additem);
+                AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
+                builder.setTitle("Set a Profile Photo");
+                builder.setItems(R.array.phototype, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0:
+                                if (checkCameraHardware(ProfileActivity.this)) {
+                                    Intent intent = new Intent(ProfileActivity.this, CameraActivity.class);
+                                    // Create an instance of Camera
+                                    startActivity(intent);
+
+
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "No Camera FOUND", Toast.LENGTH_SHORT).show();
+                                }
+                        }
+                        //Toast.makeText(getApplicationContext(),""+which,Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                //Intent additem = new Intent(view.getContext(), ViewImage.class);
+                //startActivity(additem);
             }
         });
 
@@ -225,5 +258,24 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
         Intent additem=new Intent(this, CreateGroceryItem.class);
         startActivity(additem);
 
+    }
+    private boolean checkCameraHardware(Context context) {
+        if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+            // this device has a camera
+            return true;
+        } else {
+            // no camera on this device
+            return false;
+        }
+    }
+    public static Camera getCameraInstance(){
+        Camera c = null;
+        try {
+            c = Camera.open(); // attempt to get a Camera instance
+        }
+        catch (Exception e){
+            // Camera is not available (in use or does not exist)
+        }
+        return c; // returns null if camera is unavailable
     }
 }

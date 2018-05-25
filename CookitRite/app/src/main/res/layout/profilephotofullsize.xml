@@ -34,7 +34,6 @@
         android:id="@+id/imageViewphoto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/user_default" />
+        android:scaleType="centerCrop" />
 
 </LinearLayout>

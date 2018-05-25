@@ -1,12 +1,15 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 24
+    compileSdkVersion 26
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.example.smartbwoy.cookitrite"
-        minSdkVersion 15
-        targetSdkVersion 24
+        minSdkVersion 18
+        targetSdkVersion 25
+        renderscriptTargetApi 21
+        renderscriptSupportModeEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -26,7 +29,7 @@ android {
 
 
 dependencies {
-    implementation 'com.android.support:recyclerview-v7:24.2.1'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
     compile 'com.firebaseui:firebase-ui-storage:0.6.0'
     implementation 'com.google.firebase:firebase-auth:12.0.1'
     implementation 'com.google.firebase:firebase-database:12.0.1'
@@ -41,18 +44,43 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.2.0'
     compile files('libs/facebook-android-sdk-4.29.0')
     compile files('libs/universal-image-loader-1.9.5.jar')
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:design:24.2.1'
-    compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:design:26.1.0'
+    compile 'com.android.support:support-v4:26.1.0'
     compile 'com.github.clans:fab:1.6.4'
     compile 'com.quinny898.library.persistentsearch:library:1.1.0-SNAPSHOT'
     compile 'com.github.arimorty:floatingsearchview:2.0.3'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    //noinspection GradleCompatible
     compile 'com.android.support:cardview-v7:24.2.1+'
     compile 'com.google.firebase:firebase-firestore:12.0.1'
     compile 'com.google.android.gms:play-services-maps:12.0.1'
     compile 'net.rimoto:intlphoneinput:1.0.1'
     compile 'com.github.eventtus:photo-editor-android:v1.0'
+
+    // DS Photo Editor SDK
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    //compile(name:'ds-photo-editor-sdk', ext:'aar')
+
+    // SDK related dependencies
+    //compile 'com.squareup.picasso:picasso:2.5.2'
+    //compile 'com.android.volley:volley:1.0.0'
+    //compile 'io.reactivex.rxjava2:rxjava:2.1.0'
+    //compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     testCompile 'junit:junit:4.12'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 apply plugin: 'com.google.gms.google-services'
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '25.3.0'
+            }
+        }
+    }
+}
+repositories {
+    mavenCentral()
+}

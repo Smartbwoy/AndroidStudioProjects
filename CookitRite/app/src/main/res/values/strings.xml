@@ -299,4 +299,9 @@
     <string name="create_username">Create Username</string>
     <string name="required">Required</string>
     <string name="todo">TODO</string>
+    <string-array name="phototype">
+        <item>New Profile Photo</item>
+        <item>Import from FaceBook</item>
+        <item>Remove Photo</item>
+    </string-array>
 </resources>
