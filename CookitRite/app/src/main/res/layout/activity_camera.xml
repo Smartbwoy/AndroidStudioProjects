@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <FrameLayout
@@ -15,5 +16,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Capture" />
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/picturebuttoncircle"
+        android:drawableTop="@android:drawable/ic_menu_camera"
+        android:paddingTop="20dp"
+        android:clickable="true"
+        />
 </LinearLayout>
