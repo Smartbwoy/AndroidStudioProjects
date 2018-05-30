@@ -90,7 +90,8 @@ public class CameraActivity2 extends Activity {
         // To be safe, you should check that the SDCard is mounted
         // using Environment.getExternalStorageState() before doing this.
 
-        File mediaStorageDir = new File(Environment.getDataDirectory(), "CookItRite");
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(null), "CookItRite");
+        //File mediaStorageDir = new File(getActivity().getExternalFilesDir(null), "pic.jpg");
         // This location works best if you want the created images to be shared
         // between applications and persist after your app has been uninstalled.
 
