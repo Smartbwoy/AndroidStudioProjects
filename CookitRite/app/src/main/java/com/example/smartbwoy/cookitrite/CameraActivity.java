@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 import static com.nostra13.universalimageloader.core.ImageLoader.TAG;
 
 public class CameraActivity extends Activity {
@@ -88,7 +87,8 @@ public class CameraActivity extends Activity {
         // To be safe, you should check that the SDCard is mounted
         // using Environment.getExternalStorageState() before doing this.
 
-        File mediaStorageDir = new File(Environment.getDataDirectory(), "CookItRite");
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(null), "CookItRite");
+        //File mediaStorageDir = new File(getActivity().getExternalFilesDir(null), "pic.jpg");
         // This location works best if you want the created images to be shared
         // between applications and persist after your app has been uninstalled.
 
