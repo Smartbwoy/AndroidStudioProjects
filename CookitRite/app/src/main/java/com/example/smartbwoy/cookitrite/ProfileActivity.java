@@ -18,13 +18,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.smartbwoy.cookitrite.CameraPackage.CameraActivity;
+import com.example.smartbwoy.cookitrite.CameraPackage.CameraActivity2;
+import com.example.smartbwoy.cookitrite.CameraPackage.CameraPreview;
 import com.example.smartbwoy.cookitrite.Entity.User;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.auth.FirebaseAuth;

@@ -1,4 +1,4 @@
-package com.example.smartbwoy.cookitrite;
+package com.example.smartbwoy.cookitrite.CameraPackage;
 
 import android.app.Activity;
 import android.hardware.Camera;
@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import com.example.smartbwoy.cookitrite.ProfileActivity;
+import com.example.smartbwoy.cookitrite.R;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -17,10 +20,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 import static com.nostra13.universalimageloader.core.ImageLoader.TAG;
 
-public class CameraActivity extends Activity {
+public class CameraActivity2 extends Activity {
     private Camera mCamera;
     private CameraPreview mPreview;
     public static final int MEDIA_TYPE_IMAGE = 1;
@@ -48,7 +50,7 @@ public class CameraActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camera);
+        setContentView(R.layout.activity_camera2);
 
         // Create an instance of Camera
         mCamera = ProfileActivity.getCameraInstance();

@@ -1,4 +1,4 @@
-package com.example.smartbwoy.cookitrite;
+package com.example.smartbwoy.cookitrite.CameraPackage;
 
 import android.content.Context;
 import android.hardware.Camera;
