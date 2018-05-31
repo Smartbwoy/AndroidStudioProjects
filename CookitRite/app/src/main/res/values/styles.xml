@@ -22,9 +22,8 @@
     <style name="AppTheme.PopupOverlay" parent="Base.ThemeOverlay.AppCompat.Light" />
 
     <style name="AppTheme.CustomTheme">
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowCloseOnTouchOutside">true</item>
-
+    <item name="android:windowIsTranslucent">true</item>
+    <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
 
     <style name="FullscreenTheme" parent="AppTheme">
@@ -45,5 +44,11 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="AppTheme.CustomCameraTheme">
+    <item name="colorPrimary">@color/side_nav_bar</item>
+    <item name="colorPrimaryDark">@color/side_nav_bar</item>
+    <item name="colorAccent">@color/white</item>
     </style>
 </resources>
