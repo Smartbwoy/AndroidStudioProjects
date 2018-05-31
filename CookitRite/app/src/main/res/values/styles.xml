@@ -47,8 +47,6 @@
     </style>
 
     <style name="AppTheme.CustomCameraTheme">
-    <item name="colorPrimary">@color/side_nav_bar</item>
-    <item name="colorPrimaryDark">@color/side_nav_bar</item>
-    <item name="colorAccent">@color/white</item>
+        <item name="colorPrimary">@color/greengradient</item>
     </style>
 </resources>
