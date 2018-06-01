@@ -7,9 +7,9 @@
 
     <com.example.smartbwoy.cookitrite.CameraPackage.AutoFitTextureView
         android:id="@+id/camera_preview"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true" />
 
     <FrameLayout
         android:id="@+id/control"
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:background="@android:color/background_light">
+        android:background="@color/transparent">
 
         <Button
             android:id="@+id/button_capture"
