@@ -103,18 +103,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         userAuth=FirebaseAuth.getInstance();
-        firebaseListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(FirebaseAuth firebaseAuth) {
-                FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
-                if(user!=null) {
-                    Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
-                    startActivity(intent);
-                    finish();
-                return;
-            }
-            }
-        };
+
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);

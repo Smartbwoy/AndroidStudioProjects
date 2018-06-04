@@ -8,7 +8,7 @@
     <com.example.smartbwoy.cookitrite.CameraPackage.AutoFitTextureView
         android:id="@+id/camera_preview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true" />
 
     <FrameLayout
@@ -32,5 +32,13 @@
             android:elevation="0dp"
             android:focusable="true"
             android:paddingTop="20dp" />
+
+        <Button
+            android:id="@+id/flash_status"
+            android:layout_width="wrap_content"
+            android:layout_height="76dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_flash_on_black_24dp" />
     </FrameLayout>
 </RelativeLayout>
