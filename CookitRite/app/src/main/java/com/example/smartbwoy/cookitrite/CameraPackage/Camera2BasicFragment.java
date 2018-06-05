@@ -17,7 +17,6 @@
 package com.example.smartbwoy.cookitrite.CameraPackage;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -428,7 +427,7 @@ public class Camera2BasicFragment extends Fragment implements View.OnClickListen
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         view.findViewById(R.id.button_capture).setOnClickListener(this);
-        //view.findViewById(R.id.info).setOnClickListener(this);
+        view.findViewById(R.id.flash_status).setOnClickListener(this);
         mTextureView = (AutoFitTextureView) view.findViewById(R.id.camera_preview);
     }
 
@@ -887,23 +886,31 @@ public class Camera2BasicFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        takePicture();
-        /*switch (view.getId()) {
+
+        switch (view.getId()) {
             case R.id.button_capture: {
                 takePicture();
                 break;
             }
-            /*case R.id.info: {
-                Activity activity = getActivity();
+            case R.id.flash_status: {
+                Context context = getContext();
+                PackageManager pm = context.getPackageManager();
+                // if device support camera?
+                if (!pm.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+                    Log.e("err", "Device has no camera!");
+                    break;
+                }
+                ;
+               /*Activity activity = getActivity();
                 if (null != activity) {
                     new AlertDialog.Builder(activity)
                             .setMessage(R.string.intro_message)
                             .setPositiveButton(android.R.string.ok, null)
                             .show();
-                }
+                }*/
                 break;
             }
-        }*/
+        }
     }
 
     private void setAutoFlash(CaptureRequest.Builder requestBuilder) {

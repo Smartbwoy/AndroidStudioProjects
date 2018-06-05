@@ -49,6 +49,16 @@
         android:background="@android:color/background_light">
 
         <Button
+            android:id="@+id/flash_status"
+            android:layout_width="wrap_content"
+            android:layout_height="76dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_flash_on_black_24dp" />
+
+        <Button
             android:id="@+id/button_capture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,5 +71,6 @@
             android:drawableTop="@android:drawable/ic_menu_camera"
             android:elevation="0dp"
             android:paddingTop="20dp" />
+
     </FrameLayout>
 </RelativeLayout>
