@@ -51,7 +51,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="260dp"
+                android:layout_height="183dp"
                 android:background="@color/blue"
                 android:contentDescription=""
                 android:fitsSystemWindows="true"
