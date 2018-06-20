@@ -87,7 +87,7 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
 
         // Load the image using Glide
         storageReference= FirebaseStorage.getInstance().getReference();
-        StorageReference ref = storageReference.child("images/usersprofilephotoes/" + userAuth.getCurrentUser().getUid());
+        /*StorageReference ref = storageReference.child("images/usersprofilephotoes/" + userAuth.getCurrentUser().getUid());
             Glide.with(this)
                     .using(new FirebaseImageLoader())
                     .load(ref)
@@ -95,7 +95,7 @@ public class ProfileActivity extends AppCompatActivity implements OnNavigationIt
                     .error(R.drawable.user_default)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true)
-                    .into(profilePhoto);
+                    .into(profilePhoto);*/
         profilePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

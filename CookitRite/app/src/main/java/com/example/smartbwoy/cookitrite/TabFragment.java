@@ -168,7 +168,7 @@ public static class PlaceholderFragment extends Fragment {
             }
             if(getArguments().getInt(ARG_SECTION_NUMBER)==2){
                 View rootView = inflater.inflate(R.layout.fragment_meals, container, false);
-                FloatingActionButton viewAllmeals =(FloatingActionButton) rootView.findViewById(R.id.viewAllmeals);
+                FloatingActionButton viewAllmeals = rootView.findViewById(R.id.viewAllmeals);
                 rootView.findViewById(R.id.creatMeal).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
