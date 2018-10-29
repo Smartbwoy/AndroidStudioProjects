@@ -55,11 +55,11 @@ public class GroceryIteamAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.categorysubitem, null);
         }
 
-        final TextView txtListChild = (TextView) convertView
+        final TextView txtListChild = convertView
                 .findViewById(R.id.gitem);
 
         txtListChild.setText(childText);
-        final CheckBox checkbox=(CheckBox) convertView.findViewById(R.id.checkBox);
+        final CheckBox checkbox= convertView.findViewById(R.id.checkBox);
 
         checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -109,7 +109,7 @@ public class GroceryIteamAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.grocery_item, null);
         }
 
-        TextView lblListHeader = (TextView) convertView
+        TextView lblListHeader = convertView
                 .findViewById(R.id.item_category);
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);

@@ -38,17 +38,17 @@ public class ViewImage extends Activity {
     private Uri filePath;
     public static final String DS_PHOTO_API_KEY="12e1c7b5a40cbc831a9e987bea6bd45dc7842560";
     //Firebase
-    FirebaseStorage storage=FirebaseStorage.getInstance();;
+    FirebaseStorage storage=FirebaseStorage.getInstance();
     StorageReference storageReference= storage.getReference();
     final StorageReference ref = storageReference.child("images/usersprofilephotoes/"+ userAuth.getCurrentUser().getUid());
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profilephotofullsize);
-        uploadphoto=(Button) findViewById(R.id.uploadphoto);
-        saveImage=(Button) findViewById(R.id.savephoto);
+        uploadphoto= findViewById(R.id.uploadphoto);
+        saveImage= findViewById(R.id.savephoto);
 
-        final ImageView imageView = (ImageView) findViewById(R.id.imageViewphoto);
+        final ImageView imageView = findViewById(R.id.imageViewphoto);
         // Load the image using Glide
 
         Glide.with(this/* context */)
@@ -97,7 +97,7 @@ public class ViewImage extends Activity {
         //startActivityForResult(Intent.createChooser(dsPhotoEditorIntent, "Select Picture"), PICK_IMAGE_REQUEST);
 
         //dsPhotoEditorIntent.putExtra(DsPhotoEditorConstants.DS_PHOTO_EDITOR_OUTPUT_DIRECTORY, "CookitRight");
-        ImageView imageView = (ImageView) findViewById(R.id.imageViewphoto);
+        ImageView imageView = findViewById(R.id.imageViewphoto);
         try {
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
             //imageView.refreshDrawableState();

@@ -231,7 +231,6 @@ public class sign_up extends AppCompatActivity {
                                 Toast.makeText(getBaseContext(), "User Not Created", Toast.LENGTH_LONG).show();
                             } else {
                                 Toast.makeText(getBaseContext(), "User Created", Toast.LENGTH_LONG).show();
-                                ;
                                 //FirebaseUser user = userAuth.getCurrentUser();
                                 //UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
                                 //user.updateProfile(profileUpdates);
@@ -310,39 +309,39 @@ public class sign_up extends AppCompatActivity {
     }
 
     public void run_personal_info(View v) {
-        View step1 = (View) findViewById(R.id.setion1);
+        View step1 = findViewById(R.id.setion1);
         step1.setVisibility(View.INVISIBLE);
-        View step2 = (View) findViewById(R.id.setion2);
+        View step2 = findViewById(R.id.setion2);
         step2.setVisibility(View.VISIBLE);
     }
 
     public void run_security(View v2) {
-        View step2 = (View) findViewById(R.id.setion2);
+        View step2 = findViewById(R.id.setion2);
         step2.setVisibility(View.INVISIBLE);
-        View step3 = (View) findViewById(R.id.setion3);
+        View step3 = findViewById(R.id.setion3);
         step3.setVisibility(View.VISIBLE);
 
     }
 
     public void run_back_personal_info(View v) {
-        View step3 = (View) findViewById(R.id.setion3);
+        View step3 = findViewById(R.id.setion3);
         step3.setVisibility(View.INVISIBLE);
-        View step2 = (View) findViewById(R.id.setion2);
+        View step2 = findViewById(R.id.setion2);
         step2.setVisibility(View.VISIBLE);
     }
 
     public void run_meal_pref(View view) {
-        View step3 = (View) findViewById(R.id.setion3);
+        View step3 = findViewById(R.id.setion3);
         step3.setVisibility(View.INVISIBLE);
-        View step4 = (View) findViewById(R.id.setion4);
+        View step4 = findViewById(R.id.setion4);
         step4.setVisibility(View.VISIBLE);
 
     }
 
     public void run_back_security(View view) {
-        View step4 = (View) findViewById(R.id.setion4);
+        View step4 = findViewById(R.id.setion4);
         step4.setVisibility(View.INVISIBLE);
-        View step3 = (View) findViewById(R.id.setion3);
+        View step3 = findViewById(R.id.setion3);
         step3.setVisibility(View.VISIBLE);
 
     }

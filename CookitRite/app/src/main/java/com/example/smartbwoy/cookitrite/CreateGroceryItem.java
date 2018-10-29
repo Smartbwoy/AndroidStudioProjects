@@ -33,7 +33,7 @@ public class CreateGroceryItem extends Activity {
         //Create Array Adapter
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, languages);
         //Find TextView control
-        AutoCompleteTextView acTextView = (AutoCompleteTextView) findViewById(R.id.itemName);
+        AutoCompleteTextView acTextView = findViewById(R.id.itemName);
         //Set the number of characters the user must type before the drop down list is shown
         acTextView.setThreshold(1);
         //Set the adapter

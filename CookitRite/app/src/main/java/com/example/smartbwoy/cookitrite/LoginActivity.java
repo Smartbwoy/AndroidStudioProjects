@@ -107,10 +107,10 @@ public class LoginActivity extends Activity {
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
-        Button signup=(Button) findViewById(R.id.createaccount_button);
-        Button login=(Button) findViewById(R.id.btn_login);
-        Button guestLogin=(Button) findViewById(R.id.guessSignIn);
-        TextView passReset=(TextView) findViewById(R.id.pass_forget);
+        Button signup= findViewById(R.id.createaccount_button);
+        Button login= findViewById(R.id.btn_login);
+        Button guestLogin= findViewById(R.id.guessSignIn);
+        TextView passReset= findViewById(R.id.pass_forget);
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,8 +135,8 @@ public class LoginActivity extends Activity {
                 //final Dialog alert=new Dialog(LoginActivity.this,R.style.Theme_AppCompat_DayNight);
                 progressDialog.setIndeterminate(true);
                 progressDialog.setMessage("Authenticating...");
-                username=(EditText) findViewById(R.id.input_email);
-                passwrod=(EditText) findViewById(R.id.input_password);
+                username= findViewById(R.id.input_email);
+                passwrod= findViewById(R.id.input_password);
                 String uname=username.getText().toString().trim();
                 String userpassword=passwrod.getText().toString().trim();
                 progressDialog.show();

@@ -56,8 +56,8 @@ public class TabFragment extends Fragment {
          *Inflate tab_layout and setup Views.
          */
         View x =  inflater.inflate(R.layout.tab_layout,null);
-        tabLayout = (TabLayout) x.findViewById(R.id.tabs);
-        viewPager = (ViewPager) x.findViewById(R.id.viewpager);
+        tabLayout = x.findViewById(R.id.tabs);
+        viewPager = x.findViewById(R.id.viewpager);
         /**
          *Set an Apater for the View Pager
          */
@@ -136,7 +136,7 @@ public static class PlaceholderFragment extends Fragment {
            //Menu mainMenu;
             if(getArguments().getInt(ARG_SECTION_NUMBER)==1){
                 View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-                rv = (RecyclerView) rootView.findViewById(R.id.recom_meal);
+                rv = rootView.findViewById(R.id.recom_meal);
                 //rv.setHasFixedSize(true);
                 WindowManager wm = (WindowManager) rootView.getContext().getSystemService(Context.WINDOW_SERVICE);
                 Display display = wm.getDefaultDisplay();
@@ -191,8 +191,8 @@ public static class PlaceholderFragment extends Fragment {
             }
             if(getArguments().getInt(ARG_SECTION_NUMBER)==4){
                 View rootView = inflater.inflate(R.layout.fragment_grocery_list, container, false);
-                expListView = (ExpandableListView) rootView.findViewById(R.id.grocery_list_view);
-                TextView someTextView = (TextView) rootView.findViewById(R.id.gitem);
+                expListView = rootView.findViewById(R.id.grocery_list_view);
+                TextView someTextView = rootView.findViewById(R.id.gitem);
 
                 // preparing list data
                 prepareListData();
@@ -396,7 +396,8 @@ public static class PlaceholderFragment extends Fragment {
         tabLayout.getTabAt(3).setIcon(tabIcons[3]);
         tabLayout.getTabAt(4).setIcon(tabIcons[4]);
 
-    };
+    }
+
     public void editmenu(){
         //if(tabLayout.getTabAt(0).isSelected()){
             CharSequence text = "Hello toast!";
@@ -406,7 +407,8 @@ public static class PlaceholderFragment extends Fragment {
 
         //}
 
-    };
+    }
+
     /*
      * Preparing the list data
      */

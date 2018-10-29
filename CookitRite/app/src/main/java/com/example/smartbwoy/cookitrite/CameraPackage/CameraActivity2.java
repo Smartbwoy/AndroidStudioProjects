@@ -58,7 +58,7 @@ public class CameraActivity2 extends Activity {
 
         // Create our Preview view and set it as the content of our activity.
         mPreview = new CameraPreview(this, mCamera);
-        FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+        FrameLayout preview = findViewById(R.id.camera_preview);
         preview.addView(mPreview);
 
         final Camera.PictureCallback mPicture = new Camera.PictureCallback() {
@@ -69,7 +69,7 @@ public class CameraActivity2 extends Activity {
         };
 
         // Add a listener to the Capture button
-        Button captureButton = (Button) findViewById(R.id.button_capture);
+        Button captureButton = findViewById(R.id.button_capture);
         captureButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override

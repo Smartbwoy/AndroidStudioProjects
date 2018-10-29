@@ -20,7 +20,8 @@
         android:textColor="@color/red"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:visibility="invisible" tools:targetApi="jelly_bean" />
+        android:visibility="invisible"
+        tools:targetApi="jelly_bean" />
 
     <ScrollView
         android:layout_width="match_parent"

@@ -22,7 +22,7 @@ public class SearchingActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searching);
-        searchView = (FloatingSearchView) findViewById(R.id.search_reccipe);
+        searchView = findViewById(R.id.search_reccipe);
         searchView.setOnHomeActionClickListener(new FloatingSearchView.OnHomeActionClickListener() {
             //@Override
             public void onHomeClicked() {

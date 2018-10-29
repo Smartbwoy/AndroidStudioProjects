@@ -27,8 +27,8 @@ public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.ViewHo
 
         ViewHolder(View itemView) {
             super(itemView);
-            recipeName = (TextView)itemView.findViewById(R.id.meal_name);
-            creator = (TextView)itemView.findViewById(R.id.creator);
+            recipeName = itemView.findViewById(R.id.meal_name);
+            creator = itemView.findViewById(R.id.creator);
         }
     }
     @Override

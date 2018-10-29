@@ -131,7 +131,7 @@ public class ViewRecipe extends AppCompatActivity {
                 View rootView = inflater.inflate(R.layout.ingredients,container, false);
                 String[] values = new String[] {"ACKEE", "MANGO", "STEW PEAS", "Apple", "Food", "Is Good"};
                 String[] meaureValue= new String[]{"1lb", "15lb", "3lb 1lb", "6lb", "9lb", "67lb"};
-                RecyclerView mRecyclerView = (RecyclerView) rootView.findViewById(R.id.ingredents_list);
+                RecyclerView mRecyclerView = rootView.findViewById(R.id.ingredents_list);
                 RecyclerView.LayoutManager mLayoutManager=new LinearLayoutManager(getContext());
                 mRecyclerView.setLayoutManager(mLayoutManager);
                 // specify an adapter (see also next example)
@@ -148,7 +148,7 @@ public class ViewRecipe extends AppCompatActivity {
                 return rootView;
             }
             View rootView = inflater.inflate(R.layout.fragment_view_recipe, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            TextView textView = rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }

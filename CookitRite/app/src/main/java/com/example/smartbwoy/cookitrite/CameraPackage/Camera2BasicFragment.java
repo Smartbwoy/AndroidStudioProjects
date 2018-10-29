@@ -428,7 +428,7 @@ public class Camera2BasicFragment extends Fragment implements View.OnClickListen
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         view.findViewById(R.id.button_capture).setOnClickListener(this);
         view.findViewById(R.id.flash_status).setOnClickListener(this);
-        mTextureView = (AutoFitTextureView) view.findViewById(R.id.camera_preview);
+        mTextureView = view.findViewById(R.id.camera_preview);
     }
 
     @Override
@@ -900,8 +900,7 @@ public class Camera2BasicFragment extends Fragment implements View.OnClickListen
                     Log.e("err", "Device has no camera!");
                     break;
                 }
-                ;
-               /*Activity activity = getActivity();
+                /*Activity activity = getActivity();
                 if (null != activity) {
                     new AlertDialog.Builder(activity)
                             .setMessage(R.string.intro_message)
